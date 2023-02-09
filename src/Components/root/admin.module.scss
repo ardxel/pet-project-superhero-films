@@ -1,0 +1,39 @@
+body {
+  overflow: hidden;
+}
+.container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.text {
+  width: 400px;
+  height: 1.7em;
+  margin: 10px;
+}
+
+.button {
+  margin: 10px;
+  width: 50px;
+  height: 30px;
+  padding: 5px;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.code {
+  margin: 100px auto 0;
+}
