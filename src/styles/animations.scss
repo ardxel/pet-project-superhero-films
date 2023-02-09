@@ -1,0 +1,36 @@
+@mixin animationCustom($name, $duration, $timing: linear) {
+  transition: all $duration $timing;
+  animation: $name $duration $timing;
+}
+
+$fast: 0.075s;
+$normal: 0.15s;
+$slow: 0.3s;
+$verSlow: 0.5s;
+
+@keyframes openWithOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes closeWithOpacity {
+  from {
+    opacity: 1
+  }
+  to {
+    opacity: 0
+  }
+}
+
+@keyframes showFromLeft {
+  from {
+    transform: translate(-100%);
+  }
+  to {
+    transform: translate(0);
+  }
+}

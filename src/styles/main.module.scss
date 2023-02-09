@@ -1,0 +1,50 @@
+@import 'normalize.css';
+@import 'fontface.css';
+@import 'reset.css';
+@import 'variables.module';
+
+body {
+  background-color: $bgColor;
+
+  button {
+    background-color: $bgColor;
+  }
+  svg {
+    fill: $svgColor;
+  }
+  div[data-destiny='icon'] > div {
+    border-color: $svgColor;
+  }
+  div[data-destiny='search'] {
+    background: $bgColor
+  }
+  nav {
+    background: $bgColor;
+  }
+  h1,h2,h3,h4,h5,h6,p,a,input {
+    color: $text;
+  }
+}
+nav {
+  font-weight: 600;
+  font-size: 1.5em;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  all: unset;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
