@@ -1,0 +1,13 @@
+.home {
+  margin-top: 80px;
+  width: 100%;
+}
+.home .container {
+  display: flex;
+  flex-direction: column;
+}
+.home .container article {
+  margin-top: 30px;
+}
+
+/*# sourceMappingURL=home.module.css.map */
