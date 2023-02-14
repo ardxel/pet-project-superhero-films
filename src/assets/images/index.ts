@@ -4,4 +4,5 @@ import SearchSVG from './search.svg';
 import ThemeSVG from './theme.svg';
 import CrossSVG from './cross.svg';
 import LoginSVG from './login.svg';
-export { LogoSVG, MenuSVG, SearchSVG, ThemeSVG, CrossSVG, LoginSVG };
+import ArrowSVG from './arrow.svg';
+export { LogoSVG, MenuSVG, SearchSVG, ThemeSVG, CrossSVG, LoginSVG, ArrowSVG };
