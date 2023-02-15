@@ -18,6 +18,7 @@ module.exports = function (env, argv) {
         webpackMockServer.use(devServer.app, {
           port: 5000, // app searches for free port (starts searching from
           // pointed)
+          host: '[hostname]',
           verbose: false, // send info via console.log
           logRequests: false,
           logResponses: false,

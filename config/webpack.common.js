@@ -25,7 +25,7 @@ module.exports = function (env, argv) {
       clean: true,
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx', 'json', 'svg', 'png', 'jpeg'],
+      extensions: ['.ts', '.tsx', '.js', '.jsx', 'json', 'svg'],
       plugins: [
         new TsconfigPathsPlugin({
           configFile: path.resolve(path_main, 'tsconfig.json'),
@@ -42,11 +42,7 @@ module.exports = function (env, argv) {
           use: [
             {
               loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env', '@babel/preset-react'],
-              },
             },
-            // 'eslint-loader'
           ],
         },
         // rule for ts, tsx files
@@ -56,13 +52,6 @@ module.exports = function (env, argv) {
           use: [
             {
               loader: 'babel-loader',
-              options: {
-                presets: [
-                  '@babel/preset-env',
-                  '@babel/preset-typescript',
-                  '@babel/preset-react',
-                ],
-              },
             },
             // 'eslint-loader'
           ],
@@ -95,22 +84,24 @@ module.exports = function (env, argv) {
         },
         // rule for other files
         {
-          test: /\.(png|jpg|svg|gif)$/,
-          use: {
-            loader: 'file-loader',
-            options: {
-              name: 'images/[name]-[hash].[ext]',
-            },
+          test: /\.(png|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'images/[hash][ext][query]',
           },
+        },
+        // rule for svg
+        {
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
         },
         // rule for fonts
         {
-          test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-          use: {
-            loader: 'file-loader',
-            options: {
-              name: 'fonts/[name].[ext]',
-            },
+          test: /\.(woff(2)?|eot|ttf|otf|)$/,
+          exclude: /node_modules/,
+          type: 'asset',
+          generator: {
+            filename: 'fonts/[hash][ext][query]',
           },
         },
       ],
@@ -121,13 +112,17 @@ module.exports = function (env, argv) {
       new HtmlWebpackPlugin({
         template: path.resolve(path_src, 'index.html'),
         filename: 'index.html',
-        minify: !isDevMode && {
-          collapseWhitespace: true,
-          removeComments: true,
-        },
+        minify: isDevMode
+          ? false
+          : {
+              collapseWhitespace: true,
+              removeComments: true,
+            },
       }),
       new MiniCssExtractPlugin({
-        filename: isDevMode ? '[name].css' : '[name].[contenthash].css',
+        filename: isDevMode
+          ? 'css/[name].css'
+          : 'css/[name].[contenthash:8].css',
       }),
       new ESLintPlugin(),
     ],
