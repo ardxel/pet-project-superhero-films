@@ -1,6 +1,6 @@
 /* Error: Can't find stylesheet to import.
  *   ,
- * 1 | @import '@styles/variables.module.scss';
+ * 1 | @import '@styles/variables.scss';
  *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  *   '
  *   menuIcon.module.scss 1:9  root stylesheet */

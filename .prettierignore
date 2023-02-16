@@ -1,6 +1,14 @@
 # Ignore artifacts:
-build
-coverage
-dist
 node_modules
-assets
+package-lock.json
+build
+.git
+.gitignore
+.idea
+.editorconfig
+.eslintignore
+.eslintrc.js
+.prettierignore
+babel.config.js
+README.md
+*.map

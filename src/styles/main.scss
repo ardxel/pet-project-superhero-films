@@ -1,13 +1,8 @@
 @import 'normalize.css';
 @import 'fontface.css';
 @import 'reset.css';
-@import 'variables.module';
-
-:global {
-  @import "tailwindcss/base";
-  @import "tailwindcss/components";
-  @import "tailwindcss/utilities";
-}
+@import 'variables';
+//@import 'tailwind.css';
 
 body {
   background-color: var(--color1);
