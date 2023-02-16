@@ -1,6 +1,5 @@
-@import 'variables.module';
+@import 'variables';
 
 @mixin boxShadowCustom {
-  box-shadow: 0 4px 2px -2px var(--shadow-color);
+  box-shadow: 0 4px 2px -2px var(--color93);
 }
-

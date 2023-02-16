@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTheme } from '../tools/helpers/getTheme';
+import { getTheme } from '../tools/getTheme';
 
 const useTheme = (): { theme: string; changeTheme: () => void } => {
   const [theme, setTheme] = useState(

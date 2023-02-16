@@ -9,23 +9,11 @@ insert_final_newline = false
 max_line_length = 80
 tab_width = 2
 
-[*.feature]
-indent_size = 2
-
-[*.less]
-indent_size = 2
-
-[*.sass]
-indent_size = 2
 
 [*.scss]
 indent_size = 2
 
-[*.vue]
-indent_size = 2
-tab_width = 2
-
-[{*.ats,*.cts,*.mts,*.ts}]
+[{*.ts, *.tsx}]
 indent_size = 2
 tab_width = 2
 
@@ -40,8 +28,4 @@ indent_size = 2
 indent_size = 2
 tab_width = 2
 
-[{*.http,*.rest}]
-indent_size = 0
 
-[{*.yaml,*.yml}]
-indent_size = 2
