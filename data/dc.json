@@ -12,16 +12,10 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": 91.7,
-    "ratingGoodReviewVoteCount": 31,
     "ratingKinopoisk": 7.1,
-    "ratingKinopoiskVoteCount": 15450,
     "ratingImdb": 7.4,
-    "ratingImdbVoteCount": 176453,
     "ratingFilmCritics": 8.1,
-    "ratingFilmCriticsVoteCount": 74,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 0,
     "webUrl": "https://www.kinopoisk.ru/film/7145/",
     "year": 1978,
     "filmLength": 143,
@@ -56,14 +50,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-26T13:14:09.013719"
+    "has3D": false
   },
   {
     "id": 2,
@@ -78,16 +69,10 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": 85.3,
-    "ratingGoodReviewVoteCount": 13,
     "ratingKinopoisk": 6.3,
-    "ratingKinopoiskVoteCount": 7269,
     "ratingImdb": 6.8,
-    "ratingImdbVoteCount": 109192,
     "ratingFilmCritics": 7.4,
-    "ratingFilmCriticsVoteCount": 58,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 0,
     "webUrl": "https://www.kinopoisk.ru/film/8148/",
     "year": 1980,
     "filmLength": 127,
@@ -122,14 +107,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2023-02-01T08:14:34.333381"
+    "has3D": false
   },
   {
     "id": 3,
@@ -144,16 +126,10 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": 36.7,
-    "ratingGoodReviewVoteCount": 2,
     "ratingKinopoisk": 5.2,
-    "ratingKinopoiskVoteCount": 3282,
     "ratingImdb": 5,
-    "ratingImdbVoteCount": 71090,
     "ratingFilmCritics": 4.6,
-    "ratingFilmCriticsVoteCount": 56,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 0,
     "webUrl": "https://www.kinopoisk.ru/film/28149/",
     "year": 1983,
     "filmLength": 125,
@@ -188,14 +164,11 @@
         "genre": "комедия"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-21T05:21:10.918645"
+    "has3D": false
   },
   {
     "id": 4,
@@ -210,16 +183,10 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": null,
-    "ratingGoodReviewVoteCount": 0,
     "ratingKinopoisk": 4.3,
-    "ratingKinopoiskVoteCount": 2933,
     "ratingImdb": 3.7,
-    "ratingImdbVoteCount": 49312,
     "ratingFilmCritics": 3.1,
-    "ratingFilmCriticsVoteCount": 49,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 0,
     "webUrl": "https://www.kinopoisk.ru/film/1926/",
     "year": 1987,
     "filmLength": 90,
@@ -251,14 +218,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-17T06:28:12.504265"
+    "has3D": false
   },
   {
     "id": 5,
@@ -273,16 +237,10 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/1531675/2a0000017b1a35a233511eb0b8a091342a2b/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 89.8,
-    "ratingGoodReviewVoteCount": 105,
     "ratingKinopoisk": 7.5,
-    "ratingKinopoiskVoteCount": 89695,
     "ratingImdb": 7.5,
-    "ratingImdbVoteCount": 379276,
     "ratingFilmCritics": 6.7,
-    "ratingFilmCriticsVoteCount": 79,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 0,
     "webUrl": "https://www.kinopoisk.ru/film/4205/",
     "year": 1989,
     "filmLength": 126,
@@ -317,14 +275,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-17T22:39:30.57449"
+    "has3D": false
   },
   {
     "id": 6,
@@ -339,16 +294,10 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/2439731/2a000001747cf06d10dd3296fd1bc8a61422/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 90.8,
-    "ratingGoodReviewVoteCount": 84,
     "ratingKinopoisk": 7.4,
-    "ratingKinopoiskVoteCount": 68799,
     "ratingImdb": 7.1,
-    "ratingImdbVoteCount": 307278,
     "ratingFilmCritics": 6.8,
-    "ratingFilmCriticsVoteCount": 88,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 0,
     "webUrl": "https://www.kinopoisk.ru/film/898/",
     "year": 1992,
     "filmLength": 126,
@@ -377,14 +326,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-17T21:09:34.143049"
+    "has3D": false
   },
   {
     "id": 7,
@@ -399,16 +345,10 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/1672343/2a0000017d9e47c2ecee39a6ffe786c4446d/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 57,
-    "ratingGoodReviewVoteCount": 26,
     "ratingKinopoisk": 6.5,
-    "ratingKinopoiskVoteCount": 54802,
     "ratingImdb": 5.4,
-    "ratingImdbVoteCount": 254703,
     "ratingFilmCritics": 5.2,
-    "ratingFilmCriticsVoteCount": 69,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 0,
     "webUrl": "https://www.kinopoisk.ru/film/1809/",
     "year": 1995,
     "filmLength": 121,
@@ -437,14 +377,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-28T11:52:53.359384"
+    "has3D": false
   },
   {
     "id": 8,
@@ -459,16 +396,10 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": 34,
-    "ratingGoodReviewVoteCount": 20,
     "ratingKinopoisk": 5.7,
-    "ratingKinopoiskVoteCount": 54386,
     "ratingImdb": 3.7,
-    "ratingImdbVoteCount": 255104,
     "ratingFilmCritics": 3.8,
-    "ratingFilmCriticsVoteCount": 94,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 0,
     "webUrl": "https://www.kinopoisk.ru/film/3678/",
     "year": 1997,
     "filmLength": 125,
@@ -497,14 +428,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-10T21:38:22.925736"
+    "has3D": false
   },
   {
     "id": 9,
@@ -519,16 +447,10 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": 55.6,
-    "ratingGoodReviewVoteCount": 34,
     "ratingKinopoisk": 5.8,
-    "ratingKinopoiskVoteCount": 66715,
     "ratingImdb": 3.4,
-    "ratingImdbVoteCount": 120452,
     "ratingFilmCritics": 3.2,
-    "ratingFilmCriticsVoteCount": 197,
     "ratingAwait": null,
-    "ratingAwaitCount": 1,
-    "ratingRfCriticsVoteCount": 2,
     "webUrl": "https://www.kinopoisk.ru/film/3523/",
     "year": 2004,
     "filmLength": 104,
@@ -557,14 +479,11 @@
         "genre": "фэнтези"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-17T22:06:52.719258"
+    "has3D": false
   },
   {
     "id": 10,
@@ -579,16 +498,10 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/223007/2a00000172284ff4c9e90a56d3b24b563f1e/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 91.4,
-    "ratingGoodReviewVoteCount": 258,
     "ratingKinopoisk": 7.9,
-    "ratingKinopoiskVoteCount": 333882,
     "ratingImdb": 8.2,
-    "ratingImdbVoteCount": 1468164,
     "ratingFilmCritics": 7.7,
-    "ratingFilmCriticsVoteCount": 287,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 1,
     "webUrl": "https://www.kinopoisk.ru/film/47237/",
     "year": 2005,
     "filmLength": 140,
@@ -623,14 +536,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-17T09:47:28.316132"
+    "has3D": false
   },
   {
     "id": 11,
@@ -645,16 +555,10 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": 58.8,
-    "ratingGoodReviewVoteCount": 40,
     "ratingKinopoisk": 5.7,
-    "ratingKinopoiskVoteCount": 33806,
     "ratingImdb": 6.1,
-    "ratingImdbVoteCount": 284472,
     "ratingFilmCritics": 7,
-    "ratingFilmCriticsVoteCount": 266,
     "ratingAwait": null,
-    "ratingAwaitCount": 0,
-    "ratingRfCriticsVoteCount": 1,
     "webUrl": "https://www.kinopoisk.ru/film/38472/",
     "year": 2006,
     "filmLength": 154,
@@ -686,14 +590,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-26T16:02:39.16088"
+    "has3D": false
   },
   {
     "id": 12,
@@ -708,17 +609,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/224348/2a00000176f159505eff31a41fe3e4ccf723/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 88.2,
-    "ratingGoodReviewVoteCount": 825,
     "ratingKinopoisk": 8.5,
-    "ratingKinopoiskVoteCount": 649759,
     "ratingImdb": 9,
-    "ratingImdbVoteCount": 2642103,
     "ratingFilmCritics": 8.6,
-    "ratingFilmCriticsVoteCount": 345,
     "ratingAwait": null,
-    "ratingAwaitCount": 1,
     "ratingRfCritics": 45,
-    "ratingRfCriticsVoteCount": 11,
     "webUrl": "https://www.kinopoisk.ru/film/111543/",
     "year": 2008,
     "filmLength": 152,
@@ -756,14 +651,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-11T21:19:11.100056"
+    "has3D": false
   },
   {
     "id": 13,
@@ -778,17 +670,11 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": 56.6,
-    "ratingGoodReviewVoteCount": 85,
     "ratingKinopoisk": 5.9,
-    "ratingKinopoiskVoteCount": 110726,
     "ratingImdb": 5.5,
-    "ratingImdbVoteCount": 286493,
     "ratingFilmCritics": 4.6,
-    "ratingFilmCriticsVoteCount": 248,
     "ratingAwait": 83,
-    "ratingAwaitCount": 31866,
     "ratingRfCritics": 0,
-    "ratingRfCriticsVoteCount": 5,
     "webUrl": "https://www.kinopoisk.ru/film/406294/",
     "year": 2011,
     "filmLength": 114,
@@ -817,14 +703,11 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": true,
-    "lastSync": "2022-12-16T21:02:38.818078"
+    "has3D": true
   },
   {
     "id": 14,
@@ -839,17 +722,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/1531675/2a00000170ed77ee88e59cf1f863c0e20cf9/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 81.1,
-    "ratingGoodReviewVoteCount": 623,
     "ratingKinopoisk": 8.2,
-    "ratingKinopoiskVoteCount": 470930,
     "ratingImdb": 8.4,
-    "ratingImdbVoteCount": 1704486,
     "ratingFilmCritics": 8,
-    "ratingFilmCriticsVoteCount": 375,
     "ratingAwait": 94,
-    "ratingAwaitCount": 91652,
     "ratingRfCritics": 78,
-    "ratingRfCriticsVoteCount": 32,
     "webUrl": "https://www.kinopoisk.ru/film/437410/",
     "year": 2012,
     "filmLength": 165,
@@ -887,13 +764,10 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": false,
-    "lastSync": "2022-12-31T04:54:47.497745"
+    "has3D": false
   },
   {
     "id": 15,
@@ -908,17 +782,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/1672343/2a00000173bec285f6c68db51a18a9cd8632/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 71.8,
-    "ratingGoodReviewVoteCount": 363,
     "ratingKinopoisk": 6.9,
-    "ratingKinopoiskVoteCount": 236313,
     "ratingImdb": 7.1,
-    "ratingImdbVoteCount": 771986,
     "ratingFilmCritics": 6.2,
-    "ratingFilmCriticsVoteCount": 342,
     "ratingAwait": 94,
-    "ratingAwaitCount": 58616,
     "ratingRfCritics": 57,
-    "ratingRfCriticsVoteCount": 23,
     "webUrl": "https://www.kinopoisk.ru/film/252667/",
     "year": 2013,
     "filmLength": 143,
@@ -950,13 +818,10 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": true,
-    "lastSync": "2022-12-11T18:13:35.741067"
+    "has3D": true
   },
   {
     "id": 16,
@@ -971,17 +836,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/2385704/2a000001720e47d2902582631e512ca756af/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 69.1,
-    "ratingGoodReviewVoteCount": 437,
     "ratingKinopoisk": 6.8,
-    "ratingKinopoiskVoteCount": 241410,
     "ratingImdb": 6.4,
-    "ratingImdbVoteCount": 703793,
     "ratingFilmCritics": 5,
-    "ratingFilmCriticsVoteCount": 437,
     "ratingAwait": 94,
-    "ratingAwaitCount": 87424,
     "ratingRfCritics": 56,
-    "ratingRfCriticsVoteCount": 27,
     "webUrl": "https://www.kinopoisk.ru/film/770631/",
     "year": 2016,
     "filmLength": 153,
@@ -1013,13 +872,10 @@
         "genre": "фэнтези"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": true,
-    "lastSync": "2023-01-28T15:42:23.606766"
+    "has3D": true
   },
   {
     "id": 17,
@@ -1034,17 +890,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/1534341/2a0000016ff9c513fe8435c2978a143a4d74/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 50.4,
-    "ratingGoodReviewVoteCount": 288,
     "ratingKinopoisk": 6.1,
-    "ratingKinopoiskVoteCount": 462873,
     "ratingImdb": 5.9,
-    "ratingImdbVoteCount": 686109,
     "ratingFilmCritics": 4.8,
-    "ratingFilmCriticsVoteCount": 391,
     "ratingAwait": 97,
-    "ratingAwaitCount": 98074,
     "ratingRfCritics": 68,
-    "ratingRfCriticsVoteCount": 22,
     "webUrl": "https://www.kinopoisk.ru/film/468522/",
     "year": 2016,
     "filmLength": 118,
@@ -1076,13 +926,10 @@
         "genre": "фэнтези"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": true,
-    "lastSync": "2022-12-11T08:41:25.103972"
+    "has3D": true
   },
   {
     "id": 18,
@@ -1097,17 +944,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/2419418/2a000001726fc1ea6acc80d81dbace01c95f/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 75.4,
-    "ratingGoodReviewVoteCount": 186,
     "ratingKinopoisk": 6.8,
-    "ratingKinopoiskVoteCount": 216767,
     "ratingImdb": 7.4,
-    "ratingImdbVoteCount": 663792,
     "ratingFilmCritics": 7.7,
-    "ratingFilmCriticsVoteCount": 479,
     "ratingAwait": 89,
-    "ratingAwaitCount": 40705,
     "ratingRfCritics": 71,
-    "ratingRfCriticsVoteCount": 17,
     "webUrl": "https://www.kinopoisk.ru/film/102383/",
     "year": 2017,
     "filmLength": 141,
@@ -1142,13 +983,10 @@
         "genre": "военный"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": true,
-    "lastSync": "2023-01-31T10:01:46.14142"
+    "has3D": true
   },
   {
     "id": 19,
@@ -1163,17 +1001,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/2419418/2a000001723d96db84ec5b9ccc6233609870/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 51.7,
-    "ratingGoodReviewVoteCount": 97,
     "ratingKinopoisk": 6.1,
-    "ratingKinopoiskVoteCount": 188469,
     "ratingImdb": 6.1,
-    "ratingImdbVoteCount": 456688,
     "ratingFilmCritics": 5.3,
-    "ratingFilmCriticsVoteCount": 408,
     "ratingAwait": 92,
-    "ratingAwaitCount": 66872,
     "ratingRfCritics": 42,
-    "ratingRfCriticsVoteCount": 19,
     "webUrl": "https://www.kinopoisk.ru/film/424994/",
     "year": 2017,
     "filmLength": 110,
@@ -1208,13 +1040,10 @@
         "genre": "фэнтези"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": true,
-    "lastSync": "2023-01-31T10:55:40.601894"
+    "has3D": true
   },
   {
     "id": 20,
@@ -1229,17 +1058,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/223007/2a0000016f12eec89b051fb5bdc804ba1934/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 74.9,
-    "ratingGoodReviewVoteCount": 114,
     "ratingKinopoisk": 6.9,
-    "ratingKinopoiskVoteCount": 460652,
     "ratingImdb": 6.8,
-    "ratingImdbVoteCount": 475499,
     "ratingFilmCritics": 6,
-    "ratingFilmCriticsVoteCount": 412,
     "ratingAwait": 88,
-    "ratingAwaitCount": 44408,
     "ratingRfCritics": 93,
-    "ratingRfCriticsVoteCount": 15,
     "webUrl": "https://www.kinopoisk.ru/film/470178/",
     "year": 2018,
     "filmLength": 143,
@@ -1274,13 +1097,10 @@
         "genre": "фэнтези"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": true,
-    "lastSync": "2022-12-20T22:17:58.285193"
+    "has3D": true
   },
   {
     "id": 21,
@@ -1295,17 +1115,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/1672343/2a0000016fc3291dea240f7908c3a0972f75/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 80.1,
-    "ratingGoodReviewVoteCount": 93,
     "ratingKinopoisk": 6.7,
-    "ratingKinopoiskVoteCount": 206985,
     "ratingImdb": 7,
-    "ratingImdbVoteCount": 341386,
     "ratingFilmCritics": 7.3,
-    "ratingFilmCriticsVoteCount": 418,
     "ratingAwait": 91,
-    "ratingAwaitCount": 23422,
     "ratingRfCritics": 100,
-    "ratingRfCriticsVoteCount": 12,
     "webUrl": "https://www.kinopoisk.ru/film/840372/",
     "year": 2019,
     "filmLength": 132,
@@ -1337,13 +1151,10 @@
         "genre": "комедия"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": true,
-    "lastSync": "2023-01-05T03:00:38.939138"
+    "has3D": true
   },
   {
     "id": 22,
@@ -1358,17 +1169,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/1534341/2a00000176f15a40fc3ec20b6a61c0b19850/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 78.9,
-    "ratingGoodReviewVoteCount": 499,
     "ratingKinopoisk": 8,
-    "ratingKinopoiskVoteCount": 534758,
     "ratingImdb": 8.4,
-    "ratingImdbVoteCount": 1290828,
     "ratingFilmCritics": 7.3,
-    "ratingFilmCriticsVoteCount": 596,
     "ratingAwait": 96,
-    "ratingAwaitCount": 41184,
     "ratingRfCritics": 90,
-    "ratingRfCriticsVoteCount": 29,
     "webUrl": "https://www.kinopoisk.ru/film/1048334/",
     "year": 2019,
     "filmLength": 122,
@@ -1400,13 +1205,10 @@
         "genre": "криминал"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": false,
-    "lastSync": "2023-01-12T05:46:18.402052"
+    "has3D": false
   },
   {
     "id": 23,
@@ -1421,17 +1223,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/2419418/2a000001778278d451923c971711c2dfdadd/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 49,
-    "ratingGoodReviewVoteCount": 29,
     "ratingKinopoisk": 6.1,
-    "ratingKinopoiskVoteCount": 201824,
     "ratingImdb": 5.4,
-    "ratingImdbVoteCount": 269493,
     "ratingFilmCritics": 6.1,
-    "ratingFilmCriticsVoteCount": 446,
     "ratingAwait": 87,
-    "ratingAwaitCount": 22574,
     "ratingRfCritics": 22,
-    "ratingRfCriticsVoteCount": 9,
     "webUrl": "https://www.kinopoisk.ru/film/1046969/",
     "year": 2020,
     "filmLength": 151,
@@ -1463,13 +1259,10 @@
         "genre": "фэнтези"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": true,
-    "lastSync": "2023-01-04T04:45:13.694189"
+    "has3D": true
   },
   {
     "id": 24,
@@ -1484,17 +1277,11 @@
     "logoUrl": "https://avatars.mds.yandex.net/get-ott/239697/2a0000017dc8f6355be1f6c5ff4d4ba97bba/orig",
     "reviewsCount": 0,
     "ratingGoodReview": 74.6,
-    "ratingGoodReviewVoteCount": 77,
     "ratingKinopoisk": 6.7,
-    "ratingKinopoiskVoteCount": 354022,
     "ratingImdb": 7.2,
-    "ratingImdbVoteCount": 350830,
     "ratingFilmCritics": 7.5,
-    "ratingFilmCriticsVoteCount": 375,
     "ratingAwait": 89,
-    "ratingAwaitCount": 36499,
     "ratingRfCritics": 93,
-    "ratingRfCriticsVoteCount": 15,
     "webUrl": "https://www.kinopoisk.ru/film/1008477/",
     "year": 2021,
     "filmLength": 132,
@@ -1526,13 +1313,10 @@
         "genre": "комедия"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
-    "has3D": false,
-    "lastSync": "2022-12-18T05:46:44.075337"
+    "has3D": false
   },
   {
     "id": 25,
@@ -1547,17 +1331,11 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": 62.2,
-    "ratingGoodReviewVoteCount": 68,
     "ratingKinopoisk": 7.9,
-    "ratingKinopoiskVoteCount": 141452,
     "ratingImdb": 7.8,
-    "ratingImdbVoteCount": 631573,
     "ratingFilmCritics": 7.6,
-    "ratingFilmCriticsVoteCount": 503,
     "ratingAwait": 94,
-    "ratingAwaitCount": 74868,
     "ratingRfCritics": 75,
-    "ratingRfCriticsVoteCount": 4,
     "webUrl": "https://www.kinopoisk.ru/film/590286/",
     "year": 2022,
     "filmLength": 176,
@@ -1589,8 +1367,6 @@
         "genre": "боевик"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
@@ -1609,16 +1385,10 @@
     "logoUrl": null,
     "reviewsCount": 0,
     "ratingGoodReview": null,
-    "ratingGoodReviewVoteCount": 0,
     "ratingKinopoisk": 6.1,
-    "ratingKinopoiskVoteCount": 47784,
     "ratingImdb": 6.6,
-    "ratingImdbVoteCount": 171673,
     "ratingFilmCritics": 5.1,
-    "ratingFilmCriticsVoteCount": 283,
     "ratingAwait": 97,
-    "ratingAwaitCount": 20928,
-    "ratingRfCriticsVoteCount": 0,
     "webUrl": "https://www.kinopoisk.ru/film/1009017/",
     "year": 2022,
     "filmLength": 125,
@@ -1659,13 +1429,10 @@
         "genre": "фэнтези"
       }
     ],
-    "startYear": null,
-    "endYear": null,
     "serial": false,
     "shortFilm": false,
     "completed": false,
     "hasImax": false,
-    "has3D": false,
-    "lastSync": "2022-12-27T20:08:59.600785"
+    "has3D": false
   }
 ]
