@@ -34,7 +34,7 @@ module.exports = function (env, argv) {
           },
           strictCompilerOptions: {
             // these options impossible to override
-            outDir: '', // used the following: {os.tmpdir()}/webpack-mock-server/{new Date().getTime()}
+            outDir: '', // used the following: {os.tmpdir()}/webpack-mock-server/{news Date().getTime()}
             rootDir: process.cwd(),
             noEmit: false,
             noEmitHelpers: false,
