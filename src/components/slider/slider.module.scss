@@ -1,0 +1,130 @@
+@import '@styles/animations.scss';
+.article {
+  width: 100%;
+  height: 55vmin;
+  position: relative;
+
+  .title {
+    width: 100%;
+    text-align: left;
+    height: 10%;
+    vertical-align: center;
+    margin-bottom: 15px;
+    font-size: 3.2vmin;
+  }
+  .menu {
+    width: 100%;
+    height: 80%;
+    .list {
+      position: relative;
+      overflow-x: visible;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      width: 100%;
+      height: 100%;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      white-space: nowrap;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      li:not(:first-of-type) {
+        margin-left: 1vh;
+      }
+    }
+    &:hover {
+      .left, .right {
+        display: flex;
+      }
+    }
+  }
+
+
+
+}
+
+.left, .right {
+  backdrop-filter: blur(3px);
+  background-color: rgba(var(--color39), .1);
+  border: 2px solid var(--color13);
+  position: absolute;
+  display: none;
+  top: 50%;
+  z-index: 100;
+  transform: translateY(-50%);
+  width: 6%;
+  height: 27.5%;
+  justify-content: center;
+  align-items: center;
+  .svgWrapper {
+    width: 50px;
+    height: 50px;
+
+    svg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      stroke: var(--color39);
+      stroke-width: .5;
+      fill: var(--color39);
+    }
+  }
+}
+
+.left {
+  left: 0;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  animation: showLeftAbsolute $fast linear;
+
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+.right {
+  right: 0;
+  border-bottom-left-radius: 40px;
+  border-top-left-radius: 40px;
+  animation: showRightAbsolute $normal linear;
+
+}
+
+@media screen and (min-width: 510px) {
+  .article .title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 618px) {
+  .article {
+    height: 45vw
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .article {
+    height: 36vw;
+
+    .list li:not(:first-of-type) {
+      margin-left: 1.5vh
+    }
+  }
+  .left, .right {
+    width: 4.5%;
+  }
+}
+
+@media screen and (min-width: 1174px) {
+  .article {
+    height: 34vw;
+    .list li:not(:first-of-type) {
+      margin-left: 2vh
+    }
+  }
+
+}
