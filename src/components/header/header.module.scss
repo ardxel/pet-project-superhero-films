@@ -1,13 +1,12 @@
-@import '@styles/variables.scss';
+@import '@styles/variables.module.scss';
 @import '@styles/animations.scss';
 @import '@styles/mixins.scss';
-
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 110;
+  z-index: 100;
   background: var(--color1);
   //@include boxShadowCustom;
 }

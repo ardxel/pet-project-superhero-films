@@ -1,41 +1,29 @@
 @import 'normalize.css';
 @import 'fontface.css';
 @import 'reset.css';
-@import 'variables';
-//@import 'tailwind.css';
+@import 'variables.module';
 
 body {
-  background-color: var(--color1);
+  background-color: $bgColor;
 
   button {
-    background-color: var(--color1);
+    background-color: $bgColor;
   }
   svg {
-    fill: var(--color3);
+    fill: $svgColor;
   }
   div[data-destiny='icon'] > div {
-    border-color: var(--color3);
+    border-color: $svgColor;
   }
   div[data-destiny='search'] {
-    background: var(--color1);
+    background: $bgColor
   }
   nav {
-    background: var(--color1);
+    background: $bgColor;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  a,
-  input {
-    color: var(--color3);
+  h1,h2,h3,h4,h5,h6,p,a,input {
+    color: $text;
   }
-}
-html {
-  overflow: auto;
 }
 nav {
   font-weight: 600;
@@ -58,3 +46,5 @@ svg {
   width: 100%;
   height: 100%;
 }
+
+
