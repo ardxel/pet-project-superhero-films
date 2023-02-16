@@ -1,0 +1,40 @@
+:root {
+  --light1: #FFFFFF;
+  --light3: #F8F8F8;
+  --light5: #F5F5F5;
+  --light7: #EAEAEA;
+  --light9: #DADADA;
+  --dark1: #3E3E3E;
+  --dark3: #2C2C2C;
+  --dark5: #232323;
+  --dark7: #171717;
+}
+
+:root[data-theme="light"] {
+  --background-color: var(--light7);
+  --text: var(--dark5);
+  --svg-color: var(--dark5);
+  --div-bottom-line: var(--dark7);
+  --shadow-color: var(--dark3);
+}
+
+:root[data-theme="dark"] {
+  --background-color: var(--dark5);
+  --text: var(--light9);
+  --svg-color: var(--light7);;
+  --div-bottom-line: var(--light9);
+  --shadow-color: var(--light3);
+}
+
+// [tag?][property][value][...other?]
+
+$bgColor: var(--background-color);
+$svgColor: var(--svg-color);
+$bottomLine: var(--div-bottom-line);
+
+// for text
+$text: var(--text);
+
+// shadow colors
+$shadowColor: var(--shadow-color);
+

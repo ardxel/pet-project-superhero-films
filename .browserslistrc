@@ -1,14 +1,12 @@
-#> 1%
-#last 2 versions
-#not ie >= 1
-#not dead
-#not ie_mob >= 11
-#not OperaMini all
-## QQ Browser is totally messed up in CanIUse: https://github.com/Fyrd/caniuse/issues/5114
-#not and_qq >= 1
-#Firefox ESR
-## Lowest relevant version for Chrome based on our stats (some people have outdated webviews on Android)
-#Chrome >= 74
-#iOS >= 12.5
 > 1%
-last 4 versions
+last 2 versions
+not ie >= 1
+not dead
+not ie_mob >= 11
+not OperaMini all
+# QQ Browser is totally messed up in CanIUse: https://github.com/Fyrd/caniuse/issues/5114
+not and_qq >= 1
+Firefox ESR
+# Lowest relevant version for Chrome based on our stats (some people have outdated webviews on Android)
+Chrome >= 74
+iOS >= 12.5

@@ -1,5 +1,6 @@
 import React, {
   useRef,
+  memo,
 } from 'react';
 import styles from './slider.module.scss';
 import CardMovie from '../card-movie/CardMovie';
@@ -58,4 +59,4 @@ function Slider({ title }: { title: string }) {
   );
 }
 
-export default Slider;
+export default memo(Slider);

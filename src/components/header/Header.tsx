@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createRef, FC, useState } from 'react';
 import { Outlet } from 'react-router';
 import styles from './header.module.scss';
 import Navbar from './navbar/Navbar';
@@ -14,7 +14,7 @@ import MenuIcon from '../icons/MenuIcon';
 import useTheme from '@hooks/useTheme';
 import Search from '../search/Search';
 
-const Header = () => {
+const Header: FC = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const { theme, changeTheme } = useTheme();
@@ -40,13 +40,15 @@ const Header = () => {
           <div className={styles.right}>
             <button
               className={styles.search}
-              onClick={() => setIsSearchOpen(!isSearchOpen)}>
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            >
               {isSearchOpen ? <CrossSVG /> : <SearchSVG />}
             </button>
             <button
               className={styles.theme}
               onClick={changeTheme}
-              title={theme}>
+              title={theme}
+            >
               <ThemeSVG />
             </button>
             <button className={styles.signIn}>

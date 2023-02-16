@@ -1,18 +1,6 @@
 {
   "compilerOptions": {
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "redux/*": ["src/redux/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@pages/*": ["src/pages/*"],
-      "@images/*": ["src/assets/images/*"],
-      "@constants/*": ["src/constants/*"],
-      "@styles/*": ["src/styles/*"],
-      "tools/*": ["src/tools/*"],
-      "types/*": ["src/types/*"],
-      "@data/*": ["data/*"]
-    },
-    "target": "ES5",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": "./",
     "outDir": "./build/",
@@ -31,10 +19,5 @@
     "jsx": "react-jsx",
     "noImplicitAny": false
   },
-  "include": [
-    "src",
-    "./src/library/modules.d.ts",
-    "./src/library/global.d.ts",
-    "./config/webpack.mock.ts"
-  ]
+  "include": ["src", "./src/custom.d.ts", "./config/webpack.mock.ts"]
 }

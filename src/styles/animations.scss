@@ -1,24 +1,12 @@
-
 @mixin animationCustom($name, $duration, $timing: linear) {
   transition: all $duration $timing;
   animation: $name $duration $timing;
 }
-@mixin transitionCustom($duration, $timing: linear) {
-  transition: all $duration $timing;
-}
+
 $fast: 0.075s;
 $normal: 0.15s;
 $slow: 0.3s;
-$verySlow: 0.5s;
-
-@keyframes flash {
-  from {
-    opacity: 0.4;
-  }
-  to {
-    opacity: 1;
-  }
-}
+$verSlow: 0.5s;
 
 @keyframes openWithOpacity {
   from {
@@ -31,38 +19,18 @@ $verySlow: 0.5s;
 
 @keyframes closeWithOpacity {
   from {
-    opacity: 1;
+    opacity: 1
   }
   to {
-    opacity: 0;
+    opacity: 0
   }
 }
 
-@keyframes showLeft {
+@keyframes showFromLeft {
   from {
-    transform: translateX(-100%);
+    transform: translate(-100%);
   }
   to {
-    transform: translateX(0);
+    transform: translate(0);
   }
 }
-
-@keyframes showLeftAbsolute {
-  from {
-    left: -50px;
-  }
-  to {
-    left: 0;
-  }
-}
-
-
-@keyframes showRightAbsolute {
-  from {
-    right: -50px;
-  }
-  to {
-    right: 0;
-  }
-}
-
