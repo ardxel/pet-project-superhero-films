@@ -4,16 +4,19 @@ import IMovie from 'types/Movie';
 
 export const moviesApi = createApi({
   reducerPath: 'movies',
-  baseQuery: fetchBaseQuery({baseUrl: BASE_URL }),
-  endpoints: (builder) =>  ({
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  endpoints: (builder) => ({
     getMovies: builder.query<IMovie[], string>({
-      query: () => '/movies-all'
+      query: () => '/movies-all',
+    }),
+    searchMovie: builder.query<IMovie[], string>({
+      query: (searchTerm) => `/&name=${searchTerm}`,
     }),
     getFranchise: builder.query<IMovie[], string>({
-      query: (name) => `franchise=${name}`
-    })
+      query: (name) => `&franchise=${name}`,
+    }),
+  }),
+});
 
-  })
-})
-
-export const {useGetFranchiseQuery, useGetMoviesQuery} = moviesApi;
+export const { useGetFranchiseQuery, useGetMoviesQuery, useSearchMovieQuery } =
+  moviesApi;

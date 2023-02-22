@@ -4,13 +4,11 @@ import NEWS_URL from '@constants/newsUrl';
 
 export const fetchNews = createAsyncThunk(
   'news/fetchNews',
-  async (nextPage: string, thunkAPI) => {
-    try {
-      const response = await axios.get(`${NEWS_URL}&page=${nextPage}`)
+  async (nextPage: string = '', thunkAPI) => {
+    console.log('fetchNews!');
+    const response = await axios.get(`${NEWS_URL}${nextPage}`);
+    if (response.status === 200) {
       return await response.data;
-    } catch (e) {
-      console.log(e);
-      return thunkAPI.rejectWithValue(e);
-    }
+    } else thunkAPI.rejectWithValue(response.data.status);
   }
-)
+);

@@ -5,11 +5,11 @@ import IMovie from 'types/Movie';
 
 export default webpackMockServer.add((app, helper) => {
   app.use(cors());
-  app.use((req,res,next)=>{
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
     next();
-  })
+  });
   app.get('/testGet', (req, res) => {
     res.json('JS get-object can be here. Random int:' + helper.getRandomInt());
   });
@@ -17,14 +17,7 @@ export default webpackMockServer.add((app, helper) => {
     res.json('JS post-object can be here');
   });
 
-  console.log(
-    'MARVEL: ',
-    Data.parseData<IMovie>('marvel').map((item) => item.nameRu)
-  );
-  console.log(
-    'DC: ',
-    Data.parseData<IMovie>('dc').map((item) => item.nameRu)
-  );
+  const movies = Data.parseAllMoviesData();
 
   // localhost:3000/root
   app.post('/save-movie', (req, res) => {
@@ -50,16 +43,40 @@ export default webpackMockServer.add((app, helper) => {
   });
 
   app.get('/movies-all', (req, res) => {
-    console.log(Data.listOfDataFiles)
-    const movies = Data.parseAllMoviesData();
     res.send(movies);
   });
-  app.get('/franchise=:name', (req, res) => {
+  app.get('/&franchise=:name', (req, res) => {
     const name = req.params.name;
-    const movies = Data
-      .parseAllMoviesData()
-      .filter(movie => movie.nameOriginal.includes(name))
-      .sort((a,b) => b.year - a.year);
-    res.send(movies);
-  })
-})
+    const franchiseMovies = movies
+      .filter((movie) => movie.nameOriginal.includes(name))
+      .sort((a, b) => b.year - a.year);
+    res.send(franchiseMovies);
+  });
+  app.get('/&name=:searchTerm', (req, res) => {
+    const searchTerm = req.params.searchTerm.toLowerCase().replace(/\s/g, '');
+
+    const matchedMovies = movies
+      .filter((movie) => {
+        const name1 = movie.nameOriginal
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z]/gi, '');
+        const name2 = movie.nameRu
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-яA-Z]/gi, '');
+
+        if (
+          name1.includes(searchTerm) ||
+          name2.includes(searchTerm) ||
+          name2.replace(/[ёэ]/gi, 'е').includes(searchTerm)
+        ) {
+          return movie;
+        }
+      })
+      .sort((a, b) => b.year - a.year)
+      .slice(0, 10);
+
+    res.send(matchedMovies);
+  });
+});

@@ -1,7 +1,8 @@
 const upgradeRating = (rating: number): [string, string] => {
   return [
     getColor(rating),
-    String(rating).length === 1 ? (String(rating) + '.0') : String(rating)]
+    String(rating).length === 1 ? String(rating) + '.0' : String(rating),
+  ];
 };
 
 export default upgradeRating;
