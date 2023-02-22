@@ -4,26 +4,40 @@
 @import 'variables';
 
 body {
-  background-color: $bgColor;
+  background-color: var(--color1);
 
   button {
-    background-color: $bgColor;
+    background-color: var(--color1);
   }
   svg {
-    fill: $svgColor;
+    fill: var(--color93);
+    &:hover {
+      fill: var(--color39);
+    }
   }
   div[data-destiny='icon'] > div {
-    border-color: $svgColor;
+    border-color: var(--color3);
   }
   div[data-destiny='search'] {
-    background: $bgColor
+    background: var(--color1);
   }
   nav {
-    background: $bgColor;
+    background: var(--color1);
   }
-  h1,h2,h3,h4,h5,h6,p,a,input {
-    color: $text;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  input {
+    color: var(--color93);
   }
+}
+html {
+  overflow: auto;
 }
 nav {
   font-weight: 600;
@@ -46,5 +60,3 @@ svg {
   width: 100%;
   height: 100%;
 }
-
-
