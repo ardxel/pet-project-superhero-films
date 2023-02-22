@@ -1,4 +1,3 @@
-
 @mixin animationCustom($name, $duration, $timing: linear) {
   transition: all $duration $timing;
   animation: $name $duration $timing;
@@ -56,7 +55,6 @@ $verySlow: 0.5s;
   }
 }
 
-
 @keyframes showRightAbsolute {
   from {
     right: -50px;
@@ -72,5 +70,23 @@ $verySlow: 0.5s;
   }
   to {
     transform: translateY(0);
+  }
+}
+
+@keyframes showInfoMovieCart {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(25%);
+    opacity: 0.1;
+  }
+  90% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
