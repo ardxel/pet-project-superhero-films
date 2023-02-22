@@ -1,4 +1,6 @@
-export const getTheme = function <S extends 'light' | 'dark'>(themes: { [key: string]: S }): S {
+export const getTheme = function <S extends 'light' | 'dark'>(themes: {
+  [key: string]: S;
+}): S {
   // The item 'theme' is checked in local storage.
   // If there is, it is returned
   const theme = JSON.parse(`${window.localStorage.getItem('theme')}`);
@@ -8,4 +10,3 @@ export const getTheme = function <S extends 'light' | 'dark'>(themes: { [key: st
   if (userMedia.matches) return themes.light;
   return themes.dark;
 };
-
