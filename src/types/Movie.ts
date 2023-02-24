@@ -2,12 +2,14 @@ interface MovieNames {
   nameRu: string;
   nameOriginal: string;
 }
+
 interface ImgUrls {
   posterUrl: string;
   posterUrlPreview: string;
   coverUrl?: string | null;
   logoUrl?: string | null;
 }
+
 interface Ratings {
   ratingGoodReview: number;
   ratingKinopoisk: number;
@@ -39,6 +41,7 @@ export default interface IMovie
   id: number;
   comic: string;
   phase?: number;
+  videoUrls?: string[];
   kinopoiskId: number;
   imdbId: string;
   countries: Country[];

@@ -2,6 +2,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ESLintPlugin = require('eslint-webpack-plugin');
 const path = require('path');
 
@@ -125,6 +127,10 @@ module.exports = function (env, argv) {
           : 'css/[name].[contenthash:8].css',
       }),
       new ESLintPlugin(),
+      // new BundleAnalyzerPlugin({
+      //   generateStatsFile: false,
+      //   openAnalyzer: false,
+      // })
     ],
   };
 };

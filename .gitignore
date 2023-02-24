@@ -20,7 +20,7 @@ tsconfig.tsbuildinfo
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/
 dist/
-
+.map
 # Runtime data
 pids
 *.pid

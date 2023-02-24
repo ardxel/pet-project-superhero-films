@@ -18,14 +18,11 @@ export default webpackMockServer.add((app, helper) => {
   });
 
   const movies = Data.parseAllMoviesData();
-
   // localhost:3000/root
   app.post('/save-movie', (req, res) => {
     let movie = req.body;
     console.log(movie);
     const filename = movie.comic === 'dc' ? 'dc' : 'marvel';
-
-    const movies = Data.parseData(filename) as any[];
 
     const isRepeatMovie = movies.find(
       (item) => item.kinopoiskId === movie.kinopoiskId
@@ -41,11 +38,22 @@ export default webpackMockServer.add((app, helper) => {
     Data.writeData(movies, filename);
     res.sendStatus(200);
   });
-
+  app.use('/movie=:id', (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    const matchedMovie = movies.find((movie) => movie.kinopoiskId === +id);
+    if (matchedMovie) {
+      console.log(matchedMovie);
+      res.send(matchedMovie);
+    } else {
+      res.sendStatus(404);
+    }
+  });
   app.get('/movies-all', (req, res) => {
     res.send(movies);
   });
   app.get('/&franchise=:name', (req, res) => {
+    console.log(movies[movies.length - 1]);
     const name = req.params.name;
     const franchiseMovies = movies
       .filter((movie) => movie.nameOriginal.includes(name))
