@@ -25,7 +25,6 @@ const newsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchNews.fulfilled, (state, action) => {
-        console.log('fulfilled!');
         state.isLoading = false;
         if (action.payload.nextPage) {
           state.nextPage = '&page=' + action.payload!.nextPage;

@@ -6,7 +6,10 @@ export const moviesApi = createApi({
   reducerPath: 'movies',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    getMovies: builder.query<IMovie[], string>({
+    getMovie: builder.query<IMovie, string>({
+      query: (id) => `/&id=${id}`
+    }),
+    getAllMovies: builder.query<IMovie[], void>({
       query: () => '/movies-all',
     }),
     searchMovie: builder.query<IMovie[], string>({
@@ -18,5 +21,5 @@ export const moviesApi = createApi({
   }),
 });
 
-export const { useGetFranchiseQuery, useGetMoviesQuery, useSearchMovieQuery } =
+export const { useGetFranchiseQuery, useGetMovieQuery, useSearchMovieQuery } =
   moviesApi;
