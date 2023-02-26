@@ -38,7 +38,7 @@ export default webpackMockServer.add((app, helper) => {
     Data.writeData(movies, filename);
     res.sendStatus(200);
   });
-  app.use('/movie=:id', (req, res) => {
+  app.use('/&id=:id', (req, res) => {
     const id = req.params.id;
     console.log(id);
     const matchedMovie = movies.find((movie) => movie.kinopoiskId === +id);
