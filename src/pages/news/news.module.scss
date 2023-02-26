@@ -1,0 +1,7 @@
+.news {
+  @apply mt-[80px] w-full  xl:mt-[100px];
+
+  .container {
+    @apply w-11/12 mx-auto nl:w-10/12 xl:w-9/12;
+  }
+}
