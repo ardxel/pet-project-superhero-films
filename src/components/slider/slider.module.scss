@@ -1,4 +1,5 @@
 @import '@styles/animations.scss';
+
 .article {
   width: 100%;
   height: 55vmin;
@@ -15,6 +16,11 @@
   .menu {
     width: 100%;
     height: 80%;
+    &:hover {
+      button {
+        display: flex;
+      }
+    }
     .list {
       position: relative;
       overflow-x: visible;
@@ -35,62 +41,7 @@
         margin-left: 1vh;
       }
     }
-    &:hover {
-      .left, .right {
-        display: flex;
-      }
-    }
   }
-
-
-
-}
-
-.left, .right {
-  backdrop-filter: blur(3px);
-  background-color: rgba(var(--color39), .1);
-  border: 2px solid var(--color13);
-  position: absolute;
-  display: none;
-  top: 50%;
-  z-index: 100;
-  transform: translateY(-50%);
-  width: 6%;
-  height: 27.5%;
-  justify-content: center;
-  align-items: center;
-  .svgWrapper {
-    width: 50px;
-    height: 50px;
-
-    svg {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      stroke: var(--color39);
-      stroke-width: .5;
-      fill: var(--color39);
-    }
-  }
-}
-
-.left {
-  left: 0;
-  border-bottom-right-radius: 40px;
-  border-top-right-radius: 40px;
-  animation: showLeftAbsolute $fast linear;
-
-  svg {
-    transform: rotate(180deg);
-  }
-}
-
-.right {
-  right: 0;
-  border-bottom-left-radius: 40px;
-  border-top-left-radius: 40px;
-  animation: showRightAbsolute $normal linear;
-
 }
 
 @media screen and (min-width: 510px) {
@@ -102,7 +53,7 @@
 
 @media screen and (min-width: 618px) {
   .article {
-    height: 45vw
+    height: 45vw;
   }
 }
 
@@ -111,20 +62,17 @@
     height: 36vw;
 
     .list li:not(:first-of-type) {
-      margin-left: 1.5vh
+      margin-left: 1.5vh;
     }
-  }
-  .left, .right {
-    width: 4.5%;
   }
 }
 
 @media screen and (min-width: 1174px) {
   .article {
     height: 34vw;
+
     .list li:not(:first-of-type) {
-      margin-left: 2vh
+      margin-left: 2vh;
     }
   }
-
 }

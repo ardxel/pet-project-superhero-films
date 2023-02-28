@@ -4,5 +4,3 @@ export default function formatDateInArray(date: string): [string, string] {
   const localDate = dateObj.toLocaleTimeString();
   return [globalDate, localDate];
 }
-
-

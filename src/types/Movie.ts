@@ -1,3 +1,22 @@
+type PersonIdentity = {
+  id: string;
+  name: string;
+};
+
+interface Director extends PersonIdentity {
+  description: string;
+}
+
+export interface IActor extends PersonIdentity {
+  image: string;
+  asCharacter: string;
+}
+
+interface FilmCrew {
+  directors: Director[];
+  actors: IActor[];
+}
+
 interface MovieNames {
   nameRu: string;
   nameOriginal: string;
@@ -19,7 +38,7 @@ interface Ratings {
 }
 
 interface TextDesc {
-  slogan: string;
+  slogan: string | null;
   description: string;
   shortDescription?: string | null;
 }
@@ -37,11 +56,12 @@ export default interface IMovie
   extends MovieNames,
     ImgUrls,
     RatingLimits,
-    TextDesc {
+    TextDesc,
+    FilmCrew {
   id: number;
   comic: string;
   phase?: number;
-  videoUrls?: string[];
+  videoUrls: string[];
   kinopoiskId: number;
   imdbId: string;
   countries: Country[];
