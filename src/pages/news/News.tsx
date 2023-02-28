@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './news.module.scss';
-import Article from '@components/card-article/Article';
+import Article from '@components/card-components/card-article/Article';
 import { fetchNews } from 'redux/actions/fetchNews';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useAppDispatch } from '@hooks/useAppDispatch';
