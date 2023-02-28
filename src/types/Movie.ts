@@ -1,20 +1,20 @@
 type PersonIdentity = {
-  id: string
-  name: string
-}
+  id: string;
+  name: string;
+};
 
 interface Director extends PersonIdentity {
   description: string;
 }
 
 export interface IActor extends PersonIdentity {
-  image: string,
-  asCharacter: string
+  image: string;
+  asCharacter: string;
 }
 
 interface FilmCrew {
   directors: Director[];
-  actors: IActor[]
+  actors: IActor[];
 }
 
 interface MovieNames {
