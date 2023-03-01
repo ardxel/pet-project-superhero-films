@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import IMovie from 'types/Movie';
+import { FranchiseListResponse } from '@constants/franchisesList';
 
 export default class Data {
   // absolute path of the data directory
@@ -44,5 +45,38 @@ export default class Data {
       data.push(...parsedData);
     }
     return data;
+  }
+
+  static getMovieListByFranchise(
+    keywords: string,
+    movies: IMovie[]
+  ): FranchiseListResponse[] {
+    return keywords.split('&keywords=').map((keywords, index) => {
+      const ArrKeywords = keywords.split(',');
+      const title = ArrKeywords[0];
+      const id = index;
+      const list = movies.filter((movie) => {
+        for (let i = 0; i < ArrKeywords.length; i++) {
+          const keyword = ArrKeywords[i];
+          if (movie.nameOriginal.includes(keyword)) return movie;
+        }
+      });
+      return { id, title, list };
+    });
+  }
+  static getSimilarMoviesById(id: number, movies: IMovie[]): IMovie[] {
+    const mainMovie = movies.filter((movie) => movie.kinopoiskId === id)[0];
+    return movies.filter((movie) => {
+      const { phase, year, nameOriginal } = movie;
+      if (nameOriginal.includes(mainMovie.nameOriginal)) {
+        return movie;
+      }
+      if (phase === mainMovie.phase) {
+        return movie;
+      }
+      if (year === mainMovie.year) {
+        return movie;
+      }
+    });
   }
 }
