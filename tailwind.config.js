@@ -3,6 +3,7 @@ module.exports = {
   content: ['.src/**/**/*.{scss,css,tsx}'],
   theme: {
     extend: {
+
       screens: {
         xs: '428px',
         sm: '500px',
@@ -12,7 +13,7 @@ module.exports = {
         lg: '900px',
         xl: '1176px',
         xl2: '1280px',
-        mag: {'max': '828px'}
+        mag: { max: '828px' },
       },
       colors: {
         color1: 'var(--color1)',

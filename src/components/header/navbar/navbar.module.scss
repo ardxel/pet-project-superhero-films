@@ -1,5 +1,5 @@
 @import '@styles/animations.scss';
-@import '@styles/variables.module.scss';
+@import '@styles/variables.scss';
 
 .nav {
   position: absolute;
@@ -79,10 +79,9 @@
   }
 }
 
-@media screen and (max-width: 618px) {
+@media screen and (max-width: 653px) {
   .nav {
     align-items: flex-start;
     display: none;
   }
 }
-
