@@ -1,15 +1,18 @@
-import React, { createRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './navbar.module.scss';
 import { Link } from 'react-router-dom';
 import { CrossSVG } from '@images/index';
 import navLinks from '@constants/navLinks';
-
-interface INavbarProps {
+import { disableScroll, enableScroll } from 'tools/scroll-lock';
+interface NavbarProps {
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
 }
 
-export default function Navbar({ isOpen, setIsOpen }: INavbarProps) {
+const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
+  useEffect(() => {
+    isOpen ? disableScroll() : enableScroll();
+  }, [isOpen]);
   return (
     <nav className={`${styles.nav} ${isOpen && styles.open}`}>
       <ul className={`${styles.links}`}>
@@ -18,7 +21,9 @@ export default function Navbar({ isOpen, setIsOpen }: INavbarProps) {
           const { id, name, path } = item;
           return (
             <li key={id}>
-              <Link to={path}>{name}</Link>
+              <Link to={path} onClick={() => setIsOpen(false)}>
+                {name}
+              </Link>
             </li>
           );
         })}
@@ -30,4 +35,6 @@ export default function Navbar({ isOpen, setIsOpen }: INavbarProps) {
       )}
     </nav>
   );
-}
+};
+
+export default Navbar;
