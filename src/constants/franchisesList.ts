@@ -6,7 +6,7 @@ export interface FranchiseList {
 }
 export interface FranchiseListResponse extends FranchiseList {
   title: string;
-  list: IMovie[];
+  movies: IMovie[];
 }
 
 const franchisesList: FranchiseList[] = [

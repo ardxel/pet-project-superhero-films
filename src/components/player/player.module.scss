@@ -1,0 +1,11 @@
+.player {
+  @apply w-full mx-auto;
+  min-height: calc(100vh - 25%);
+  height: 62.5vw;
+  .video {
+    @apply w-full h-full;
+    .iframe {
+      @apply w-full h-full block;
+    }
+  }
+}

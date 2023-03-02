@@ -17,11 +17,11 @@ const Home: React.FC = () => {
       <main className={styles.home}>
         <div className={styles.container}>
           {(data as FranchiseListResponse[]).map((franchise) => {
-            const { id, title, list } = franchise;
+            const { id, title, movies } = franchise;
             return (
               <Slider
                 key={id}
-                data={list}
+                data={movies}
                 title={title}
                 DataContainerElement={SliderCardMovieList}
               />
