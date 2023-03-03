@@ -45,7 +45,7 @@ interface TextDesc {
 
 interface RatingLimits extends Ratings {
   ratingMpaa: string;
-  ratingAgeLimits: string;
+  ratingAgeLimits: string | null;
 }
 
 type Country = { country: string };
