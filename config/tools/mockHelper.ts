@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import IMovie from 'types/Movie';
 import { FranchiseListResponse } from '@constants/franchisesList';
+import { MovieWithAlternativeList } from 'redux/actions/moviesApi';
 
 export default class Data {
   // absolute path of the data directory
@@ -47,36 +48,46 @@ export default class Data {
     return data;
   }
 
+  static getMovieById(
+    paramsWithId: string,
+    allMovies: IMovie[]
+  ): IMovie | MovieWithAlternativeList {
+    const id = +paramsWithId.replace(/\D/gi, '');
+    const isAlternative = paramsWithId.includes('+withAlts');
+    const movieById = allMovies.filter((movie) => movie.kinopoiskId === id)[0];
+    if (isAlternative) {
+      const matchedAlternativeMovies = this.getSimilarMoviesById(id, allMovies);
+      return { movie: movieById, alternatives: matchedAlternativeMovies };
+    } else return movieById;
+  }
+
   static getMovieListByFranchise(
     keywords: string,
-    movies: IMovie[]
+    allMovies: IMovie[]
   ): FranchiseListResponse[] {
     return keywords.split('&keywords=').map((keywords, index) => {
       const ArrKeywords = keywords.split(',');
       const title = ArrKeywords[0];
       const id = index;
-      const list = movies.filter((movie) => {
-        for (let i = 0; i < ArrKeywords.length; i++) {
-          const keyword = ArrKeywords[i];
-          if (movie.nameOriginal.includes(keyword)) return movie;
-        }
-      });
-      return { id, title, list };
+      const movies = allMovies
+        .filter((movie) => {
+          for (let i = 0; i < ArrKeywords.length; i++) {
+            const keyword = ArrKeywords[i];
+            if (movie.nameOriginal.includes(keyword)) return movie;
+          }
+        })
+        .sort((a, b) => b.year - a.year);
+      return { id, title, movies };
     });
   }
-  static getSimilarMoviesById(id: number, movies: IMovie[]): IMovie[] {
-    const mainMovie = movies.filter((movie) => movie.kinopoiskId === id)[0];
-    return movies.filter((movie) => {
-      const { phase, year, nameOriginal } = movie;
-      if (nameOriginal.includes(mainMovie.nameOriginal)) {
-        return movie;
-      }
-      if (phase === mainMovie.phase) {
-        return movie;
-      }
-      if (year === mainMovie.year) {
-        return movie;
-      }
-    });
+
+  static getSimilarMoviesById(id: number, allMovies: IMovie[]): IMovie[] {
+    const mainMovie = allMovies.filter((movie) => movie.kinopoiskId === id)[0];
+    const matchedMovies = allMovies.filter(
+      (movie) =>
+        movie.comic === mainMovie.comic &&
+        mainMovie.nameOriginal !== movie.nameOriginal
+    );
+    return matchedMovies.sort((a, b) => b.year - a.year).slice(0, 11);
   }
 }
