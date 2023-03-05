@@ -1,8 +1,18 @@
 import LogoSVG from './logo.svg';
 import MenuSVG from './menu.svg';
-import SearchSVG from './search.svg';
-import ThemeSVG from './theme.svg';
-import CrossSVG from './cross.svg';
-import LoginSVG from './login.svg';
 import ArrowSVG from './arrow.svg';
-export { LogoSVG, MenuSVG, SearchSVG, ThemeSVG, CrossSVG, LoginSVG, ArrowSVG };
+import ImdbSVG from './imdb.svg';
+import KinopoiskSVG from './kinopoisk.svg';
+import MarvelSVG from './marvel.svg';
+import DcSVG from './dc.svg';
+import GithubSVG from './github.svg';
+export {
+  LogoSVG,
+  MenuSVG,
+  ArrowSVG,
+  ImdbSVG,
+  KinopoiskSVG,
+  MarvelSVG,
+  DcSVG,
+  GithubSVG,
+};

@@ -1,27 +1,33 @@
 import React, { FC, useRef } from 'react';
-import styles from './slider.module.scss';
+import styles from './manualslider.module.scss';
+import superstyles from '@styles/superstyles.module.scss';
 import Scroller from './scroller/Scroller';
 import useScroll from '@hooks/useScroll';
 
 interface SliderProps {
   data: any[];
   title?: string;
-  DataContainerElement: React.FC<any>;
+  DataContainerElement: React.FC<{ data: any[] }>;
+  style?: React.CSSProperties;
 }
 
-const Slider: FC<SliderProps> = ({ data, title, DataContainerElement }) => {
+const ManualSlider: FC<SliderProps> = ({
+  data,
+  title,
+  DataContainerElement,
+  style,
+}) => {
   const ulRef = useRef<HTMLUListElement>(null);
   const { isVisible, scroll } = useScroll(ulRef);
 
   return (
-    <article className={styles.article}>
+    <article className={styles.article} style={style}>
       <div className={styles.title}>
         <h3>{title}</h3>
       </div>
       <div className={styles.menu}>
         {isVisible && <Scroller {...scroll} />}
-        <ul className={styles.list} ref={ulRef}>
-          {/* container elements must be inside the LI tag and be inline blocks */}
+        <ul className={superstyles.list} ref={ulRef}>
           <DataContainerElement data={data} />
         </ul>
       </div>
@@ -29,4 +35,4 @@ const Slider: FC<SliderProps> = ({ data, title, DataContainerElement }) => {
   );
 };
 
-export default Slider;
+export default ManualSlider;

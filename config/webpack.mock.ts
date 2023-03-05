@@ -1,7 +1,6 @@
 import webpackMockServer from 'webpack-mock-server';
 import cors from 'cors';
 import Data from './tools/mockHelper';
-import IMovie from 'types/Movie';
 
 export default webpackMockServer.add((app, helper) => {
   app.use(cors());
@@ -18,6 +17,9 @@ export default webpackMockServer.add((app, helper) => {
   });
 
   const movies = Data.parseAllMoviesData();
+  movies.forEach((movie) => {
+    console.log(movie.nameRu, movie.kinopoiskId);
+  });
   // localhost:3000/root
   app.post('/save-movie', (req, res) => {
     let movie = req.body;
@@ -38,27 +40,14 @@ export default webpackMockServer.add((app, helper) => {
     Data.writeData(movies, filename);
     res.sendStatus(200);
   });
-  app.use('/&id=:id', (req, res) => {
-    const id = req.params.id;
-    console.log(id);
-    const matchedMovie = movies.find((movie) => movie.kinopoiskId === +id);
-    if (matchedMovie) {
-      console.log(matchedMovie);
-      res.send(matchedMovie);
-    } else {
-      res.sendStatus(404);
-    }
+  app.get('/&id=:id', (req, res) => {
+    res.send(Data.getMovieById(req.params.id, movies));
   });
   app.get('/movies-all', (req, res) => {
     res.send(movies);
   });
-  app.get('/&franchise=:name', (req, res) => {
-    console.log(movies[movies.length - 1]);
-    const name = req.params.name;
-    const franchiseMovies = movies
-      .filter((movie) => movie.nameOriginal.includes(name))
-      .sort((a, b) => b.year - a.year);
-    res.send(franchiseMovies);
+  app.get('/franchises=:keywords', (req, res) => {
+    res.send(Data.getMovieListByFranchise(req.params.keywords, movies));
   });
   app.get('/&name=:searchTerm', (req, res) => {
     const searchTerm = req.params.searchTerm.toLowerCase().replace(/\s/g, '');
