@@ -5,6 +5,7 @@
       "redux/*": ["src/redux/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
+      "forms/*": ["src/forms/*"],
       "@images/*": ["src/assets/images/*"],
       "@constants/*": ["src/constants/*"],
       "@styles/*": ["src/styles/*"],
