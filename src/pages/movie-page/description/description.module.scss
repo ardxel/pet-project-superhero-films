@@ -1,0 +1,37 @@
+.info {
+  @apply flex flex-col w-full mt-6;
+  .short {
+    @apply mt-4 mb-6 ml-4 md:ml-6 xl:ml-[3.1rem] xl:mr-[3.5rem];
+  }
+}
+
+.tableInfo {
+  @apply ml-4 md:ml-6 xl:ml-[3.1rem] xl:mr-[3.5rem] w-[95%] nl:w-1/2;
+  border-collapse: collapse;
+  tbody {
+    tr {
+      @apply ml-4 md:ml-6 xl:ml-[3.1rem];
+      border-top: 1px solid var(--color9);
+      td:nth-child(1) {
+        @apply py-3 text-[1em] sm:text-[1.1em] ag:text-[1.2em] text-color3 font-bold w-[20%] xs:w-[15%] md:w-[10%] mr-3;
+        vertical-align: top;
+      }
+      td:nth-child(2) {
+        @apply py-3 pl-4 text-color5 text-[0.8em] sm:text-[0.9em] ag:text-[1em] w-[80%] xs:w-[85%] md:w-[90%];
+      }
+      td.director {
+        .directorDesc {
+          @apply italic text-color97 ml-1;
+        }
+        td.single {
+        }
+        .name:not(:first-of-type) {
+          @apply ml-1.5;
+        }
+      }
+      td a {
+        @apply text-color5;
+      }
+    }
+  }
+}
