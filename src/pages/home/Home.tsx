@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './home.module.scss';
-import Slider from '@components/slider/Slider';
+import ManualSlider from '@components/sliders/manual-slider/ManualSlider';
 import franchisesList, {
   FranchiseListResponse,
 } from '@constants/franchisesList';
@@ -19,7 +19,7 @@ const Home: React.FC = () => {
           {(data as FranchiseListResponse[]).map((franchise) => {
             const { id, title, movies } = franchise;
             return (
-              <Slider
+              <ManualSlider
                 key={id}
                 data={movies}
                 title={title}
