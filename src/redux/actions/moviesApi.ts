@@ -6,12 +6,26 @@ import {
   FranchiseListResponse,
 } from '@constants/franchisesList';
 
+export interface MovieWithAlternativeList {
+  movie: IMovie;
+  alternatives: IMovie[];
+}
+
+interface getMovieWithAlternativesQueryArgs {
+  id: string;
+  alternative?: boolean;
+}
+
 export const moviesApi = createApi({
   reducerPath: 'movies',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    getMovie: builder.query<IMovie, string>({
-      query: (id) => `/&id=${id}`,
+    getMovie: builder.query<
+      IMovie | MovieWithAlternativeList,
+      getMovieWithAlternativesQueryArgs
+    >({
+      query: ({ id, alternative }) =>
+        `/&id=${id}${alternative ? '+withAlts' : ''}`,
     }),
     getAllMovies: builder.query<IMovie[], void>({
       query: () => '/movies-all',
