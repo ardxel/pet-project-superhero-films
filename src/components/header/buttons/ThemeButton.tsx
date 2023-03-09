@@ -1,14 +1,14 @@
 import React from 'react';
 import ButtonType from '@components/header/buttons/ButtonType';
-import { ThemeSVG } from '@images/index';
-
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { IconButton } from '@mui/material';
 interface ThemeButtonProps extends ButtonType {}
 
 const ThemeButton: React.FC<ThemeButtonProps> = ({ className, onClick }) => {
   return (
-    <button className={className as string} onClick={onClick}>
-      <ThemeSVG />
-    </button>
+    <IconButton className={className as string} onClick={onClick}>
+      <DarkModeIcon />
+    </IconButton>
   );
 };
 

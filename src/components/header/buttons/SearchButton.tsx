@@ -1,5 +1,6 @@
 import React from 'react';
 import ButtonType from '@components/header/buttons/ButtonType';
+import { IconButton } from '@mui/material';
 
 interface SearchButtonProps extends ButtonType {}
 
@@ -9,9 +10,9 @@ const SearchButton: React.FC<SearchButtonProps> = ({
   onClick,
 }) => {
   return (
-    <button className={className} onClick={onClick}>
+    <IconButton className={className} onClick={onClick}>
       {children}
-    </button>
+    </IconButton>
   );
 };
 
