@@ -1,14 +1,16 @@
 import React from 'react';
 import ButtonType from '@components/header/buttons/ButtonType';
-import { MenuSVG } from '@images/index';
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton } from '@mui/material';
 
 interface MenuButtonProps extends ButtonType {}
 
 const MenuButton: React.FC<MenuButtonProps> = ({ className, onClick }) => {
+
   return (
-    <button className={className} onClick={onClick}>
-      <MenuSVG />
-    </button>
+    <IconButton className={className} onClick={onClick}>
+      <MenuIcon />
+    </IconButton>
   );
 };
 
