@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import styles from './navbar.module.scss';
 import { Link } from 'react-router-dom';
-import { CrossSVG } from '@images/index';
+import CloseIcon from '@mui/icons-material/Close';
 import navLinks from '@constants/navLinks';
-import { disableScroll, enableScroll } from 'tools/scroll-lock';
+import { disableScroll, enableScroll } from 'common/tools/scroll-lock';
 interface NavbarProps {
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
@@ -14,7 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
     isOpen ? disableScroll() : enableScroll();
   }, [isOpen]);
   return (
-    <nav className={`${styles.nav} ${isOpen && styles.open}`}>
+    <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
       <ul className={`${styles.links}`}>
         {navLinks.map((item, index) => {
           if (!isOpen && index === navLinks.length - 1) return;
@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
       </ul>
       {isOpen && (
         <button className={styles.closed} onClick={() => setIsOpen(false)}>
-          <CrossSVG />
+          <CloseIcon />
         </button>
       )}
     </nav>

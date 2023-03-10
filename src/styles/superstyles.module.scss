@@ -1,0 +1,16 @@
+.list {
+  position: relative;
+  overflow-x: visible;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+  height: 100%;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  white-space: nowrap;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
