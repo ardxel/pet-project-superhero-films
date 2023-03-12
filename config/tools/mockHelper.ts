@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import IMovie from 'types/Movie';
+import IMovie from '../../src/models/Movie';
 import { FranchiseListResponse } from '@constants/franchisesList';
 import { MovieWithAlternativeList } from 'redux/actions/moviesApi';
 
