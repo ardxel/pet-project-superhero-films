@@ -3,7 +3,7 @@ import styles from './cardMovie.module.scss';
 import { upgradeRating } from 'common/tools/upgradeRating';
 import toHoursAndMinutes from 'common/tools/toHoursAndMinutes';
 import { Link } from 'react-router-dom';
-import IMovie from 'types/Movie';
+import IMovie from 'models/Movie';
 
 interface CardMovieProps extends IMovie {}
 
