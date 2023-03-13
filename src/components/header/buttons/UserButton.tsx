@@ -12,7 +12,7 @@ const UserButton: React.FC<SignInButtonProps> = ({
 }) => {
   return (
     <IconButton className={className} onClick={onClick} {...rest}>
-      <AccountCircleIcon/>
+      <AccountCircleIcon />
     </IconButton>
   );
 };

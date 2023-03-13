@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './cardActor.module.scss';
-import { IActor } from 'types/Movie';
+import { IActor } from 'models/Movie';
 
 interface CardActorProps extends IActor {}
 

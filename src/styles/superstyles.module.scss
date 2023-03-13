@@ -14,3 +14,24 @@
     display: none;
   }
 }
+
+.form {
+  @apply flex flex-col w-full sm:w-full mt-4 mx-auto gap-y-6;
+  & > div {
+    @apply max-w-[350px] w-[80%] mx-auto;
+  }
+  //.input {
+  //  @apply w-full mx-auto;
+  //  .passwordIcon {
+  //    cursor: pointer;
+  //  }
+  // }
+  .radioGroup {
+    @apply mx-auto;
+  }
+}
+
+.authButton {
+  width: 33%;
+  margin: 0 auto 1rem !important;
+}

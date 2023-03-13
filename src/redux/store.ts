@@ -5,26 +5,27 @@ import newsSlice from 'redux/reducers/newsReducer';
 import userSlice from 'redux/reducers/userReducer';
 import { listenerMiddleware } from 'redux/middleware';
 import { preloadUserReduxState } from 'redux/actions/loadUserStateData';
+import { getTokenFromLocalStorage } from 'common/tools';
 
 const store = configureStore({
   reducer: {
     [userSlice.name]: userSlice.reducer,
     [newsSlice.name]: newsSlice.reducer,
     [userApi.reducerPath]: userApi.reducer,
-    [moviesApi.reducerPath]: moviesApi.reducer
+    [moviesApi.reducerPath]: moviesApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
-    listenerMiddleware.middleware,
-    moviesApi.middleware,
-    userApi.middleware
-  )
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      listenerMiddleware.middleware,
+      moviesApi.middleware,
+      userApi.middleware
+    ),
 });
 
-const getUserToken = () => {
-  return JSON.parse(localStorage.getItem('user') || 'null');
-};
-
-store.dispatch(preloadUserReduxState(getUserToken()));
+const token = getTokenFromLocalStorage();
+if (token) {
+  store.dispatch(preloadUserReduxState(token));
+}
 
 export default store;
 export type RootState = ReturnType<typeof store.getState>;

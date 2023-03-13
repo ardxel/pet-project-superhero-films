@@ -6,7 +6,6 @@ import { IconButton } from '@mui/material';
 interface MenuButtonProps extends ButtonType {}
 
 const MenuButton: React.FC<MenuButtonProps> = ({ className, onClick }) => {
-
   return (
     <IconButton className={className} onClick={onClick}>
       <MenuIcon />

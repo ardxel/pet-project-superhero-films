@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './article.module.scss';
-import formatDate from 'common/tools/formatDate';
+import formatDate from 'common/tools/formatDateInArray';
 
 interface ArticleProps {
   title: string;
