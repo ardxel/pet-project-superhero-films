@@ -35,7 +35,19 @@ export const loginValidation = (values) => {
   const errors: Partial<typeof values> = {};
 
   if (!values.login) {
-    errors.login = 'login is required';
+    errors.login = 'email or username is required';
+  } else if (
+    !/^(?:[A-Z\d][A-Z\d_-]{5,10}|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})$/i.test(
+      values.login
+    )
+  ) {
+    errors.login = 'invalid email address or username';
+  }
+
+  if (!values.password) {
+    errors.password = 'password is required';
+  } else if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/i.test(values.password)) {
+    errors.password = 'invalid password';
   }
   return errors;
 };
