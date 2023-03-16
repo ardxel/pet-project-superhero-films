@@ -5,8 +5,10 @@ import getTokenFromLocalStorage from 'common/tools/getTokenFromLocalStorage';
 import { disableScroll, enableScroll } from 'common/tools/scroll-lock';
 import toHoursAndMinutes from 'common/tools/toHoursAndMinutes';
 import { upgradeRating } from 'common/tools/upgradeRating';
+import { sleep } from 'common/tools/sleep';
 
 export {
+  sleep,
   formatDateInArray,
   enableScroll,
   disableScroll,

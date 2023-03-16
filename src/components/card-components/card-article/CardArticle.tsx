@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './article.module.scss';
+import styles from './cardarticle.module.scss';
 import formatDate from 'common/tools/formatDateInArray';
 
 interface ArticleProps {
@@ -11,7 +11,7 @@ interface ArticleProps {
   link: string;
 }
 
-const Article: React.FC<ArticleProps> = ({
+const CardArticle: React.FC<ArticleProps> = ({
   title,
   creator,
   img,
@@ -44,4 +44,4 @@ const Article: React.FC<ArticleProps> = ({
   );
 };
 
-export default Article;
+export default CardArticle;
