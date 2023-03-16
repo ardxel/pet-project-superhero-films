@@ -1,0 +1,14 @@
+.title {
+  @apply text-center mt-12;
+  h3 {
+    @apply font-normal text-color13;
+  }
+  div {
+    background: var(--color97);
+    text-transform: capitalize;
+  }
+}
+
+.alert {
+  @apply max-w-[350px] w-[80%] mx-auto text-left mb-6 mt-4;
+}
