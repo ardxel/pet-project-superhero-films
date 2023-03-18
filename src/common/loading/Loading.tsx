@@ -2,12 +2,16 @@ import ReactLoading from 'react-loading';
 import React from 'react';
 import styles from './loading.module.scss';
 interface LoadingProps {
-  width?: string | number;
-  height?: string | number;
+  style?: React.CSSProperties;
+  className?: string;
 }
-const Loading: React.FC<LoadingProps> = ({ width, height }) => {
+
+const Loading: React.FC<LoadingProps> = (props) => {
   return (
-    <div className={styles.loading} style={{ width: width, height: height }}>
+    <div
+      className={[props.className, styles.loading].join(' ')}
+      style={props.style}
+    >
       <ReactLoading type="spin" className={styles.container} />
     </div>
   );
