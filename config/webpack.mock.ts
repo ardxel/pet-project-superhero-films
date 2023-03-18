@@ -1,8 +1,8 @@
 import webpackMockServer from 'webpack-mock-server';
 import cors from 'cors';
-import Data from './tools/mockHelper';
-import { UserReduxState, UserServerState } from 'models/User';
-import { v4 as uuidv4 } from 'uuid';
+import Data from './tools/DataHelper';
+import { UserServerState } from 'models/User';
+import User from './tools/UsersHelper';
 
 export default webpackMockServer.add((app, helper) => {
   app.use(cors());
@@ -19,9 +19,7 @@ export default webpackMockServer.add((app, helper) => {
   });
 
   const movies = Data.parseAllMoviesData();
-  const users = Data.parseData<UserServerState>('users');
-  console.log(users);
-  // localhost:3000/root
+
   app.post('/save-movie', (req, res) => {
     let movie = req.body;
     console.log(movie);
@@ -79,37 +77,30 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.post('/registration', (req, res) => {
     const { email, username, password } = req.body;
-    console.log(req.body);
+    const users = Data.parseData<UserServerState>('users');
     for (let i = 0; i < users.length; i++) {
       if (users[i].email === email) {
-        res.status(201).json({ message: 'this email is already taken' });
+        res.status(201).json({ message: 'This email is already taken' });
         return;
       }
       if (users[i].username === username) {
-        res.status(201).json({ message: 'this login is already taken' });
+        res.status(201).json({ message: 'This login is already taken' });
         return;
       }
     }
 
-    const token = uuidv4();
+    const newUser = User.createUser({ email, username, password });
 
-    const newUser = {
-      token,
-      email,
-      username,
-      password,
-      isAdmin: false,
-      favorites: [],
-      avatar: '',
-    };
     res.status(200).json({
       message: 'User was create',
-      user: { token, favorites: [], avatar: '' } as UserReduxState,
+      user: User.getUserReduxState(newUser),
     });
+
     Data.writeData<UserServerState>([...users, newUser], 'users');
   });
   app.post('/login', (req, res) => {
     const { login, password } = req.body;
+    const users = Data.parseData<UserServerState>('users');
 
     for (let i = 0; i < users.length; i++) {
       const user_email = users[i].email;
@@ -119,28 +110,41 @@ export default webpackMockServer.add((app, helper) => {
       if (login === user_username || login == user_email) {
         if (password === user_password) {
           return res.status(200).json({
-            message: 'authorization was successful',
-            user: {
-              token: users[i].token,
-              favorites: users[i].favorites,
-              avatar: users[i].avatar,
-            },
+            message: 'Authorization was successful',
+            user: User.getUserReduxState(users[i]),
           });
         }
-        return res.status(401).json({ message: 'Invalid password' });
+        return res.status(201).json({ message: 'Password is incorrect' });
       }
     }
 
-    return res.status(401).json({
+    return res.status(201).json({
       message: 'We cannot find an account with that email address or username',
     });
   });
   app.get('/getUserState/:token', (req, res) => {
     const reqToken = req.params.token;
-    console.log(reqToken);
-    const { token, avatar, favorites } = users.find(
+    const users = Data.parseData<UserServerState>('users');
+    const matchedUser = users.find(
       (user) => user.token === reqToken
     ) as UserServerState;
-    res.send({ token, avatar, favorites } as UserReduxState);
+    res.send(User.getUserReduxState(matchedUser));
   });
+  // app.post('/changeUserName', (req, res) => {
+  //   const { name, token } = req.body;
+  //   console.log('Request Body:', { name, token });
+  //   const matchedUserIndex = users.findIndex((user) => user.token === token);
+  //   if (matchedUserIndex !== -1) {
+  //     const changedUsers = users.map((user, index) => {
+  //       if (index === matchedUserIndex) {
+  //         return { ...user, name: name };
+  //       }
+  //       return user;
+  //     });
+  //     Data.writeData<UserServerState>(changedUsers, 'users');
+  //     res.status(200).json({ message: 'Name changed successfully', name: name });
+  //     return;
+  //   }
+  //   res.status(401);
+  // });
 });
