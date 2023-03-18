@@ -8,27 +8,27 @@ import Admin from '@pages/root/Admin';
 import Home from '@pages/home/Home';
 import News from '@pages/news/News';
 import MoviePage from '@pages/movie-page/MoviePage';
+import Profile from '@pages/profile/Profile';
 import Authorization from '@pages/authorization/Authorization';
 import { Provider } from 'react-redux';
 import store from 'redux/store';
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Provider store={store}>
-        <Header />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/movie/:id" element={<MoviePage />} />
-          <Route path="/authorization" element={<Authorization />} />
-          <Route path="root" element={<Admin />} />
-        </Routes>
-        <Footer />
-      </Provider>
-    </BrowserRouter>
-  );
-};
+const App = () => (
+  <BrowserRouter>
+    <ScrollToTop />
+    <Provider store={store}>
+      <Header />
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/movie/:id" element={<MoviePage />} />
+        <Route path="/authorization" element={<Authorization />} />
+        <Route path="/profile/:username" element={<Profile />} />
+        <Route path="root" element={<Admin />} />
+      </Routes>
+      <Footer />
+    </Provider>
+  </BrowserRouter>
+);
 
 export default App;

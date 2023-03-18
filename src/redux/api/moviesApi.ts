@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import BASE_URL from '@constants/baseUrl';
-import IMovie from 'types/Movie';
+import IMovie from 'models/Movie';
 import {
   FranchiseList,
   FranchiseListResponse,
@@ -24,21 +24,21 @@ export const moviesApi = createApi({
       IMovie | MovieWithAlternativeList,
       getMovieWithAlternativesQueryArgs
     >({
-      query: ({ id, alternative }) =>
-        `/&id=${id}${alternative ? '+withAlts' : ''}`,
+      query: ({ id, alternative }: { id: string; alternative: boolean }) =>
+        `/id=${id}${alternative ? '+withAlts' : ''}`,
     }),
     getAllMovies: builder.query<IMovie[], void>({
       query: () => '/movies-all',
     }),
     searchMovie: builder.query<IMovie[], string>({
-      query: (searchTerm) => `/&name=${searchTerm}`,
+      query: (searchTerm) => `/name=${searchTerm}`,
     }),
     getMoviesByFranchiseList: builder.query<
       FranchiseListResponse[],
       FranchiseList[]
     >({
       query: (franchiseList) =>
-        `franchises=${franchiseList
+        `/franchises=${franchiseList
           .map((list) => list.keywords!.toString())
           .join('&keywords=')}`,
     }),

@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import IMovie from '../../src/models/Movie';
 import { FranchiseListResponse } from '@constants/franchisesList';
-import { MovieWithAlternativeList } from 'redux/actions/moviesApi';
+import { MovieWithAlternativeList } from 'redux/api/moviesApi';
 
 export default class Data {
   // absolute path of the data directory
@@ -54,7 +54,9 @@ export default class Data {
   ): IMovie | MovieWithAlternativeList {
     const id = +paramsWithId.replace(/\D/gi, '');
     const isAlternative = paramsWithId.includes('+withAlts');
-    const movieById = allMovies.filter((movie) => movie.kinopoiskId === id)[0];
+    const movieById = allMovies.find(
+      (movie) => movie.kinopoiskId === id
+    ) as IMovie;
     if (isAlternative) {
       const matchedAlternativeMovies = this.getSimilarMoviesById(id, allMovies);
       return { movie: movieById, alternatives: matchedAlternativeMovies };

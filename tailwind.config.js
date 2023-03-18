@@ -1,4 +1,3 @@
-const { screens } = require('tailwindcss/defaultTheme');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['.src/**/**/*.{scss,css,tsx}'],
@@ -14,7 +13,6 @@ module.exports = {
         xl: '1176px',
         xl2: '1280px',
         mag: { max: '828px' },
-        ...screens,
       },
       colors: {
         color1: 'var(--color1)',

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNews } from 'redux/actions/fetchNews';
-import { IArticle } from 'types/News';
+import { fetchNews } from 'redux/asyncThunks/fetchNews';
+import { IArticle } from '../../models/News';
 import offlineNews from '@constants/offlineNews';
 
 const initialState: {
@@ -19,8 +19,8 @@ const newsSlice = createSlice({
   name: 'news',
   initialState: initialState,
   reducers: {},
-  extraReducers: (bulder) => {
-    bulder
+  extraReducers: (builder) => {
+    builder
       .addCase(fetchNews.pending, (state) => {
         state.isLoading = true;
       })

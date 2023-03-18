@@ -15,23 +15,43 @@
   }
 }
 
+.absoluteTop {
+  @apply absolute top-0;
+}
+
+.absoluteCenter {
+  @apply absolute top-0 left-0 right-0 bottom-0 m-auto;
+}
+
 .form {
   @apply flex flex-col w-full sm:w-full mt-4 mx-auto gap-y-6;
   & > div {
     @apply max-w-[350px] w-[80%] mx-auto;
-  }
-  //.input {
-  //  @apply w-full mx-auto;
-  //  .passwordIcon {
-  //    cursor: pointer;
-  //  }
-  // }
-  .radioGroup {
-    @apply mx-auto;
+    input {
+    }
   }
 }
 
-.authButton {
+.button {
+  color: var(--color13) !important;
+  background-color: var(--color1) !important;
+  border: 1px solid var(--color3) !important;
+  min-width: 120px !important;
   width: 33%;
+  max-width: 180px;
   margin: 0 auto 1rem !important;
+}
+
+.linkButton {
+  color: var(--color13) !important;
+  background-color: var(--color1) !important;
+  margin-top: 4px !important;
+  padding: 0 4px !important;
+  border: 1px solid var(--color3) !important;
+}
+
+@media screen and (min-width: 828px) {
+  .submit {
+    margin: 0 auto 2rem !important;
+  }
 }

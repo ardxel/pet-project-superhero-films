@@ -1,30 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Movie from 'types/Movie';
-import { UserReduxState } from 'types/User';
-import { preloadUserReduxState } from 'redux/actions/loadUserStateData';
+import Movie from 'models/Movie';
+import { UserReduxState } from 'models/User';
+import { preloadUserReduxState } from 'redux/asyncThunks/userThunks';
 
 export const userInitialState: UserReduxState = {
   token: null,
+  username: null,
+  name: null,
   avatar: null,
-  favorites: [] as Movie[]
+  favorites: [],
+  watchlist: [],
+  ratings: [],
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState: userInitialState,
   reducers: {
-    registration: (state, action: PayloadAction<UserReduxState>) => {
+    registration(_, action: PayloadAction<UserReduxState>) {
       return { ...action.payload };
-    }
+    },
+    login(_, action: PayloadAction<UserReduxState>) {
+      return { ...action.payload };
+    },
+    logout() {
+      return { ...userInitialState };
+    },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(preloadUserReduxState.fulfilled, (state, { payload }) => {
-        return { ...payload };
-      });
-  }
+    builder.addCase(preloadUserReduxState.fulfilled, (_, { payload }) => {
+      return { ...payload };
+    });
+  },
 });
 
-export const { registration } = userSlice.actions;
+export const { registration, login, logout } = userSlice.actions;
 
 export default userSlice;
