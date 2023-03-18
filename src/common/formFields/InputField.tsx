@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import { useField } from 'formik';
 import { InputType } from 'models/formModels';
+import textFieldStyles from 'common/formFields/styles';
 
 type InputFieldProps = TextFieldProps & InputType & {};
 const InputField: React.FC<InputFieldProps> = ({
@@ -23,30 +24,6 @@ const InputField: React.FC<InputFieldProps> = ({
     return { isError, helperText };
   }
 
-  const style = {
-    '& label.Mui-focused': {
-      color: 'var(--color13)',
-    },
-    '& label': {
-      color: 'var(--color97)',
-    },
-    '& .MuiOutlinedInput-root': {
-      color: 'var(--color13)',
-      '&:hover fieldset': {
-        borderColor: 'var(--color93)',
-        borderWidth: '2px',
-      },
-      '& fieldset': {
-        borderColor: 'var(--color13)',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'var(--color13)',
-      },
-      svg: {
-        fill: 'var(--color97)',
-      },
-    },
-  };
   return (
     <TextField
       variant="outlined"
@@ -56,7 +33,7 @@ const InputField: React.FC<InputFieldProps> = ({
       {...rest}
       error={isError}
       helperText={helperText}
-      sx={style}
+      sx={textFieldStyles}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">{adornment}</InputAdornment>
