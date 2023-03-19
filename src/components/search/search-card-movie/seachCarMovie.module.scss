@@ -1,7 +1,7 @@
 @import '@styles/animations.scss';
 
 .item {
-  @apply flex w-full mr-[2.5px] h-[35vw] opacity-90 sm:h-[30vw] nl:h-[20vw];
+  @apply flex w-full mr-[2.5px] h-[35vw] opacity-90 sm:h-[25vw] nl:h-[20vw];
   box-shadow: inset 0 0 0 0 var(--color1);
   animation: showFromTop 0.25s linear;
   transition: all 0.3s ease-in-out;
@@ -11,7 +11,7 @@
   }
 
   &:hover {
-    box-shadow: inset 0 -300px 0 0 var(--color13);
+    box-shadow: inset 0 -350px 0 0 var(--color13);
     .info > * {
       color: var(--color1);
     }
