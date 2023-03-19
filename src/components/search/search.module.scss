@@ -2,7 +2,6 @@
 @import '@styles/animations.scss';
 
 .searchModal {
-  margin-top: 70px;
   text-align: center;
   height: 100%;
   width: 100%;
@@ -15,36 +14,39 @@
     position: relative;
 
     input {
+      all: unset;
+      color: var(--color13);
       position: absolute;
       left: 0;
       right: 0;
-      margin: 17px auto;
+      margin: 17px 0 17px 0.8em;
       width: 85%;
       height: 50%;
+      border: none !important;
       font-size: 1.3em;
       text-align: left;
-      @include animationCustom(showleft, $normal);
+      @include animationCustom(showLeft, $normal);
     }
   }
-
-  .results {
-    @apply absolute w-[100vw] h-[calc(100vh_-_150px)]
-    md:h-[calc(100vh_-_80px)] xl:h-[calc(100vh_-_90px)] xl:pt-8 overflow-y-scroll;
-    animation: openWithOpacity 0.25s linear;
-    background: var(--color1);
-    .container {
-      @apply flex gap-y-[10px] flex-col w-full h-full;
-    }
+}
+.results {
+  @apply relative w-[100%] min-h-[100vh] pb-6 top-0 left-0 overflow-y-scroll xl2:fixed xl2:bottom-0 xl2:right-0 xl2:mt-[100px];
+  animation: openWithOpacity 0.25s linear;
+  background: var(--color1);
+  .container {
+    @apply flex gap-y-[10px] flex-col w-full h-full;
   }
 }
 
 @media screen and (min-width: 618px) {
   .searchModal {
     position: absolute;
+    top: 0;
     margin: 0 auto 0 auto;
     z-index: 1001;
     width: 100%;
     .field input {
+      margin: 17px 0 17px 6.2em;
       width: 60%;
       font-size: 1.5em;
     }
@@ -52,14 +54,12 @@
 }
 
 @media screen and (min-width: 736px) {
-  .searchModal {
-    .results {
-      .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 15px;
-        grid-row-gap: 15px;
-      }
+  .results {
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 15px;
+      grid-row-gap: 15px;
     }
   }
 }
@@ -68,7 +68,7 @@
   .searchModal .field {
     height: 90px;
     input {
-      margin: 23px auto;
+      margin: 23px 0 23px 11em;
     }
   }
 }
