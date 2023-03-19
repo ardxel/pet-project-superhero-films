@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import styles from './search.module.scss';
-import { disableScroll, enableScroll } from 'tools/scroll-lock';
-import { useSearchMovieQuery } from 'redux/actions/moviesApi';
+import { disableScroll, enableScroll } from 'common/tools/scroll-lock';
+import { useSearchMovieQuery } from 'redux/api/moviesApi';
 import Loading from 'common/loading/Loading';
 import SearchCardMovie from './search-card-movie/SearchCardMovie';
 
@@ -30,20 +30,22 @@ const Search: FC<SearchProps> = ({ isOpen, setIsOpen }) => {
     }
   }, [isOpen, searchTerm]);
   return (
-    <div
-      className={styles.searchModal}
-      data-destiny="search"
-      style={{ display: isOpen ? 'block' : 'none' }}
-    >
-      <section className={styles.field}>
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="search..."
-          onChange={handleChange}
-        />
-      </section>
-      {searchTerm && (
+    <>
+      <div
+        className={styles.searchModal}
+        data-destiny="search"
+        style={{ display: isOpen ? 'block' : 'none' }}
+      >
+        <section className={styles.field}>
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="search..."
+            onChange={handleChange}
+          />
+        </section>
+      </div>
+      {searchTerm && isOpen && (
         <div className={styles.results}>
           <div className={styles.container}>
             {isLoading && <Loading />}
@@ -64,7 +66,7 @@ const Search: FC<SearchProps> = ({ isOpen, setIsOpen }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
