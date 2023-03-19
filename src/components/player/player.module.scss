@@ -1,9 +1,7 @@
 .player {
-  @apply w-full mx-auto;
-  min-height: calc(100vh - 25%);
-  height: 62.5vw;
+  @apply w-full mx-auto mt-6 h-[63vw] md:h-[55vw] ag:h-[48vw] xl2:h-[600px];
   .video {
-    @apply w-full h-full;
+    @apply w-full h-full relative;
     .iframe {
       @apply w-full h-full block;
     }
