@@ -55,3 +55,15 @@
     margin: 0 auto 2rem !important;
   }
 }
+
+@media screen and (min-width: 1176px) {
+  .linkButton {
+    padding: 2px 6px !important;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .linkButton {
+    padding: 4px 8px !important;
+  }
+}
