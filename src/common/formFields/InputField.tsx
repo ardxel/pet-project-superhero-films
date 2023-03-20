@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import { useField } from 'formik';
 import { InputType } from 'models/formModels';
-import textFieldStyles from 'common/formFields/styles';
+import styles from 'common/formFields/styles';
 
 type InputFieldProps = TextFieldProps & InputType & {};
 const InputField: React.FC<InputFieldProps> = ({
@@ -33,7 +33,7 @@ const InputField: React.FC<InputFieldProps> = ({
       {...rest}
       error={isError}
       helperText={helperText}
-      sx={textFieldStyles}
+      sx={styles.textFieldStyles}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">{adornment}</InputAdornment>
