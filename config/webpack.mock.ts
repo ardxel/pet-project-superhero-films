@@ -42,8 +42,14 @@ export default webpackMockServer.add((app, helper) => {
   app.get('/id=:id', (req, res) => {
     res.send(Data.getMovieById(req.params.id, movies));
   });
-  app.get('/movies-all', (req, res) => {
-    res.send(movies);
+  app.get('/ids/:ids', (req, res) => {
+    const list = req.params.ids.split(',');
+    const movies = Data.parseAllMoviesData();
+    res.send(
+      list.map((id) => {
+        return movies.find((movie) => movie.kinopoiskId === +id);
+      })
+    );
   });
   app.get('/franchises=:keywords', (req, res) => {
     res.send(Data.getMovieListByFranchise(req.params.keywords, movies));
@@ -130,21 +136,18 @@ export default webpackMockServer.add((app, helper) => {
     ) as UserServerState;
     res.send(User.getUserReduxState(matchedUser));
   });
-  // app.post('/changeUserName', (req, res) => {
-  //   const { name, token } = req.body;
-  //   console.log('Request Body:', { name, token });
-  //   const matchedUserIndex = users.findIndex((user) => user.token === token);
-  //   if (matchedUserIndex !== -1) {
-  //     const changedUsers = users.map((user, index) => {
-  //       if (index === matchedUserIndex) {
-  //         return { ...user, name: name };
-  //       }
-  //       return user;
-  //     });
-  //     Data.writeData<UserServerState>(changedUsers, 'users');
-  //     res.status(200).json({ message: 'Name changed successfully', name: name });
-  //     return;
-  //   }
-  //   res.status(401);
-  // });
+  app.post('/editProfile', (req, res) => {
+    Data.writeData(
+      Data.parseData<UserServerState>('users').map((user) => {
+        if (user.token === req.body.token) {
+          return User.editUser(req.body, user);
+        }
+        return user;
+      }),
+      'users'
+    );
+    res
+      .status(200)
+      .json({ message: 'Profile settings have been successfully changed' });
+  });
 });
