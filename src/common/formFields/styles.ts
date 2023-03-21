@@ -1,5 +1,5 @@
 const styles = {
-  textFieldStyles: {
+  textField: {
     '& label.Mui-focused': {
       color: 'var(--color13)',
     },
@@ -23,13 +23,33 @@ const styles = {
       },
     },
   },
-  textareaStyles: {
+  textarea: {
     resize: 'none',
     color: 'var(--color13)',
     backgroundColor: 'var(--color1)',
     borderColor: 'var(--color13)',
     borderRadius: '4px',
     padding: '16.5px 14px',
+  },
+  radioButton: {
+    '& label': {
+      color: 'var(--color13)',
+    },
+    '&, &.Mui-checked': {
+      color: 'var(--color3)',
+    },
+  },
+  selectField: {
+    '&.MuiInputBase-root fieldset': {
+      borderColor: 'var(--color13)',
+      color: 'var(--color13)',
+    },
+    '&.MuiInputBase-root.Mui-focused fieldset': {
+      borderColor: 'var(--color93)',
+    },
+    '&.MuiInputBase-root:hover fieldset': {
+      borderColor: 'var(--color93)',
+    },
   },
 };
 
