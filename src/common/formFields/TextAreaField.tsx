@@ -22,7 +22,7 @@ const TextAreaField: React.FC<TextAreaFieldProps> = ({
     >
       <label style={{ color: 'var(--color97)' }}>{label}</label>
       <textarea
-        style={styles.textareaStyles as React.CSSProperties}
+        style={styles.textarea as React.CSSProperties}
         {...field}
         {...rest}
       />
