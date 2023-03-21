@@ -39,7 +39,9 @@ export default class Data {
   }
 
   static parseAllMoviesData<T = IMovie>(): T[] {
-    const files = this.listOfDataFiles.filter((file) => file !== 'users');
+    const files = this.listOfDataFiles.filter(
+      (file) => file === 'dc' || file === 'marvel'
+    );
     const data: T[] = [];
     for (let i = 0; i < files.length; i++) {
       const parsedData = this.parseData<T>(files[i]);

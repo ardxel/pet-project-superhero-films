@@ -33,7 +33,7 @@ const InputField: React.FC<InputFieldProps> = ({
       {...rest}
       error={isError}
       helperText={helperText}
-      sx={styles.textFieldStyles}
+      sx={styles.textField}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">{adornment}</InputAdornment>
