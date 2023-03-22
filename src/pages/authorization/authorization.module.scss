@@ -1,0 +1,27 @@
+.main {
+  @apply w-full h-full mt-[90px] xl:mt-[110px];
+  .container {
+    @apply mx-auto max-w-[1280px];
+    .paper {
+      @apply w-full h-full flex flex-col ag:flex-row ag:justify-center bg-color1;
+      section.slider {
+        @apply w-full ag:min-h-[650px] h-[300px] max-h-max ag:w-2/3 ag:h-auto;
+      }
+      section.auth {
+        @apply w-full relative ag:w-1/3 flex justify-center items-center;
+        & > div {
+          width: 100%;
+        }
+      }
+      .button {
+        @apply pt-4 ag:px-4;
+        color: var(--color13);
+        font-size: 18px;
+        font-weight: 500;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
