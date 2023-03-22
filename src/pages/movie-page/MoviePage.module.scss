@@ -1,5 +1,6 @@
 .main {
-  @apply mt-[90px] flex flex-col w-full h-full xl:mt-[110px] md:px-0 md:mx-0 nl:w-full xl:w-[calc(100%-40px)];
+  @apply mt-[90px]  w-full h-full xl:mt-[110px];
+  .container {
+    @apply max-w-[1280px] mx-auto relative flex flex-col;
+  }
 }
-
-// normal margins: ml-4 md:ml-6 ag:mr-[2.5rem] xl:ml-[3.1rem] xl:mr-[3.5rem]

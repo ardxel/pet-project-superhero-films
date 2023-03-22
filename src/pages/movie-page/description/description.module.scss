@@ -1,16 +1,16 @@
 .info {
-  @apply flex flex-col w-full mt-6;
+  @apply flex flex-col w-full mt-6 px-[12px] md:px-[20px] xl2:px-0;
   .short {
-    @apply mt-4 mb-6 ml-4 md:ml-6 xl:ml-[3.1rem] xl:mr-[3.5rem];
+    @apply mt-4 mb-6;
   }
 }
 
 .tableInfo {
-  @apply ml-4 md:ml-6 xl:ml-[3.1rem] xl:mr-[3.5rem] w-[95%] nl:w-1/2;
+  @apply w-full nl:w-1/2;
   border-collapse: collapse;
   tbody {
     tr {
-      @apply ml-4 md:ml-6 xl:ml-[3.1rem];
+      @apply ml-4;
       border-top: 1px solid var(--color9);
       td:nth-child(1) {
         @apply py-3 text-[1em] sm:text-[1.1em] ag:text-[1.2em] text-color3 font-bold w-[20%] xs:w-[15%] md:w-[10%] mr-3;
@@ -31,6 +31,9 @@
       }
       td a {
         @apply text-color5;
+      }
+      td button.showDesc {
+        @apply px-1 italic font-bold;
       }
     }
   }

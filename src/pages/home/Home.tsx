@@ -4,9 +4,9 @@ import ManualSlider from '@components/sliders/manual-slider/ManualSlider';
 import franchisesList, {
   FranchiseListResponse,
 } from '@constants/franchisesList';
-import SliderCardMovieList from '@components/list-components/slider-card-movie-list/SliderCardMovieList';
-import { useGetMoviesByFranchiseListQuery } from 'redux/actions/moviesApi';
+import { useGetMoviesByFranchiseListQuery } from 'redux/api/moviesApi';
 import Loading from 'common/loading/Loading';
+import CardMovie from '@components/card-components/card-movie/CardMovie';
 
 const Home: React.FC = () => {
   const { data, isLoading } = useGetMoviesByFranchiseListQuery(franchisesList);
@@ -19,12 +19,11 @@ const Home: React.FC = () => {
           {(data as FranchiseListResponse[]).map((franchise) => {
             const { id, title, movies } = franchise;
             return (
-              <ManualSlider
-                key={id}
-                data={movies}
-                title={title}
-                DataContainerElement={SliderCardMovieList}
-              />
+              <ManualSlider key={id} title={title}>
+                {movies.map((movie) => (
+                  <CardMovie key={movie.kinopoiskId} {...movie} />
+                ))}
+              </ManualSlider>
             );
           })}
         </div>

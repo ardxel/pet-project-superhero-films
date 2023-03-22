@@ -21,14 +21,14 @@ export const moviesApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     getMovie: builder.query<
-      IMovie | MovieWithAlternativeList,
+      IMovie | IMovie[] | MovieWithAlternativeList,
       getMovieWithAlternativesQueryArgs
     >({
       query: ({ id, alternative }: { id: string; alternative: boolean }) =>
         `/id=${id}${alternative ? '+withAlts' : ''}`,
     }),
-    getAllMovies: builder.query<IMovie[], void>({
-      query: () => '/movies-all',
+    getMoviesByIds: builder.query<IMovie[], number[]>({
+      query: (ids: number[]) => `/ids/${ids.toString()}`,
     }),
     searchMovie: builder.query<IMovie[], string>({
       query: (searchTerm) => `/name=${searchTerm}`,
@@ -47,5 +47,7 @@ export const moviesApi = createApi({
 export const {
   useGetMoviesByFranchiseListQuery,
   useGetMovieQuery,
+  useGetMoviesByIdsQuery,
   useSearchMovieQuery,
+  useLazyGetMoviesByIdsQuery,
 } = moviesApi;

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Movie from 'models/Movie';
 import { UserReduxState } from 'models/User';
 import { preloadUserReduxState } from 'redux/asyncThunks/userThunks';
 
@@ -11,6 +10,10 @@ export const userInitialState: UserReduxState = {
   favorites: [],
   watchlist: [],
   ratings: [],
+  biography: '',
+  gender: '',
+  country: '',
+  birthday: '',
 };
 
 const userSlice = createSlice({

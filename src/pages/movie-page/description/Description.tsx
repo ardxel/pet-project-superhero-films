@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './description.module.scss';
-import IMovie from 'types/Movie';
+import IMovie from 'models/Movie';
+import { Button } from '@mui/material';
 
-//https://www.imdb.com/name/nm0578949/
 interface DescriptionProps extends IMovie {}
 
 const Description: React.FC<DescriptionProps> = ({
@@ -12,16 +12,15 @@ const Description: React.FC<DescriptionProps> = ({
   directors,
   actors,
 }) => {
+  const [showFullDesct, setShowFullDesc] = useState(false);
+
+  const toggleShowDesc = () => {
+    setShowFullDesc(!showFullDesct);
+  };
   const short = (
     <div className={styles.short}>
       <p>{shortDescription || description.substring(0, 125) + '...'}</p>
     </div>
-  );
-  const descriptionRow = (
-    <tr>
-      <td className={styles.label}>Description</td>
-      <td className={styles.description}>{description}</td>
-    </tr>
   );
   const directorRow = (
     <tr>
@@ -63,6 +62,18 @@ const Description: React.FC<DescriptionProps> = ({
     <tr>
       <td className={styles.label}>Slogan</td>
       <td className={styles.slogan}>{slogan}</td>
+    </tr>
+  );
+
+  const descriptionRow = (
+    <tr>
+      <td className={styles.label}>Description</td>
+      <td className={styles.description}>
+        {!showFullDesct ? description.substring(0, 250) + '...' : description}
+        <button className={styles.showDesc} onClick={toggleShowDesc}>
+          {showFullDesct ? 'less' : 'more'}
+        </button>
+      </td>
     </tr>
   );
 

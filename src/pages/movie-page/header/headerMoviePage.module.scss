@@ -1,11 +1,10 @@
 .path {
-  @apply ml-4 md:ml-6 xl:ml-[3.1em];
+  @apply w-full px-[12px] md:px-[20px] xl2:px-0;
   h6 {
     @apply text-[0.9em] sm:text-[1em] md:text-[1em] nl:text-[1.1em] lg:text-[1.1em] text-color97;
   }
 }
 
 .header {
-  @apply flex flex-col ag:flex-row ag:justify-between ag:items-center mt-9 mx-4
-  md:mx-5 ag:h-[160px] xl:mx-[3.1em];
+  @apply w-full flex flex-col ag:flex-row ag:justify-between ag:items-center mt-9 ag:h-[160px] px-[12px] md:px-[20px] xl2:px-0;
 }
