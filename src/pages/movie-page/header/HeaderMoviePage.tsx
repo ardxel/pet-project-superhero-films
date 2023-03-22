@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@pages/movie-page/header/headerMoviePage.module.scss';
-import IMovie from 'types/Movie';
+import IMovie from 'models/Movie';
 import Ratings from './ratings/Ratings';
 import Base from './base/Base';
 
