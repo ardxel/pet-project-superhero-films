@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './news.module.scss';
-import Article from '@components/card-components/card-article/Article';
-import { fetchNews } from 'redux/actions/fetchNews';
+import CardArticle from '@components/card-components/card-article/CardArticle';
+import { fetchNews } from 'redux/asyncThunks/fetchNews';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import Loading from 'common/loading/Loading';
@@ -44,7 +44,7 @@ const News: FC = () => {
           const { title, creator, image_url, description, pubDate, link } =
             article;
           return (
-            <Article
+            <CardArticle
               key={i}
               title={title}
               creator={creator}
@@ -55,8 +55,8 @@ const News: FC = () => {
             />
           );
         })}
+        {isLoading && <Loading style={{ width: '20%' }} />}
       </div>
-      {<Loading width={'10vh'} />}
     </main>
   );
 };
