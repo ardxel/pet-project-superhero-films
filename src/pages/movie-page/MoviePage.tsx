@@ -1,17 +1,17 @@
 import React from 'react';
-import styles from './MoviePage.module.scss';
 import Player from '@components/player/Player';
 import { useParams } from 'react-router';
 import Loading from 'common/loading/Loading';
 import HeaderMoviePage from './header/HeaderMoviePage';
+import Wrapper from 'common/wrapper/Wrapper';
 import {
   MovieWithAlternativeList,
   useGetMovieQuery,
-} from 'redux/actions/moviesApi';
+} from 'redux/api/moviesApi';
 import ManualSlider from '@components/sliders/manual-slider/ManualSlider';
-import SliderCardActorList from '@components/list-components/slider-card-actor-list/SliderCardActorList';
-import SliderCardMovieList from '@components/list-components/slider-card-movie-list/SliderCardMovieList';
 import Description from '@pages/movie-page/description/Description';
+import CardActor from '@components/card-components/card-actor/CardActor';
+import CardMovie from '@components/card-components/card-movie/CardMovie';
 
 const MoviePage: React.FC = () => {
   const { id } = useParams();
@@ -20,28 +20,30 @@ const MoviePage: React.FC = () => {
     alternative: true,
   });
   if (isLoading) {
-    return <Loading />;
+    return <Loading style={{ width: '25%' }} />;
   } else if (!data) {
     return <h1>Error</h1>;
   } else {
     const { movie, alternatives } = data as MovieWithAlternativeList;
     return (
-      <main className={styles.main}>
+      <Wrapper>
         <HeaderMoviePage {...movie} />
-        <Player urls={movie.videoUrls} />
+        <Player sources={movie.videoUrls} />
         <Description {...movie} />
-        <ManualSlider
-          title={'Top Casts'}
-          data={movie.actors}
-          DataContainerElement={SliderCardActorList}
-        />
+        <ManualSlider title={'Top Casts'}>
+          {movie.actors.map((actor) => (
+            <CardActor key={actor.id} {...actor} />
+          ))}
+        </ManualSlider>
         <ManualSlider
           style={{ marginTop: '3em', marginBottom: '3em' }}
           title={'More Like this'}
-          data={alternatives}
-          DataContainerElement={SliderCardMovieList}
-        />
-      </main>
+        >
+          {alternatives.map((altMovie, index) => (
+            <CardMovie key={index} {...altMovie} />
+          ))}
+        </ManualSlider>
+      </Wrapper>
     );
   }
 };
