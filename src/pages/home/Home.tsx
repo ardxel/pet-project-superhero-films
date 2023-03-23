@@ -8,7 +8,7 @@ import { useGetMoviesByFranchiseListQuery } from 'redux/api/moviesApi';
 import Loading from 'common/loading/Loading';
 import CardMovie from '@components/card-components/card-movie/CardMovie';
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   const { data, isLoading } = useGetMoviesByFranchiseListQuery(franchisesList);
   if (isLoading) {
     return <Loading />;
@@ -31,4 +31,4 @@ const Home: React.FC = () => {
     );
 };
 
-export default Home;
+export default HomePage;

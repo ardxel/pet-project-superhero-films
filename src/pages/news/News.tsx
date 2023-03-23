@@ -6,7 +6,7 @@ import { useAppSelector } from '@hooks/useAppSelector';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import Loading from 'common/loading/Loading';
 
-const News: FC = () => {
+const NewsPage: FC = () => {
   const { data, isLoading, error, nextPage } = useAppSelector(
     (state) => state.news
   );
@@ -61,4 +61,4 @@ const News: FC = () => {
   );
 };
 
-export default News;
+export default NewsPage;

@@ -22,6 +22,7 @@ module.exports = {
         color9: 'var(--color9)',
         color13: 'var(--color13)',
         color17: 'var(--color17)',
+        color35: 'var(--color35)',
         color39: 'var(--color39)',
         color73: 'var(--color73)',
         color93: 'var(--color93)',
