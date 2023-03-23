@@ -39,16 +39,37 @@
   min-width: 120px !important;
   width: 33%;
   max-width: 180px;
-  margin: 0 auto 1rem !important;
+  margin: 0 auto 3em !important;
 }
 
 .linkButton {
-  color: var(--color13) !important;
-  background-color: var(--color1) !important;
+  color: var(--color1) !important;
+  background-color: var(--color39) !important;
   font-size: 10px !important;
-  //margin-top: 4px !important;
+  min-width: 75px !important;
+  letter-spacing: 1.1px !important;
+  border-color: unset !important;
   padding: 2px 2px !important;
-  border: 1px solid var(--color3) !important;
+  font-weight: bold !important;
+  &:hover {
+    background-color: var(--color13) !important;
+    color: var(--color1) !important;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .linkButton {
+    min-width: 150px !important;
+    font-size: 12px !important;
+    padding: 4px 4px !important;
+  }
+}
+
+@media screen and (min-width: 618px) {
+  .linkButton {
+    min-width: 175px !important;
+    font-size: 14px !important;
+  }
 }
 
 @media screen and (min-width: 828px) {
@@ -56,22 +77,11 @@
     margin: 0 auto 2rem !important;
   }
 }
-@media screen and (min-width: 500px) {
-  .linkButton {
-    font-size: 12px !important;
-    padding: 4px 4px !important;
-  }
-}
-@media screen and (min-width: 618px) {
-  .linkButton {
-    font-size: 14px !important;
-  }
-}
 
 @media screen and (min-width: 1280px) {
   .linkButton {
-    //padding: 4px 8px !important;
-    width: 200px;
-    padding: 14px 8px !important;
+    min-width: 200px !important;
+    font-size: 16px !important;
+    padding: 20px 8px !important;
   }
 }
