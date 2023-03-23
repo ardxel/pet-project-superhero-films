@@ -6,13 +6,16 @@ import { Button, Paper } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import LoginForm from '@components/forms/login/LoginForm';
 import authAutoSliderItems from '@constants/authAutoSliderItems';
-const Authorization: React.FC = () => {
+
+const AuthorizationPage: React.FC = () => {
   const [displayedForm, setDisplayedForm] = useState('registration');
+
   const handleDisplayForm = () => {
     displayedForm === 'registration'
       ? setDisplayedForm('login')
       : setDisplayedForm('registration');
   };
+
   return (
     <main className={styles.main}>
       <div className={styles.container}>
@@ -41,4 +44,4 @@ const Authorization: React.FC = () => {
   );
 };
 
-export default Authorization;
+export default AuthorizationPage;
