@@ -25,20 +25,20 @@ export const moviesApi = createApi({
       getMovieWithAlternativesQueryArgs
     >({
       query: ({ id, alternative }: { id: string; alternative: boolean }) =>
-        `/id=${id}${alternative ? '+withAlts' : ''}`,
+        `/getMovieById/${id}${alternative ? '+withAlts' : ''}`,
     }),
     getMoviesByIds: builder.query<IMovie[], number[]>({
-      query: (ids: number[]) => `/ids/${ids.toString()}`,
+      query: (ids: number[]) => `/getMoviesByIds/${ids.toString()}`,
     }),
     searchMovie: builder.query<IMovie[], string>({
-      query: (searchTerm) => `/name=${searchTerm}`,
+      query: (searchTerm) => `/getMoviesByName/${searchTerm}`,
     }),
     getMoviesByFranchiseList: builder.query<
       FranchiseListResponse[],
       FranchiseList[]
     >({
       query: (franchiseList) =>
-        `/franchises=${franchiseList
+        `/franchises/${franchiseList
           .map((list) => list.keywords!.toString())
           .join('&keywords=')}`,
     }),
