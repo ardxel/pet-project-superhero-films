@@ -29,7 +29,6 @@ const DatePickerField: React.FC<DatePickerFieldProps> = ({ ...props }) => {
             {...field}
             {...props}
             onChange={(val) => {
-              console.log(new Date(val).toLocaleDateString('en-US'));
               setFieldValue(field.name, val);
             }}
           />
