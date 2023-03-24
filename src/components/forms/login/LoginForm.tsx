@@ -4,7 +4,6 @@ import { Form, Formik, FormikProps } from 'formik';
 import { LoginRequest } from 'models/formModels';
 import { loginValidation } from '@components/forms/validationSchemas';
 import FormTitle from '@components/forms/form-title/FormTitle';
-import loginFields from '@components/forms/login/loginFieldsList';
 import InputField from 'common/formFields/InputField';
 import { Button } from '@mui/material';
 import { useLoginUserMutation } from 'redux/api/userApi';
@@ -13,6 +12,7 @@ import { login } from 'redux/reducers/userReducer';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useNavigate } from 'react-router';
 import { sleep } from 'common/tools';
+import fieldKit from '@components/forms/fieldKit';
 
 const initialValues: LoginRequest = {
   login: '',
@@ -23,7 +23,7 @@ const LoginForm: React.FC<{}> = () => {
   const navigate = useNavigate();
   const [loginUser, result] = useLoginUserMutation();
   const [passwordShown, setPasswordShown] = useState(false);
-  const { inputLogin, inputPassword } = loginFields;
+  const { login: inputLogin, password: inputPassword } = fieldKit;
   const dispatch = useAppDispatch();
   const togglePassword = () => setPasswordShown(!passwordShown);
   const { token } = useAppSelector((state) => state.user);
@@ -47,7 +47,7 @@ const LoginForm: React.FC<{}> = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={loginUser}
-        validate={loginValidation}
+        validate={(values) => loginValidation(values)}
       >
         {(props: FormikProps<LoginRequest>) => (
           <Form className={superstyles.form} onSubmit={props.handleSubmit}>
@@ -71,10 +71,10 @@ const LoginForm: React.FC<{}> = () => {
               }
             />
             <Button
-              disabled={!(props.isValid && props.dirty)}
+              // disabled={!(props.isValid && props.dirty)}
               variant="contained"
               type="submit"
-              className={superstyles.submit}
+              className={superstyles.button}
             >
               submit
             </Button>

@@ -1,9 +1,9 @@
 import webpackMockServer from 'webpack-mock-server';
 import cors from 'cors';
 import Data from './tools/DataHelper';
-import { UserServerState } from 'models/User';
+import { UserServerState, UserToken } from 'models/User';
 import User from './tools/UsersHelper';
-
+import countries from 'country-js/countries.json';
 export default webpackMockServer.add((app, helper) => {
   app.use(cors());
   app.use((req, res, next) => {
@@ -19,7 +19,6 @@ export default webpackMockServer.add((app, helper) => {
   });
 
   const movies = Data.parseAllMoviesData();
-
   app.post('/save-movie', (req, res) => {
     let movie = req.body;
     console.log(movie);
@@ -39,10 +38,10 @@ export default webpackMockServer.add((app, helper) => {
     Data.writeData(movies, filename);
     res.sendStatus(200);
   });
-  app.get('/id=:id', (req, res) => {
+  app.get('/getMovieById/:id', (req, res) => {
     res.send(Data.getMovieById(req.params.id, movies));
   });
-  app.get('/ids/:ids', (req, res) => {
+  app.get('/getMoviesByIds/:ids', (req, res) => {
     const list = req.params.ids.split(',');
     const movies = Data.parseAllMoviesData();
     res.send(
@@ -51,12 +50,13 @@ export default webpackMockServer.add((app, helper) => {
       })
     );
   });
-  app.get('/franchises=:keywords', (req, res) => {
+  app.get('/franchises/:keywords', (req, res) => {
+    console.log('Request params: ', req.params.keywords);
     res.send(Data.getMovieListByFranchise(req.params.keywords, movies));
   });
-  app.get('/name=:searchTerm', (req, res) => {
+  app.get('/getMoviesByName/:searchTerm', (req, res) => {
     const searchTerm = req.params.searchTerm.toLowerCase().replace(/\s/g, '');
-
+    console.log('Request params: ', searchTerm);
     const matchedMovies = movies
       .filter((movie) => {
         const name1 = movie.nameOriginal
@@ -83,6 +83,7 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.post('/registration', (req, res) => {
     const { email, username, password } = req.body;
+    console.log('Request body: ', req.body);
     const users = Data.parseData<UserServerState>('users');
     for (let i = 0; i < users.length; i++) {
       if (users[i].email === email) {
@@ -106,6 +107,7 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.post('/login', (req, res) => {
     const { login, password } = req.body;
+    console.log('Request body:', { login, password });
     const users = Data.parseData<UserServerState>('users');
 
     for (let i = 0; i < users.length; i++) {
@@ -130,13 +132,27 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.get('/getUserState/:token', (req, res) => {
     const reqToken = req.params.token;
+    console.log('Request params: ', reqToken);
     const users = Data.parseData<UserServerState>('users');
     const matchedUser = users.find(
       (user) => user.token === reqToken
     ) as UserServerState;
     res.send(User.getUserReduxState(matchedUser));
   });
+  app.get('/getProfile/:username', (req, res) => {
+    const reqUsername = req.params.username;
+    console.log('Request params: ', reqUsername);
+    const users = Data.parseData<UserServerState>('users');
+    const matchedUser = users.find((user) => user.username === reqUsername);
+    if (matchedUser) {
+      res.status(200).json({ user: User.getUserReduxState(matchedUser) });
+    }
+    if (!matchedUser) {
+      res.status(404);
+    }
+  });
   app.post('/editProfile', (req, res) => {
+    console.log('Request body: ', req.body);
     Data.writeData(
       Data.parseData<UserServerState>('users').map((user) => {
         if (user.token === req.body.token) {
@@ -149,5 +165,13 @@ export default webpackMockServer.add((app, helper) => {
     res
       .status(200)
       .json({ message: 'Profile settings have been successfully changed' });
+  });
+  app.get('/countries', (_, res) => {
+    res.send(Data.parseData<unknown>('countries'));
+  });
+  app.post('/changePassword', (req, res) => {
+    const { token, password } = req.body;
+    User.editUser({ password }, User.getUserFromDataByToken(token));
+    res.status(200).json({ message: 'Password changed successfully' });
   });
 });

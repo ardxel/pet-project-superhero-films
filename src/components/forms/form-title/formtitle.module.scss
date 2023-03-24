@@ -4,11 +4,11 @@
     @apply font-normal text-color13;
   }
   div {
-    background: var(--color97);
-    text-transform: capitalize;
+    background: var(--color1);
   }
 }
 
 .alert {
   @apply max-w-[350px] w-[80%] mx-auto text-left mb-6 mt-4;
+  border: 2px solid var(--color13);
 }

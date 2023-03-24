@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import superstyles from '@styles/superstyles.module.scss';
 import { Form, Formik, FormikProps } from 'formik';
-import { Button } from '@mui/material';
-import { RegistrationRequest } from 'models/formModels';
+import { RegistrationRequest } from 'models/apiModels';
 import { signUpValidation } from '@components/forms/validationSchemas';
-import registrationFields from '@components/forms/registration/registrationFieldsList';
 import InputField from 'common/formFields/InputField';
 import { useRegisterUserMutation } from 'redux/api/userApi';
 import { registration } from 'redux/reducers/userReducer';
@@ -13,6 +11,8 @@ import { useAppSelector } from '@hooks/useAppSelector';
 import FormTitle from '@components/forms/form-title/FormTitle';
 import { sleep } from 'common/tools';
 import { useNavigate } from 'react-router';
+import fieldKit from '@components/forms/fieldKit';
+import { SubmitButton } from 'common/formFields';
 
 const initialValues: RegistrationRequest = {
   email: '',
@@ -24,7 +24,7 @@ const initialValues: RegistrationRequest = {
 const RegistrationForm = () => {
   const [registerUser, result] = useRegisterUserMutation();
   const [passwordShown, setPasswordShown] = useState(false);
-  const { email, username, password, confirm_password } = registrationFields;
+  const { email, username, password, confirm_password } = fieldKit;
   const { token } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -105,15 +105,7 @@ const RegistrationForm = () => {
                 )
               }
             />
-            <Button
-              disabled={!(props.isValid && props.dirty)}
-              variant="contained"
-              type="submit"
-              tabIndex={5}
-              className={superstyles.button}
-            >
-              submit
-            </Button>
+            <SubmitButton />
           </Form>
         )}
       </Formik>

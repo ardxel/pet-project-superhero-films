@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './header.module.scss';
+import muiStyles from 'common/formFields/styles';
 import Navbar from './navbar/Navbar';
 import useTheme from '@hooks/useTheme';
 import Search from '../search/Search';
@@ -18,12 +19,14 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { logout } from 'redux/reducers/userReducer';
 import { sleep } from 'common/tools';
+import { useNavigate } from 'react-router';
 
 const Header = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [anchorElem, setAnchorElem] = useState<HTMLButtonElement | null>(null);
   const { token, username } = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
   const { changeTheme } = useTheme();
   const dispatch = useAppDispatch();
 
@@ -48,7 +51,7 @@ const Header = () => {
 
   const handleLogout = (): void => {
     dispatch(logout());
-    sleep().then(() => window.location.reload());
+    sleep().then(() => navigate('/'));
   };
 
   return (
@@ -56,7 +59,11 @@ const Header = () => {
       <div className={styles.container}>
         <LogoButton className={styles.logo} link={'/'} />
 
-        <Navbar isOpen={isNavbarOpen} setIsOpen={setIsNavbarOpen} />
+        <Navbar
+          username={username || null}
+          isOpen={isNavbarOpen}
+          setIsOpen={setIsNavbarOpen}
+        />
         <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
 
         <div className={styles.interface}>
@@ -78,6 +85,7 @@ const Header = () => {
             id="userMenu"
             anchorEl={anchorElem}
             disableScrollLock={true}
+            sx={muiStyles.menu}
             open={!!anchorElem}
             onClose={closeUserMenu}
             anchorOrigin={{
@@ -95,15 +103,32 @@ const Header = () => {
           >
             {token && (
               <MenuItem>
-                <Link to={`profile/${username}`}>profile</Link>
+                <Link
+                  style={{ color: 'var(--color13)' }}
+                  to={`profile/${username}`}
+                >
+                  Profile
+                </Link>
               </MenuItem>
             )}
             {!token && (
               <MenuItem>
-                <Link to="/authorization">sign up</Link>
+                <Link style={{ color: 'var(--color13)' }} to="/authorization">
+                  Sign up
+                </Link>
               </MenuItem>
             )}
-            {token && <MenuItem onClick={handleLogout}>logout</MenuItem>}
+            {token && (
+              <MenuItem>
+                <Link
+                  style={{ color: 'var(--color13)' }}
+                  to=""
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Link>
+              </MenuItem>
+            )}
           </Menu>
 
           <MenuButton className={styles.menu} onClick={showNavbar} />
