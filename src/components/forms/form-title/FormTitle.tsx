@@ -4,18 +4,14 @@ import { Alert, AlertColor, AlertTitle } from '@mui/material';
 import { sleep } from 'common/tools';
 
 interface FormTitleProps {
-  title: string;
-  showAlert: boolean;
-  severity: AlertColor | undefined;
-  message: string | undefined;
+  title?: string;
+  showAlert?: boolean;
+  severity?: AlertColor | undefined;
+  message?: string | undefined;
 }
 
-const FormTitle: React.FC<FormTitleProps> = ({
-  title,
-  showAlert,
-  severity,
-  message,
-}) => {
+const FormTitle: React.FC<FormTitleProps> = ({ ...props }) => {
+  const { showAlert, severity, title, message } = props;
   const [showAlertMessage, setShowAlertMessage] = useState(true);
   useEffect(() => {
     if (showAlert) {
@@ -29,6 +25,8 @@ const FormTitle: React.FC<FormTitleProps> = ({
         <h3>{title}</h3>
       </div>
     );
+  } else if (!title) {
+    return null;
   } else
     return (
       <div className={styles.title}>
