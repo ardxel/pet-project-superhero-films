@@ -6,8 +6,10 @@ import { disableScroll, enableScroll } from 'common/tools/scroll-lock';
 import toHoursAndMinutes from 'common/tools/toHoursAndMinutes';
 import { upgradeRating } from 'common/tools/upgradeRating';
 import { sleep } from 'common/tools/sleep';
-import getListOfIdFromUserState from 'common/tools/getListOfIdFromUserState';
+import getListOfMoviesIdFromUserState from 'common/tools/getListOfMoviesIdFromUserState';
+import capitalizeFirstLetter from 'common/tools/capitalizeFirstLetter';
 export {
+  capitalizeFirstLetter,
   sleep,
   formatDateInArray,
   enableScroll,
@@ -17,5 +19,5 @@ export {
   upgradeRating,
   getTokenFromLocalStorage,
   toHoursAndMinutes,
-  getListOfIdFromUserState,
+  getListOfMoviesIdFromUserState,
 };
