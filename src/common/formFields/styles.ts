@@ -51,6 +51,12 @@ const styles = {
       borderColor: 'var(--color93)',
     },
   },
+  menu: {
+    '& .MuiPaper-root': {
+      backgroundColor: 'var(--color1)',
+      border: '1px solid var(--color9)',
+    },
+  },
 };
 
 export default styles;
