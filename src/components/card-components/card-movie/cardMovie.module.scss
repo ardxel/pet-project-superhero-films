@@ -6,40 +6,71 @@
   &:not(:first-of-type) {
     @apply ml-2 md:ml-3 ag:ml-4 xl:ml-5;
   }
+
   &:hover {
     @include animationCustom(flash, $verySlow, ease-out);
+
+    .container {
+      .favoriteIcon {
+        @apply inline-flex;
+      }
+    }
   }
 
   .container {
     @apply w-full h-full relative;
-    .info {
-      background-color: var(--color3);
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-      @apply absolute hidden bottom-0 w-full items-center pl-2.5 pr-2.5 pt-1.5 pb-1.5;
-      span {
-        @apply text-[var(--color1)] text-[16px] font-semibold;
+
+    a {
+      @apply relative;
+      .info {
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+        background-color: rgba(var(--color1), 0.1);
+        backdrop-filter: blur(1.2em);
+        width: calc(100% - 6px);
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        bottom: 2px;
+        box-shadow: 0px -10px 8px -5px rgba(var(--color97), 0.2);
+        @apply absolute hidden items-center px-1 pt-1.5 pb-1.5;
+        span {
+          @apply text-[var(--color1)] text-[13px] xl:text-[14px];
+        }
+
+        span:not(:first-of-type) {
+          @apply ml-[3px] xl:ml-[6px];
+        }
+
+        span.rating,
+        span.yourRating {
+          @apply p-[4px] text-white font-normal rounded-[5px] text-[13px] text-center xl:text-[14px];
+        }
+
+        span.yourRating {
+          @apply absolute right-1;
+        }
       }
 
-      span:not(:first-of-type) {
-        @apply ml-[10px];
-      }
-
-      span.rating {
-        @apply p-[4px] text-white font-normal rounded-[5px] text-[13px] text-center xl:text-[14px];
-      }
-
-      span.length {
+      img {
+        @apply block align-bottom w-full h-full object-center rounded-[10px] border-[3px] border-solid border-[var(--color3)];
       }
     }
 
-    img {
-      @apply block align-bottom w-full h-full object-center rounded-[10px] border-[3px] border-solid border-[var(--color3)];
+    .favoriteIcon {
+      @include animationCustom(flash, $verySlow, ease-out);
+      @apply absolute inline-flex right-[4px] top-[4px] z-[10] cursor-pointer;
+      //padding: 2px!important;
+      backdrop-filter: blur(1.2em) !important;
+      background-color: rgba(var(--color1), 0.1) !important;
+      svg {
+        fill: rgb(87, 153, 239);
+      }
     }
   }
 }
 
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 828px) {
   .movie:hover {
     .container .info {
       display: flex;
@@ -53,7 +84,7 @@
     .container {
       .info {
         span {
-          @apply text-[18px];
+          @apply text-[16px];
         }
       }
     }
