@@ -3,7 +3,7 @@
 .article {
   @apply relative w-full h-[50vmin] md:h-[34vw] lg:h-[28vw] xl:h-[25vw];
   .title {
-    @apply relative w-full text-left h-1/6 align-middle text-[2.7vmin] md:text-[1.1em] ml-2 mb-[1vmin];
+    @apply relative w-full text-left h-1/6 align-middle text-[2.7vmin] md:text-[1.1em] ml-[12px] md:ml-[20px] xl2:ml-[35px] mb-[1vmin];
     h3 {
       @apply absolute bottom-0 left-0 text-color13;
     }
