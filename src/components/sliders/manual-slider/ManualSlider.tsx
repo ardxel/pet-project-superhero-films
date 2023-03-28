@@ -1,20 +1,17 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useRef, PropsWithChildren } from 'react';
 import styles from './manualslider.module.scss';
 import superstyles from '@styles/superstyles.module.scss';
 import Scroller from './scroller/Scroller';
 import useScroll from '@hooks/useScroll';
 
 interface SliderProps {
-  data: any[];
   title?: string;
-  DataContainerElement: React.FC<{ data: any[] }>;
   style?: React.CSSProperties;
 }
 
-const ManualSlider: FC<SliderProps> = ({
-  data,
+const ManualSlider: FC<PropsWithChildren<SliderProps>> = ({
   title,
-  DataContainerElement,
+  children,
   style,
 }) => {
   const ulRef = useRef<HTMLUListElement>(null);
@@ -28,7 +25,7 @@ const ManualSlider: FC<SliderProps> = ({
       <div className={styles.menu}>
         {isVisible && <Scroller {...scroll} />}
         <ul className={superstyles.list} ref={ulRef}>
-          <DataContainerElement data={data} />
+          {children}
         </ul>
       </div>
     </article>
