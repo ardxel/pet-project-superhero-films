@@ -1,9 +1,10 @@
 import webpackMockServer from 'webpack-mock-server';
 import cors from 'cors';
 import Data from './tools/DataHelper';
-import { UserServerState, UserToken } from 'models/User';
+import { UserServerState } from 'models/User';
 import User from './tools/UsersHelper';
 import countries from 'country-js/countries.json';
+
 export default webpackMockServer.add((app, helper) => {
   app.use(cors());
   app.use((req, res, next) => {
@@ -153,25 +154,25 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.post('/editProfile', (req, res) => {
     console.log('Request body: ', req.body);
-    Data.writeData(
-      Data.parseData<UserServerState>('users').map((user) => {
-        if (user.token === req.body.token) {
-          return User.editUser(req.body, user);
-        }
-        return user;
-      }),
-      'users'
-    );
-    res
-      .status(200)
-      .json({ message: 'Profile settings have been successfully changed' });
+    try {
+      Data.writeData(
+        Data.parseData<UserServerState>('users').map((user) => {
+          if (user.token === req.body.token) {
+            return User.editUser(req.body, user);
+          }
+          return user;
+        }),
+        'users'
+      );
+      res
+        .status(200)
+        .json({ message: 'Profile settings have been successfully changed' });
+    } catch (e) {
+      console.log(e);
+      res.status(404);
+    }
   });
   app.get('/countries', (_, res) => {
     res.send(Data.parseData<unknown>('countries'));
-  });
-  app.post('/changePassword', (req, res) => {
-    const { token, password } = req.body;
-    User.editUser({ password }, User.getUserFromDataByToken(token));
-    res.status(200).json({ message: 'Password changed successfully' });
   });
 });
