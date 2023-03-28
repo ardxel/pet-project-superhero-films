@@ -5,11 +5,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import navLinks from '@constants/navLinks';
 import { disableScroll, enableScroll } from 'common/tools/scroll-lock';
 interface NavbarProps {
+  username: string | null;
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
+const Navbar: React.FC<NavbarProps> = ({ username, isOpen, setIsOpen }) => {
   useEffect(() => {
     isOpen ? disableScroll() : enableScroll();
   }, [isOpen]);
@@ -17,7 +18,21 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
     <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
       <ul className={`${styles.links}`}>
         {navLinks.map((item, index) => {
-          if (!isOpen && index === navLinks.length - 1) return;
+          const isLastItem = index === navLinks.length - 1;
+          if (!isOpen && isLastItem) return;
+
+          if (isOpen && isLastItem && username) {
+            return (
+              <li key={item.id}>
+                <Link
+                  to={`/profile/${username}`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Profile
+                </Link>
+              </li>
+            );
+          }
           const { id, name, path } = item;
           return (
             <li key={id}>

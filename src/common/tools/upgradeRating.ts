@@ -2,8 +2,8 @@ export const upgradeRating = (rating: number): [string, string] => {
   return [getColor(rating), getRating(rating)];
 };
 
-export const getRating = (num: number): string => {
-  return String(num).length === 1 ? num + '.0' : String(num);
+export const getRating = (num: number | null): string => {
+  return num ? (String(num).length === 1 ? num + '.0' : String(num)) : '0.0';
 };
 export const getColor = (num: number): string => {
   if (num >= 7) return '#2CA900';

@@ -10,23 +10,25 @@ import fieldKit from '@components/forms/fieldKit';
 import { SubmitButton } from 'common/formFields';
 import { ProfileFormType } from '@pages/profile/Profile';
 
+type ProfileFormFieldsType = {
+  name: string;
+  avatar: string;
+  biography: string;
+};
+
 const EditProfileForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
   const token = useAppSelector((state) => state.user.token);
   const [editProfile, result] = useEditProfileMutation();
   const { name, avatar, biography } = fieldKit;
 
-  const _handleSubmit = (values: {
-    avatar: string;
-    name: string;
-    biography: string;
-  }) => {
+  const _handleSubmit = (values: ProfileFormFieldsType) => {
     const request = { ...values, token };
     editProfile(request);
   };
 
   useEffect(() => {
     if (result.data && result.isSuccess) {
-      setIsChanged(true);
+      setIsChanged();
     }
   }, [result]);
 
@@ -43,13 +45,7 @@ const EditProfileForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
         validate={editProfileValidation}
         onSubmit={_handleSubmit}
       >
-        {(
-          props: FormikProps<{
-            name: string;
-            avatar: string;
-            biography: string;
-          }>
-        ) => (
+        {(props: FormikProps<ProfileFormFieldsType>) => (
           <Form className={superstyles.form} onSubmit={props.handleSubmit}>
             <InputField
               label={avatar.label}

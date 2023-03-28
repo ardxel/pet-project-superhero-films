@@ -22,6 +22,7 @@ export default class User {
       country: null,
     });
   }
+
   static getUserFromDataByToken(token: UserToken): UserServerState {
     if (!token) {
       throw Error('token is invalid');
@@ -29,6 +30,7 @@ export default class User {
     const users = Data.parseData<UserServerState>('users');
     return users.find((user) => user.token === token) as UserServerState;
   }
+
   static getUserReduxState(user: UserServerState): UserReduxState {
     return {
       username: user.username,
@@ -45,18 +47,16 @@ export default class User {
     };
   }
 
-  static editUser<T = UserServerState, K = keyof T>(
-    settings: K,
+  static editUser<T = UserServerState, K = keyof T & {}>(
+    settings: K & {},
     user: T & {}
   ): T {
     const changedUser = user;
     for (const key of Object.keys(changedUser)) {
-      if (key === 'token') continue;
-      if (settings[key]) {
+      if (key !== 'token' && settings[key]) {
         user[key] = settings[key];
       }
     }
-    console.log(changedUser);
     return changedUser;
   }
 }

@@ -17,23 +17,19 @@ import { capitalizeFirstLetter } from 'common/tools';
 import { useEditProfileMutation } from 'redux/api/userApi';
 import { DefaultUserResponse } from 'models/apiModels';
 import { ProfileFormType } from '@pages/profile/Profile';
+import genderButtonList from './genderButtonList';
 
-const radioButtonList = [
-  { id: 0, value: 'female', label: 'Female' },
-  { id: 1, value: 'male', label: 'Male' },
-  { id: 2, value: 'other', label: 'Other' },
-];
-
+type PersonalFormFieldsType = {
+  gender: string;
+  birthday: string;
+  country: string;
+};
 const EditPersonalForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
   const token = useAppSelector((state) => state.user.token);
   const [countries, setCountries] = useState<{ name: string }[]>(null!);
   const [editProfile, result] = useEditProfileMutation();
 
-  const _handleSubmit = (values: {
-    gender: string;
-    birthday: string;
-    country: string;
-  }): void => {
+  const _handleSubmit = (values: PersonalFormFieldsType): void => {
     const request = {
       ...values,
       birthday: new Date(values.birthday).toLocaleDateString(),
@@ -50,7 +46,7 @@ const EditPersonalForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
 
   useEffect(() => {
     if (result.data && result.isSuccess) {
-      setIsChanged(true);
+      setIsChanged();
     }
   }, [result]);
 
@@ -69,10 +65,10 @@ const EditPersonalForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
         initialValues={{ gender: '', birthday: '', country: '' }}
         onSubmit={_handleSubmit}
       >
-        {(props: FormikProps<any>) => (
+        {(props: FormikProps<PersonalFormFieldsType>) => (
           <Form className={superstyles.form} onSubmit={props.handleSubmit}>
             <RadioGroupField name="gender" style={{ margin: '0 auto' }}>
-              {radioButtonList.map(({ id, value, label }) => (
+              {genderButtonList.map(({ id, value, label }) => (
                 <FormControlLabel
                   key={id}
                   value={value}
@@ -96,7 +92,7 @@ const EditPersonalForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
                   );
                 })}
             </SelectField>
-            <SubmitButton />
+            <SubmitButton disabled={!(props.isValid && props.dirty)} />
           </Form>
         )}
       </Formik>

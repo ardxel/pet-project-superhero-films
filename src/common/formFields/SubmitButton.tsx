@@ -12,7 +12,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ ...props }) => {
       type="submit"
       className={superstyles.button}
     >
-      submit
+      {props.children || 'submit'}
     </Button>
   );
 };

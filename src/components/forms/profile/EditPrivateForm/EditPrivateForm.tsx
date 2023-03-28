@@ -12,16 +12,18 @@ import { changePasswordValidation } from '@components/forms/validationSchemas';
 import { EditProfileRequest } from 'models/apiModels';
 import { ProfileFormType } from '@pages/profile/Profile';
 
+type PrivateFormFieldsType = {
+  password: string;
+  confirm_password: string;
+};
+
 const EditPrivateForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
   const { passwordShown, adornmentProps } = usePassword();
   const token = useAppSelector((state) => state.user.token);
   const [changePassword, result] = useEditProfileMutation();
   const { password, confirm_password } = fieldKit;
 
-  const handleSubmit = (values: {
-    password: string;
-    confirm_password: string;
-  }): void => {
+  const _handleSubmit = (values: PrivateFormFieldsType): void => {
     const request: EditProfileRequest = {
       password: values.password,
       token: token,
@@ -31,21 +33,23 @@ const EditPrivateForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
 
   useEffect(() => {
     if (result.data && result.isSuccess) {
-      setIsChanged(true);
+      setIsChanged();
     }
   }, [result]);
 
   return (
     <div style={{ width: '90%' }}>
-      <FormTitle title={'Change password'} />
+      <FormTitle
+        title={'Change password'}
+        showAlert={!!result.data}
+        {...result.data}
+      />
       <Formik
         initialValues={{ password: '', confirm_password: '' }}
         validate={changePasswordValidation}
-        onSubmit={handleSubmit}
+        onSubmit={_handleSubmit}
       >
-        {(
-          props: FormikProps<{ password: string; confirm_password: string }>
-        ) => (
+        {(props: FormikProps<PrivateFormFieldsType>) => (
           <Form className={superstyles.form} onSubmit={props.handleSubmit}>
             <InputField
               name={password.name}
@@ -71,7 +75,7 @@ const EditPrivateForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
                 )
               }
             />
-            <SubmitButton />
+            <SubmitButton disabled={!(props.isValid && props.dirty)} />
           </Form>
         )}
       </Formik>
