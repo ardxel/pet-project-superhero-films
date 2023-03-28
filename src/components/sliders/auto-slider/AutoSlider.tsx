@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import styles from './autoslider.module.scss';
 
-interface AutoSliderProps {}
 const sliderStyles = {
   activeSlide: {
     opacity: '1',
@@ -14,29 +13,24 @@ const sliderStyles = {
     transform: 'translateX(100%)',
   },
 };
-const sliderItems = [
-  {
-    image:
-      'https://sportshub.cbsistatic.com/i/2021/11/09/0e64101b-a849-45dd-b7cd-076693cc7b51/spider-man-no-way-home-fan-poster.jpg',
-    title: 'Watch various selections of movies online!',
-  },
-  {
-    image: 'https://i.ytimg.com/vi/cQ5Cp_kdQDU/maxresdefault.jpg',
-    title: 'Check out the latest news section!',
-  },
-];
 
-const AutoSlider: React.FC<AutoSliderProps> = () => {
-  const [images, setImages] = useState(sliderItems);
+interface AutoSliderProps {
+  data: {
+    image: string;
+    title: string;
+  }[];
+}
+
+const AutoSlider: React.FC<AutoSliderProps> = ({ data }) => {
   const [index, setIndex] = useState(0);
   useEffect(() => {
     if (index < 0) {
-      setIndex(images.length - 1);
+      setIndex(data.length - 1);
     }
-    if (index > images.length - 1) {
+    if (index > data.length - 1) {
       setIndex(0);
     }
-  }, [index, images]);
+  }, [index, data]);
 
   useEffect(() => {
     let slider = setInterval(() => {
@@ -47,9 +41,9 @@ const AutoSlider: React.FC<AutoSliderProps> = () => {
     };
   }, [index]);
   return (
-    <article className={styles.article}>
+    <div className={styles.section}>
       <div className={styles.menu}>
-        {sliderItems.map((item, itemIndex) => {
+        {data.map((item, itemIndex) => {
           const { image, title } = item;
           let position = sliderStyles.nextSlide;
           if (itemIndex === index) {
@@ -57,7 +51,7 @@ const AutoSlider: React.FC<AutoSliderProps> = () => {
           }
           if (
             itemIndex === index - 1 ||
-            (index === 0 && itemIndex === images.length - 1)
+            (index === 0 && itemIndex === data.length - 1)
           ) {
             position = sliderStyles.lastSlide;
           }
@@ -73,8 +67,8 @@ const AutoSlider: React.FC<AutoSliderProps> = () => {
           );
         })}
       </div>
-    </article>
+    </div>
   );
 };
 
-export default AutoSlider;
+export default memo(AutoSlider);
