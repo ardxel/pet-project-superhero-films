@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import superstyles from '@styles/superstyles.module.scss';
 import { Form, Formik, FormikProps } from 'formik';
-import { LoginRequest } from 'models/formModels';
+import { LoginRequest } from 'models/apiModels';
 import { loginValidation } from '@components/forms/validationSchemas';
 import FormTitle from '@components/forms/form-title/FormTitle';
 import InputField from 'common/formFields/InputField';
@@ -9,10 +9,10 @@ import { Button } from '@mui/material';
 import { useLoginUserMutation } from 'redux/api/userApi';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { login } from 'redux/reducers/userReducer';
-import { useAppSelector } from '@hooks/useAppSelector';
 import { useNavigate } from 'react-router';
 import { sleep } from 'common/tools';
 import fieldKit from '@components/forms/fieldKit';
+import { SubmitButton } from 'common/formFields';
 
 const initialValues: LoginRequest = {
   login: '',
@@ -20,13 +20,13 @@ const initialValues: LoginRequest = {
 };
 
 const LoginForm: React.FC<{}> = () => {
-  const navigate = useNavigate();
   const [loginUser, result] = useLoginUserMutation();
   const [passwordShown, setPasswordShown] = useState(false);
   const { login: inputLogin, password: inputPassword } = fieldKit;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const togglePassword = () => setPasswordShown(!passwordShown);
-  const { token } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (result.data && result.data.user && result.isSuccess) {
@@ -40,7 +40,7 @@ const LoginForm: React.FC<{}> = () => {
     <div>
       <FormTitle
         title={'Login'}
-        showAlert={result.isSuccess}
+        showAlert={result.isSuccess || false}
         severity={result.data ? result.data.severity : undefined}
         message={result.data ? result.data.message : undefined}
       />
@@ -70,14 +70,7 @@ const LoginForm: React.FC<{}> = () => {
                 )
               }
             />
-            <Button
-              // disabled={!(props.isValid && props.dirty)}
-              variant="contained"
-              type="submit"
-              className={superstyles.button}
-            >
-              submit
-            </Button>
+            <SubmitButton disabled={!(props.isValid && props.dirty)} />
           </Form>
         )}
       </Formik>
