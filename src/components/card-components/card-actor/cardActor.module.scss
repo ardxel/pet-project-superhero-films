@@ -1,5 +1,5 @@
 .actor {
-  @apply relative inline-block h-full w-[32%] md:w-[25%] lg:w-[20%] xl:w-[17.5%];
+  @apply relative inline-block h-full w-[30%] md:w-[23%] lg:w-[20%] xl:max-w-[18%] xl:w-[18%];
   &:not(:first-of-type) {
     @apply ml-2.5 md:ml-3.5 lg:ml-4 xl:ml-5;
   }
