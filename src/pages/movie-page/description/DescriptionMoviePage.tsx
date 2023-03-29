@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from './description.module.scss';
 import IMovie from 'models/Movie';
-import { Button } from '@mui/material';
+import useUserProfile from '@hooks/useUserProfile';
+import DescriptionButtonGroup from './DescriptionButtonGroup';
+import { useAppDispatch } from '@hooks/useAppDispatch';
 
 interface DescriptionProps extends IMovie {}
 
-const Description: React.FC<DescriptionProps> = ({
-  slogan,
-  shortDescription,
-  description,
-  directors,
-  actors,
-}) => {
+const DescriptionMoviePage: React.FC<DescriptionProps> = ({ ...props }) => {
+  const {
+    slogan,
+    shortDescription,
+    description,
+    directors,
+    actors,
+    kinopoiskId,
+  } = props;
   const [showFullDesct, setShowFullDesc] = useState(false);
 
   const toggleShowDesc = () => {
     setShowFullDesc(!showFullDesct);
   };
+
   const short = (
     <div className={styles.short}>
       <p>{shortDescription || description.substring(0, 125) + '...'}</p>
@@ -80,18 +85,24 @@ const Description: React.FC<DescriptionProps> = ({
   return (
     <div className={styles.info}>
       {short}
-      <table className={styles.tableInfo}>
-        <thead></thead>
-        <tbody>
-          {directorRow}
-          {starsRow}
-          {sloganRow}
-          {descriptionRow}
-        </tbody>
-        <tfoot></tfoot>
-      </table>
+      <div className={styles.flexbox}>
+        <table className={styles.tableInfo}>
+          <thead></thead>
+          <tbody>
+            {directorRow}
+            {starsRow}
+            {sloganRow}
+            {descriptionRow}
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+
+        <div className={styles.buttons}>
+          <DescriptionButtonGroup kinopoiskId={kinopoiskId} />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Description;
+export default DescriptionMoviePage;

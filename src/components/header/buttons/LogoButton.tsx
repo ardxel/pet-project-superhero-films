@@ -8,7 +8,12 @@ interface LogoButtonProps extends ButtonType {}
 
 const LogoButton: React.FC<LogoButtonProps> = ({ className, link }) => {
   return (
-    <IconButton className={className}>
+    <IconButton
+      className={className}
+      disableTouchRipple={true}
+      disableRipple={true}
+      disableFocusRipple={true}
+    >
       <Link to="/">
         <LogoSVG />
       </Link>

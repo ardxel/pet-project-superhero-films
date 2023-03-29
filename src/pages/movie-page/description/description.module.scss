@@ -1,7 +1,10 @@
 .info {
-  @apply flex flex-col w-full mt-6 px-[12px] md:px-[20px] xl2:px-0;
+  @apply flex flex-col w-full mt-6 px-[12px] md:px-[20px];
   .short {
     @apply mt-4 mb-6;
+  }
+  .flexbox {
+    @apply w-full h-full flex flex-col nl:flex-row gap-y-[20px] nl:gap-y-0 nl:gap-x-[20px];
   }
 }
 
@@ -35,6 +38,17 @@
       td button.showDesc {
         @apply px-1 italic font-bold;
       }
+    }
+  }
+}
+
+.buttons {
+  @apply w-full nl:w-1/2 flex justify-center nl:justify-end;
+  div {
+    @apply w-full h-full max-w-[400px];
+
+    & > div {
+      width: 100% !important;
     }
   }
 }

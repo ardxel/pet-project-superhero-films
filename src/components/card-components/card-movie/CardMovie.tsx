@@ -11,7 +11,7 @@ import useUserProfile from '@hooks/useUserProfile';
 import CircularProgress from '@mui/material/CircularProgress';
 import { sleep } from 'common/tools';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import { changeFavorites } from 'redux/asyncThunks/userThunks';
+import { changeUserCollections } from 'redux/asyncThunks/userThunks';
 
 interface CardMovieProps extends IMovie {}
 
@@ -20,7 +20,7 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const { userState, isAuthorized } = useUserProfile();
+  const { userState, isAuthorized, userCollectionHandler } = useUserProfile();
   const {
     ratingKinopoisk,
     kinopoiskId,
@@ -47,32 +47,6 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
     } else return null;
   }, [userState.ratings]);
 
-  const handleToggleIsFavorite = useCallback(
-    (id) => {
-      sleep()
-        .then(() => setIsLoading(true))
-        .then(sleep.bind(null, 500))
-        .then(() => {
-          const value = !isFavorite;
-          setIsFavorite(value);
-          return value;
-        })
-        .then((value) => {
-          return sleep(500).then(() => value);
-        })
-        .then((value) => {
-          const type: 'add' | 'remove' = value ? 'add' : 'remove';
-          const body = {
-            token: userState.token,
-            action: { id: id, type: type },
-          };
-          dispatch(changeFavorites(body));
-        })
-        .then(() => setIsLoading(false));
-    },
-    [isFavorite]
-  );
-
   return (
     <li className={styles.movie}>
       <div
@@ -82,7 +56,7 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
       >
         {((isAuthorized && isHover) || isFavorite) && (
           <IconButton
-            onClick={handleToggleIsFavorite.bind(null, kinopoiskId)}
+            onClick={userCollectionHandler.bind(null, kinopoiskId, 'favorites')}
             size="small"
             className={styles.favoriteIcon}
           >

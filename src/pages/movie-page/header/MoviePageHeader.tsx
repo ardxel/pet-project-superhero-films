@@ -1,25 +1,26 @@
 import React from 'react';
-import styles from '@pages/movie-page/header/headerMoviePage.module.scss';
+import styles from './moviePageHeader.module.scss';
 import IMovie from 'models/Movie';
 import Ratings from './ratings/Ratings';
 import Base from './base/Base';
 
 interface HeaderMoviePageProps extends IMovie {}
 
-const HeaderMoviePage: React.FC<HeaderMoviePageProps> = ({
-  comic,
-  phase,
-  kinopoiskId,
-  imdbId,
-  nameOriginal,
-  nameRu,
-  year,
-  filmLength,
-  ratingAgeLimits,
-  ratingMpaa,
-  ratingKinopoisk,
-  ratingImdb,
-}) => {
+const MoviePageHeader: React.FC<HeaderMoviePageProps> = ({ ...props }) => {
+  const {
+    comic,
+    phase,
+    year,
+    ratingAgeLimits,
+    ratingMpaa,
+    nameRu,
+    nameOriginal,
+    filmLength,
+    ratingImdb,
+    ratingKinopoisk,
+    kinopoiskId,
+    imdbId,
+  } = props;
   return (
     <>
       <div className={styles.path}>
@@ -46,4 +47,4 @@ const HeaderMoviePage: React.FC<HeaderMoviePageProps> = ({
   );
 };
 
-export default HeaderMoviePage;
+export default MoviePageHeader;
