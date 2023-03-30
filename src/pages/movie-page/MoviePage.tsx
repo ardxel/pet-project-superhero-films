@@ -2,14 +2,14 @@ import React from 'react';
 import Player from '@components/player/Player';
 import { useParams } from 'react-router';
 import Loading from 'common/loading/Loading';
-import HeaderMoviePage from './header/HeaderMoviePage';
+import HeaderMoviePage from './header/MoviePageHeader';
 import Wrapper from 'common/wrapper/Wrapper';
 import {
   MovieWithAlternativeList,
   useGetMovieQuery,
 } from 'redux/api/moviesApi';
 import ManualSlider from '@components/sliders/manual-slider/ManualSlider';
-import Description from '@pages/movie-page/description/Description';
+import DescriptionMoviePage from '@pages/movie-page/description/DescriptionMoviePage';
 import CardActor from '@components/card-components/card-actor/CardActor';
 import CardMovie from '@components/card-components/card-movie/CardMovie';
 
@@ -29,8 +29,8 @@ const MoviePage: React.FC = () => {
       <Wrapper>
         <HeaderMoviePage {...movie} />
         <Player sources={movie.videoUrls} />
-        <Description {...movie} />
-        <ManualSlider title={'Top Casts'}>
+        <DescriptionMoviePage {...movie} />
+        <ManualSlider title={'Top Casts'} style={{ marginTop: '3em' }}>
           {movie.actors.map((actor) => (
             <CardActor key={actor.id} {...actor} />
           ))}
