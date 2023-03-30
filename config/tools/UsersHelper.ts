@@ -1,6 +1,5 @@
-import { UserReduxState, UserServerState, UserToken } from 'models/User';
+import { UserReduxState, UserServerState } from 'models/User';
 import { v4 as uuidv4 } from 'uuid';
-import Data from './DataHelper';
 
 export default class User {
   static createUser(request: {
@@ -21,14 +20,6 @@ export default class User {
       birthday: null,
       country: null,
     });
-  }
-
-  static getUserFromDataByToken(token: UserToken): UserServerState {
-    if (!token) {
-      throw Error('token is invalid');
-    }
-    const users = Data.parseData<UserServerState>('users');
-    return users.find((user) => user.token === token) as UserServerState;
   }
 
   static getUserReduxState(user: UserServerState): UserReduxState {

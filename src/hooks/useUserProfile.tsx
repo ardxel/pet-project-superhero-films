@@ -3,33 +3,49 @@ import { useAppSelector } from '@hooks/useAppSelector';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { sleep } from 'common/tools';
 import { changeUserCollections } from 'redux/asyncThunks/userThunks';
-import { UserCollection } from 'models/User';
+import { UserCollection, UserToken } from 'models/User';
+import { $Keys, ValuesType, $NonMaybeType } from 'utility-types';
+import { validate as uuidValidate } from 'uuid';
 
 export default function useUserProfile() {
-  const userState = useAppSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const userState = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  const isAuthorized = Boolean(userState.token && userState.username);
 
-  const userCollectionHandler = useCallback(
-    (argId: number, listName: keyof UserCollection) => {
-      console.log('description state: ', userState);
+  const isAuthorized = uuidValidate(
+    userState.token as $NonMaybeType<UserToken>
+  );
+
+  const handleChangeUserCollection = useCallback(
+    (
+      item: ValuesType<UserCollection[$Keys<UserCollection>]>,
+      listName: $Keys<UserCollection>
+    ) => {
       sleep()
         .then(() => setIsLoading(true))
         .then(sleep.bind(null, 500))
-        .then(() => userState[listName].includes(argId))
-        .then((value) => !value)
-        .then((value) => sleep(500).then(() => value))
-        .then((value) => {
-          const type: 'add' | 'remove' = value ? 'add' : 'remove';
-          dispatch(
-            changeUserCollections({
-              token: userState.token,
-              action: { id: argId, type: type, listName: listName },
-            })
-          );
+        // TODO
+        .then(() => {
+          if (typeof item === 'object') {
+            dispatch(changeUserCollections({ item, listName }));
+            throw new Error('break');
+          }
         })
-        .then(() => setIsLoading(false));
+        .then(() => {
+          let value;
+          if (typeof item === 'number') {
+            value = !(userState[listName] as number[]).includes(item);
+          }
+          const type: 'add' | 'remove' = value ? 'add' : 'remove';
+          console.log('lol');
+          dispatch(changeUserCollections({ item, listName, type }));
+        })
+        .catch((e) => {
+          if (e.message !== 'break') {
+            console.log(e);
+          }
+        })
+        .finally(() => sleep(500).then(() => setIsLoading(false)));
     },
     [userState]
   );
@@ -37,7 +53,7 @@ export default function useUserProfile() {
   return {
     userState,
     isAuthorized,
-    userCollectionHandler,
+    handleChangeUserCollection,
     isLoading,
   };
 }

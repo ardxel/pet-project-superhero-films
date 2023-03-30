@@ -20,7 +20,8 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const { userState, isAuthorized, userCollectionHandler } = useUserProfile();
+  const { userState, isAuthorized, handleChangeUserCollection } =
+    useUserProfile();
   const {
     ratingKinopoisk,
     kinopoiskId,
@@ -56,7 +57,11 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
       >
         {((isAuthorized && isHover) || isFavorite) && (
           <IconButton
-            onClick={userCollectionHandler.bind(null, kinopoiskId, 'favorites')}
+            onClick={handleChangeUserCollection.bind(
+              null,
+              kinopoiskId,
+              'favorites'
+            )}
             size="small"
             className={styles.favoriteIcon}
           >
