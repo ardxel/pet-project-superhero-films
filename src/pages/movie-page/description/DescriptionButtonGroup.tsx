@@ -11,7 +11,7 @@ interface DescriptionButtonGroupProps {
 const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
   kinopoiskId,
 }) => {
-  const { isAuthorized, userCollectionHandler } = useUserProfile();
+  const { isAuthorized, handleChangeUserCollection } = useUserProfile();
   const userState = useAppSelector((state) => state.user);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [isInWatchlist, setIsInWatchlist] = useState<boolean>(false);
@@ -24,23 +24,26 @@ const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
     isIncludeInWatchlist ? setIsInWatchlist(true) : setIsInWatchlist(false);
   }, [userState.favorites, userState.watchlist, kinopoiskId]);
 
-  return (
-    <ButtonGroup orientation="vertical" variant="text">
-      <Button
-        className={superstyles.linkButton}
-        onClick={() => userCollectionHandler(kinopoiskId, 'favorites')}
-      >
-        {isFavorite ? 'In Favorites' : 'Add to Favorites'}
-      </Button>
-      <Button
-        className={superstyles.linkButton}
-        onClick={() => userCollectionHandler(kinopoiskId, 'watchlist')}
-      >
-        {isInWatchlist ? 'In Watchlist' : 'Add to Watchlist'}
-      </Button>
-      <Button className={superstyles.linkButton}>View Watchlist</Button>
-    </ButtonGroup>
-  );
+  if (!isAuthorized) {
+    return null;
+  } else
+    return (
+      <ButtonGroup orientation="vertical" variant="text">
+        <Button
+          className={superstyles.linkButton}
+          onClick={() => handleChangeUserCollection(kinopoiskId, 'favorites')}
+        >
+          {isFavorite ? 'In Favorites' : 'Add to Favorites'}
+        </Button>
+        <Button
+          className={superstyles.linkButton}
+          onClick={() => handleChangeUserCollection(kinopoiskId, 'watchlist')}
+        >
+          {isInWatchlist ? 'In Watchlist' : 'Add to Watchlist'}
+        </Button>
+        <Button className={superstyles.linkButton}>View Watchlist</Button>
+      </ButtonGroup>
+    );
 };
 
 export default DescriptionButtonGroup;
