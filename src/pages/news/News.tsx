@@ -5,6 +5,7 @@ import { fetchNews } from 'redux/asyncThunks/fetchNews';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import Loading from 'common/loading/Loading';
+import Wrapper from 'common/wrapper/Wrapper';
 
 const NewsPage: FC = () => {
   const { data, isLoading, error, nextPage } = useAppSelector(
@@ -38,8 +39,8 @@ const NewsPage: FC = () => {
   }, [scrollTop]);
 
   return (
-    <main className={styles.news}>
-      <div className={styles.container}>
+    <>
+      <Wrapper>
         {data.map((article, i) => {
           const { title, creator, image_url, description, pubDate, link } =
             article;
@@ -55,9 +56,9 @@ const NewsPage: FC = () => {
             />
           );
         })}
-        {isLoading && <Loading style={{ width: '20%' }} />}
-      </div>
-    </main>
+      </Wrapper>
+      {isLoading && <Loading style={{ width: '20%' }} />}
+    </>
   );
 };
 
