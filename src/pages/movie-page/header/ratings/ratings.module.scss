@@ -7,7 +7,7 @@
       &:last-of-type {
         @apply text-color13;
       }
-      &:not(:first-of-type) {
+      &:not(:first-child) {
         @apply ml-2 xs:ml-4 ag:ml-0;
       }
       span {
@@ -32,4 +32,12 @@
       }
     }
   }
+}
+
+.box {
+  @apply absolute w-11/12 md:w-[500px] nl:w-[550px] rounded-[10px] w-11/12 flex flex-col justify-center items-center px-5 py-8;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color1);
 }
