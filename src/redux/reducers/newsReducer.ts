@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchNews } from 'redux/asyncThunks/fetchNews';
-import { IArticle } from '../../models/News';
+import { IArticle } from 'models/News';
 import offlineNews from '@constants/offlineNews';
 
 const initialState: {
