@@ -28,6 +28,7 @@ const store = configureStore({
     store.dispatch(preloadUserReduxState(token));
   }
 })();
+
 export default store;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
