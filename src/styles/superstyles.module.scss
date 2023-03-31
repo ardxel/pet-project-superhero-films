@@ -44,15 +44,16 @@
 
 .linkButton {
   color: var(--color1) !important;
-  background-color: var(--color39) !important;
-  font-size: 10px !important;
+  justify-content: flex-start !important;
+  background-color: var(--color110) !important;
+  font-size: 13px !important;
   min-width: 75px !important;
   letter-spacing: 1.1px !important;
   border-color: unset !important;
-  padding: 2px 2px !important;
+  padding: 8px 5px 8px 20px !important;
   font-weight: bold !important;
   &:hover {
-    background-color: var(--color13) !important;
+    background-color: var(--color3) !important;
     color: var(--color1) !important;
   }
 }
@@ -61,27 +62,27 @@
   .linkButton {
     min-width: 150px !important;
     font-size: 12px !important;
-    padding: 4px 4px !important;
+    padding: 8px 5px 8px 38px !important;
   }
 }
 
 @media screen and (min-width: 618px) {
   .linkButton {
-    min-width: 175px !important;
+    min-width: 250px !important;
     font-size: 14px !important;
   }
 }
 
 @media screen and (min-width: 828px) {
   .submit {
-    margin: 0 auto 2rem !important;
+    margin: 0 auto 1rem !important;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .linkButton {
-    min-width: 200px !important;
-    font-size: 16px !important;
-    padding: 20px 8px !important;
+    min-width: 275px !important;
+    font-size: 15px !important;
+    padding: 10px 4px 10px 44px !important;
   }
 }
