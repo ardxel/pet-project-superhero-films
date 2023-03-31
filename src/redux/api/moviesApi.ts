@@ -17,7 +17,7 @@ interface getMovieWithAlternativesQueryArgs {
 }
 
 export const moviesApi = createApi({
-  reducerPath: 'movies',
+  reducerPath: 'api/movies',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     getMovie: builder.query<
