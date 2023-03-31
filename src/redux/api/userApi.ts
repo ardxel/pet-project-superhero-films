@@ -1,13 +1,19 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  createApi,
+  fetchBaseQuery,
+  FetchBaseQueryMeta,
+} from '@reduxjs/toolkit/query/react';
 import BASE_URL from '@constants/baseUrl';
 import {
   RegistrationRequest,
   RegistrationResponse,
   LoginRequest,
   LoginResponse,
-} from 'models/formModels';
+  EditProfileResponse,
+  EditProfileRequest,
+} from 'models/apiModels';
 import { AlertColor } from '@mui/material';
-import { UserReduxState, UserToken } from 'models/User';
+import { UserReduxState } from 'models/User';
 
 const getSeverityText: (statusCode: number) => AlertColor = (statusCode) => {
   if (statusCode === 200) return 'success';
@@ -16,8 +22,22 @@ const getSeverityText: (statusCode: number) => AlertColor = (statusCode) => {
   else throw Error('this response code is not inspected');
 };
 
+const userInitTransformResponse = (
+  baseQueryReturnValue: {
+    message: string;
+    user: UserReduxState;
+  },
+  meta: FetchBaseQueryMeta
+): RegistrationResponse & LoginResponse & EditProfileResponse => {
+  return {
+    message: baseQueryReturnValue.message,
+    severity: getSeverityText(meta?.response!.status),
+    user: baseQueryReturnValue.user || null,
+  };
+};
+
 export const userApi = createApi({
-  reducerPath: 'users',
+  reducerPath: 'api/user',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     registerUser: builder.mutation<RegistrationResponse, RegistrationRequest>({
@@ -26,16 +46,7 @@ export const userApi = createApi({
         method: 'Post',
         body: values,
       }),
-      transformResponse: (
-        baseQueryReturnValue: { message: string; user: UserReduxState },
-        meta
-      ) => {
-        const message = baseQueryReturnValue.message;
-        const user = baseQueryReturnValue.user || null;
-        const severity = getSeverityText(meta!.response!.status);
-
-        return { severity, message, user };
-      },
+      transformResponse: userInitTransformResponse,
     }),
     loginUser: builder.mutation<LoginResponse, LoginRequest>({
       query: (values) => ({
@@ -43,17 +54,30 @@ export const userApi = createApi({
         method: 'Post',
         body: values,
       }),
-      transformResponse: (
-        baseQueryReturnValue: { message: string; user: UserReduxState },
-        meta
-      ) => {
-        const message = baseQueryReturnValue.message;
-        const severity = getSeverityText(meta!.response!.status);
-        const user = baseQueryReturnValue.user || null;
-        return { severity, message, user };
+      transformResponse: userInitTransformResponse,
+    }),
+    getProfile: builder.query<UserReduxState, string>({
+      query: (username) => ({
+        url: `/getProfile/${username}`,
+      }),
+      transformResponse: (baseQueryReturnValue: { user: UserReduxState }) => {
+        return baseQueryReturnValue.user;
       },
+    }),
+    editProfile: builder.mutation<EditProfileResponse, EditProfileRequest>({
+      query: (values) => ({
+        url: '/editProfile',
+        method: 'Post',
+        body: values,
+      }),
+      transformResponse: userInitTransformResponse,
     }),
   }),
 });
 
-export const { useRegisterUserMutation, useLoginUserMutation } = userApi;
+export const {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useEditProfileMutation,
+  useLazyGetProfileQuery,
+} = userApi;
