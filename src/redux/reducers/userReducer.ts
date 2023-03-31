@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserReduxState } from 'models/User';
-import { preloadUserReduxState } from 'redux/asyncThunks/userThunks';
+import {
+  preloadUserReduxState,
+  changeUserCollections,
+} from 'redux/asyncThunks/userThunks';
 
 export const userInitialState: UserReduxState = {
   token: null,
@@ -21,18 +24,30 @@ const userSlice = createSlice({
   initialState: userInitialState,
   reducers: {
     registration(_, action: PayloadAction<UserReduxState>) {
-      return { ...action.payload };
+      return action.payload;
     },
     login(_, action: PayloadAction<UserReduxState>) {
-      return { ...action.payload };
+      return action.payload;
     },
     logout() {
-      return { ...userInitialState };
+      return userInitialState;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(preloadUserReduxState.fulfilled, (_, { payload }) => {
-      return { ...payload };
+      return payload as UserReduxState;
+    });
+    builder.addCase(changeUserCollections.fulfilled, (state, { payload }) => {
+      const { newList, listName } = payload;
+      if (listName === 'favorites') {
+        state.favorites = newList as number[];
+      }
+      if (listName === 'watchlist') {
+        state.watchlist = newList as number[];
+      }
+      if (listName === 'ratings') {
+        state.ratings = newList as { id: number; value: number }[];
+      }
     });
   },
 });
