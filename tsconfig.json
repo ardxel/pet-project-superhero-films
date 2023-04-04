@@ -2,16 +2,16 @@
   "compilerOptions": {
     "paths": {
       "@components/*": ["src/components/*"],
-      "redux/*": ["src/redux/*"],
+      "@reduxproj/*": ["src/redux/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
-      "forms/*": ["src/forms/*"],
+      "@forms/*": ["src/forms/*"],
       "@images/*": ["src/assets/images/*"],
-      "@constants/*": ["src/constants/*"],
       "@styles/*": ["src/styles/*"],
-      "tools/*": ["src/tools/*"],
-      "models/*": ["src/models/*"],
-      "common/*": ["src/common/*"],
+      "@models/*": ["src/models/*"],
+      "@common/*": ["src/common/*"],
+      "@tools/*": ["src/common/tools/*"],
+      "@constants/*": ["src/constants/*"],
       "@data/*": ["data/*"]
     },
     "target": "ES5",
