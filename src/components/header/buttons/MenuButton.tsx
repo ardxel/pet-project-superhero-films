@@ -1,11 +1,9 @@
 import React from 'react';
-import ButtonType from '@components/header/buttons/ButtonType';
+import { HeaderButtonType } from './ButtonType';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
 
-interface MenuButtonProps extends ButtonType {}
-
-const MenuButton: React.FC<MenuButtonProps> = ({ className, onClick }) => {
+const MenuButton: HeaderButtonType = ({ className, onClick }) => {
   return (
     <IconButton className={className} onClick={onClick}>
       <MenuIcon />

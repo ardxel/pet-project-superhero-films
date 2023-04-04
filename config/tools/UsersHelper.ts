@@ -1,4 +1,4 @@
-import { UserReduxState, UserServerState } from 'models/User';
+import { UserReduxState, UserServerState } from '@models/User';
 import { v4 as uuidv4 } from 'uuid';
 
 export default class User {

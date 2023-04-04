@@ -1,14 +1,8 @@
 import React from 'react';
-import ButtonType from '@components/header/buttons/ButtonType';
+import { HeaderButtonType } from './ButtonType';
 import { IconButton } from '@mui/material';
 
-interface SearchButtonProps extends ButtonType {}
-
-const SearchButton: React.FC<SearchButtonProps> = ({
-  children,
-  className,
-  onClick,
-}) => {
+const SearchButton: HeaderButtonType = ({ children, className, onClick }) => {
   return (
     <IconButton className={className} onClick={onClick}>
       {children}

@@ -4,8 +4,8 @@ import ManualSlider from '@components/sliders/manual-slider/ManualSlider';
 import franchisesList, {
   FranchiseListResponse,
 } from '@constants/franchisesList';
-import { useGetMoviesByFranchiseListQuery } from 'redux/api/moviesApi';
-import Loading from 'common/loading/Loading';
+import { useGetMoviesByFranchiseListQuery } from '@reduxproj//api/moviesApi';
+import Loading from '@common/loading/Loading';
 import CardMovie from '@components/card-components/card-movie/CardMovie';
 
 const HomePage: React.FC = () => {

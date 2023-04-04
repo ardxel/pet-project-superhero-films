@@ -3,7 +3,7 @@ import styles from './navbar.module.scss';
 import { Link } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import navLinks from '@constants/navLinks';
-import { disableScroll, enableScroll } from 'common/tools/scroll-lock';
+import { disableScroll, enableScroll } from '@tools/scroll-lock';
 interface NavbarProps {
   username: string | null;
   isOpen: boolean;

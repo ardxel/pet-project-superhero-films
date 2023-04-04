@@ -8,7 +8,7 @@ import {
   Rating,
   Typography,
 } from '@mui/material';
-import { getRating, getColor } from 'common/tools/upgradeRating';
+import { getRating, getColor } from '@tools/upgradeRating';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import useUserProfile from '@hooks/useUserProfile';
 

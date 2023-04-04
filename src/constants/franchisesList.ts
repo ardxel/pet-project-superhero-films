@@ -1,4 +1,4 @@
-import IMovie from 'models/Movie';
+import IMovie from '@models/Movie';
 
 export interface FranchiseList {
   id: number;

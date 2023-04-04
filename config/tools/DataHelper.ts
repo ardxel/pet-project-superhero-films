@@ -1,8 +1,8 @@
 import path from 'path';
 import fs from 'fs';
-import IMovie from '../../src/models/Movie';
+import IMovie from '@models/Movie';
 import { FranchiseListResponse } from '@constants/franchisesList';
-import { MovieWithAlternativeList } from 'redux/api/moviesApi';
+import { MovieWithAlternativeList } from '@reduxproj/api/moviesApi';
 
 export default class Data {
   // absolute path of the data directory

@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import { useField } from 'formik';
-import { InputType } from 'models/formModels';
-import styles from 'common/formFields/styles';
+import { InputType } from '@models/formModels';
+import styles from './styles';
 
 type InputFieldProps = TextFieldProps & InputType & {};
 const InputField: React.FC<InputFieldProps> = ({

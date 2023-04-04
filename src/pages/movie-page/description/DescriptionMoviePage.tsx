@@ -1,9 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './description.module.scss';
-import IMovie from 'models/Movie';
-import useUserProfile from '@hooks/useUserProfile';
+import IMovie from '@models/Movie';
 import DescriptionButtonGroup from './DescriptionButtonGroup';
-import { useAppDispatch } from '@hooks/useAppDispatch';
 
 interface DescriptionProps extends IMovie {}
 

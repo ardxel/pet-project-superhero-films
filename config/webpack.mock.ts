@@ -1,7 +1,7 @@
 import webpackMockServer from 'webpack-mock-server';
 import cors from 'cors';
 import Data from './tools/DataHelper';
-import { UserServerState } from 'models/User';
+import { UserServerState } from '@models/User';
 import User from './tools/UsersHelper';
 import countries from 'country-js/countries.json';
 

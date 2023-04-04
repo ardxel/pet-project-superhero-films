@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import styles from './search.module.scss';
-import { disableScroll, enableScroll } from 'common/tools/scroll-lock';
-import { useSearchMovieQuery } from 'redux/api/moviesApi';
-import Loading from 'common/loading/Loading';
+import { disableScroll, enableScroll } from '@common/tools/scroll-lock';
+import { useSearchMovieQuery } from '@reduxproj//api/moviesApi';
+import Loading from '@common/loading/Loading';
 import SearchCardMovie from './search-card-movie/SearchCardMovie';
 
 interface SearchProps {

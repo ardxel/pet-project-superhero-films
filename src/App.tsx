@@ -1,7 +1,7 @@
 import React from 'react';
 import '@styles/main.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ScrollToTop from 'common/scroll-to-top/ScrollToTop';
+import ScrollToTop from '@common/scroll-to-top/ScrollToTop';
 import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
 import Admin from '@pages/root/Admin';
@@ -11,7 +11,7 @@ import MoviePage from '@pages/movie-page/MoviePage';
 import ProfilePage from '@pages/profile/Profile';
 import AuthorizationPage from '@pages/authorization/Authorization';
 import { Provider } from 'react-redux';
-import store from 'redux/store';
+import store from '@reduxproj//store';
 
 const App = () => (
   <BrowserRouter>

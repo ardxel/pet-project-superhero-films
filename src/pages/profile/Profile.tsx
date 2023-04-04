@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import Wrapper from 'common/wrapper/Wrapper';
-import { useLazyGetMoviesByIdsQuery } from 'redux/api/moviesApi';
-import { getListOfMoviesIdFromUserState, sleep } from 'common/tools';
-import Loading from 'common/loading/Loading';
-import { useLazyGetProfileQuery } from 'redux/api/userApi';
+import Wrapper from '@common/wrapper/Wrapper';
+import { useLazyGetMoviesByIdsQuery } from '@reduxproj//api/moviesApi';
+import { getListOfMoviesIdFromUserState, sleep } from '@common/tools';
+import Loading from '@common/loading/Loading';
+import { useLazyGetProfileQuery } from '@reduxproj//api/userApi';
 import profileReducer, {
   initialProfileState,
   ProfileActionKind,

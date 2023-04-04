@@ -1,5 +1,5 @@
-import { UserReduxState } from 'models/User';
-import IMovie from 'models/Movie';
+import { UserReduxState } from '@models/User';
+import IMovie from '@models/Movie';
 
 export enum ProfileActionKind {
   OPEN_MODAL = 'OPEN_MODAL',

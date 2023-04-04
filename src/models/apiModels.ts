@@ -1,10 +1,11 @@
 import { AlertColor } from '@mui/material';
-import { UserReduxState, UserServerState, UserToken } from 'models/User';
-import { FormikValues } from 'models/formModels';
+import { UserReduxState, UserServerState, UserToken } from '@models/User';
+import { FormikValues } from '@models/formModels';
 
 export type DefaultUserResponse = {
   severity?: AlertColor;
-  message: string | undefined;
+  message?: string;
+  user: UserReduxState | null;
 };
 
 export interface RegistrationRequest extends FormikValues {
@@ -24,7 +25,7 @@ export interface LoginRequest extends FormikValues {
 }
 
 export type LoginResponse = DefaultUserResponse & {
-  user: UserReduxState;
+  user: UserReduxState | null;
 };
 
 export type EditProfileRequest = Partial<UserServerState> & {
@@ -32,8 +33,3 @@ export type EditProfileRequest = Partial<UserServerState> & {
 };
 
 export type EditProfileResponse = DefaultUserResponse & {};
-
-export type EditUserFavoritesRequest = EditProfileRequest & {
-  kinopoiskId: number;
-  action: 'add' | 'remove';
-};
