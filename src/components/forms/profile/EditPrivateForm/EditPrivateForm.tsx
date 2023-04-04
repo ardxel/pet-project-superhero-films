@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import { useAppSelector } from '@hooks/useAppSelector';
 import superstyles from '@styles/superstyles.module.scss';
-import { useEditProfileMutation } from 'redux/api/userApi';
+import { useEditProfileMutation } from '@reduxproj//api/userApi';
 import FormTitle from '@components/forms/form-title/FormTitle';
 import { Form, Formik, FormikProps } from 'formik';
-import InputField from 'common/formFields/InputField';
+import { InputField, SubmitButton } from '@common/formFields/';
 import fieldKit from '@components/forms/fieldKit';
 import usePassword from '@hooks/usePassword';
-import { SubmitButton } from 'common/formFields';
 import { changePasswordValidation } from '@components/forms/validationSchemas';
-import { EditProfileRequest } from 'models/apiModels';
+import { EditProfileRequest } from '@models/apiModels';
 import { ProfileFormType } from '@pages/profile/Profile';
 
 type PrivateFormFieldsType = {

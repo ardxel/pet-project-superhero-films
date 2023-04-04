@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './player.module.scss';
 import superstyles from '@styles/superstyles.module.scss';
-import Loading from 'common/loading/Loading';
+import Loading from '@common/loading/Loading';
 
 interface PlayerProps {
   sources: string[] | null;

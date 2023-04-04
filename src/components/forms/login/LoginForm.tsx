@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import superstyles from '@styles/superstyles.module.scss';
 import { Form, Formik, FormikProps } from 'formik';
-import { LoginRequest } from 'models/apiModels';
+import { LoginRequest } from '@models/apiModels';
 import { loginValidation } from '@components/forms/validationSchemas';
 import FormTitle from '@components/forms/form-title/FormTitle';
-import InputField from 'common/formFields/InputField';
-import { Button } from '@mui/material';
-import { useLoginUserMutation } from 'redux/api/userApi';
+import InputField from '@common/formFields/InputField';
+import { useLoginUserMutation } from '@reduxproj//api/userApi';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import { login } from 'redux/reducers/userReducer';
+import { login } from '@reduxproj/reducers/userReducer';
 import { useNavigate } from 'react-router';
-import { sleep } from 'common/tools';
+import { sleep } from '@tools/sleep';
 import fieldKit from '@components/forms/fieldKit';
-import { SubmitButton } from 'common/formFields';
+import { SubmitButton } from '@common/formFields';
 
 const initialValues: LoginRequest = {
   login: '',

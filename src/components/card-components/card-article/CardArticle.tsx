@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './cardarticle.module.scss';
-import formatDate from 'common/tools/formatDateInArray';
+import formatDate from '@tools//formatDateInArray';
 
 interface ArticleProps {
   title: string;

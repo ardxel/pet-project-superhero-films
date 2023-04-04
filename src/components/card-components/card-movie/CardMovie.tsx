@@ -1,27 +1,23 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './cardMovie.module.scss';
-import { getRating, upgradeRating } from 'common/tools/upgradeRating';
-import toHoursAndMinutes from 'common/tools/toHoursAndMinutes';
+import { getRating, upgradeRating } from '@tools/upgradeRating';
+import toHoursAndMinutes from '@tools/toHoursAndMinutes';
 import { Link } from 'react-router-dom';
-import IMovie from 'models/Movie';
+import IMovie from '@models/Movie';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from '@mui/material';
 import useUserProfile from '@hooks/useUserProfile';
 import CircularProgress from '@mui/material/CircularProgress';
-import { sleep } from 'common/tools';
-import { useAppDispatch } from '@hooks/useAppDispatch';
-import { changeUserCollections } from 'redux/asyncThunks/userThunks';
+import useMovieReview from '@hooks/useMovieReview';
 
 interface CardMovieProps extends IMovie {}
 
 const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  const { userState, isAuthorized, handleChangeUserCollection } =
+  const { userState, isAuthorized, handleChangeUserCollection, isLoading } =
     useUserProfile();
+  const { isFavorite } = useMovieReview(props.kinopoiskId);
   const {
     ratingKinopoisk,
     kinopoiskId,
@@ -31,13 +27,6 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
     filmLength,
   } = props;
   const [color, newRating] = upgradeRating(ratingKinopoisk);
-
-  useEffect(() => {
-    if (userState.favorites) {
-      const matchedId = userState.favorites.find((id) => id === kinopoiskId);
-      matchedId ? setIsFavorite(true) : setIsFavorite(false);
-    }
-  }, [userState.favorites]);
 
   const getMovieRating = useMemo(() => {
     const matchedRating = userState.ratings.find(

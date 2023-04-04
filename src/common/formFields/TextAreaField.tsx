@@ -1,6 +1,6 @@
 import React from 'react';
-import { InputType } from 'models/formModels';
-import styles from 'common/formFields/styles';
+import { InputType } from '@models/formModels';
+import styles from './styles';
 import { useField } from 'formik';
 
 type TextAreaFieldProps = InputType & {};
@@ -10,7 +10,7 @@ const TextAreaField: React.FC<TextAreaFieldProps> = ({
   label,
   ...rest
 }) => {
-  const [field, _] = useField({ name: name });
+  const [field] = useField({ name: name });
   return (
     <div
       style={{

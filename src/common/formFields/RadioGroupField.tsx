@@ -5,7 +5,7 @@ import {
   RadioGroup,
   RadioGroupProps,
 } from '@mui/material';
-import { InputType } from 'models/formModels';
+import { InputType } from '@models/formModels';
 import { useField } from 'formik';
 
 type RadioGroupFieldProps = RadioGroupProps & InputType & {};

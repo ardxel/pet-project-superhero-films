@@ -1,4 +1,4 @@
-import { UserCollection, UserReduxState } from 'models/User';
+import { UserCollection, UserReduxState } from '@models/User';
 
 const getListOfMoviesIdFromUserState: (
   userState: UserReduxState

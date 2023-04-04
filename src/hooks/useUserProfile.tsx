@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import { sleep } from 'common/tools';
-import { changeUserCollections } from 'redux/asyncThunks/userThunks';
-import { UserCollection, UserToken } from 'models/User';
+import { sleep } from '@tools/sleep';
+import { changeUserCollections } from '@reduxproj//asyncThunks/userThunks';
+import { UserCollection, UserToken } from '@models/User';
 import { $Keys, ValuesType, $NonMaybeType } from 'utility-types';
 import { validate as uuidValidate } from 'uuid';
 
@@ -37,7 +37,7 @@ export default function useUserProfile() {
             value = !(userState[listName] as number[]).includes(item);
           }
           const type: 'add' | 'remove' = value ? 'add' : 'remove';
-          console.log('lol');
+
           dispatch(changeUserCollections({ item, listName, type }));
         })
         .catch((e) => {

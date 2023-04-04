@@ -1,9 +1,9 @@
-import DatePickerField from 'common/formFields/DatePickerField';
-import InputField from 'common/formFields/InputField';
-import RadioGroupField from 'common/formFields/RadioGroupField';
-import SelectField from 'common/formFields/SelectField';
-import TextAreaField from 'common/formFields/TextAreaField';
-import SubmitButton from 'common/formFields/SubmitButton';
+import DatePickerField from './DatePickerField';
+import InputField from './InputField';
+import RadioGroupField from './RadioGroupField';
+import SelectField from './SelectField';
+import TextAreaField from './TextAreaField';
+import SubmitButton from './SubmitButton';
 export {
   DatePickerField,
   InputField,

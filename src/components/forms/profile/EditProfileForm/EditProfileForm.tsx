@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import FormTitle from '@components/forms/form-title/FormTitle';
 import { Form, Formik, FormikProps } from 'formik';
 import superstyles from '@styles/superstyles.module.scss';
-import { TextAreaField, InputField } from 'common/formFields';
-import { useEditProfileMutation } from 'redux/api/userApi';
+import { TextAreaField, InputField, SubmitButton } from '@common/formFields';
+import { useEditProfileMutation } from '@reduxproj//api/userApi';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { editProfileValidation } from '@components/forms/validationSchemas';
 import fieldKit from '@components/forms/fieldKit';
-import { SubmitButton } from 'common/formFields';
 import { ProfileFormType } from '@pages/profile/Profile';
 
 type ProfileFormFieldsType = {

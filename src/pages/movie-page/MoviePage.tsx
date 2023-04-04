@@ -1,28 +1,32 @@
 import React from 'react';
 import Player from '@components/player/Player';
-import { useParams } from 'react-router';
-import Loading from 'common/loading/Loading';
+import { useNavigate, useParams } from 'react-router';
+import Loading from '@common/loading/Loading';
 import HeaderMoviePage from './header/MoviePageHeader';
-import Wrapper from 'common/wrapper/Wrapper';
+import Wrapper from '@common/wrapper/Wrapper';
 import {
   MovieWithAlternativeList,
   useGetMovieQuery,
-} from 'redux/api/moviesApi';
+} from '@reduxproj//api/moviesApi';
 import ManualSlider from '@components/sliders/manual-slider/ManualSlider';
 import DescriptionMoviePage from '@pages/movie-page/description/DescriptionMoviePage';
 import CardActor from '@components/card-components/card-actor/CardActor';
 import CardMovie from '@components/card-components/card-movie/CardMovie';
+import { sleep } from '@tools/sleep';
+import { Modal } from '@mui/material';
 
 const MoviePage: React.FC = () => {
   const { id } = useParams();
-  const { data, isLoading } = useGetMovieQuery({
+  const navigate = useNavigate();
+  const { data, isLoading: isMovieLoading } = useGetMovieQuery({
     id: id as string,
     alternative: true,
   });
-  if (isLoading) {
+  if (isMovieLoading) {
     return <Loading style={{ width: '25%' }} />;
   } else if (!data) {
-    return <h1>Error</h1>;
+    sleep().then(() => navigate('/'));
+    return null;
   } else {
     const { movie, alternatives } = data as MovieWithAlternativeList;
     return (

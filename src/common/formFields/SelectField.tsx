@@ -1,13 +1,7 @@
 import React, { PropsWithChildren } from 'react';
-import {
-  FormControl,
-  FormLabel,
-  MenuItem,
-  Select,
-  SelectProps,
-} from '@mui/material';
+import { FormControl, FormLabel, Select, SelectProps } from '@mui/material';
 import styles from './styles';
-import { InputType } from 'models/formModels';
+import { InputType } from '@models/formModels';
 import { useField } from 'formik';
 
 type SelectFieldProps = SelectProps & InputType & {};

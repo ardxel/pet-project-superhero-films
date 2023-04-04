@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import FormTitle from '@components/forms/form-title/FormTitle';
-import styles from 'common/formFields/styles';
+import styles from '@common/formFields/styles';
 import superstyles from '@styles/superstyles.module.scss';
 import { Form, Formik, FormikProps } from 'formik';
 import { useAppSelector } from '@hooks/useAppSelector';
@@ -8,14 +8,14 @@ import { FormControlLabel, MenuItem, Radio } from '@mui/material';
 import {
   RadioGroupField,
   DatePickerField,
+  SelectField,
   SubmitButton,
-} from 'common/formFields';
+} from '@common/formFields';
 import axios from 'axios';
 import BASE_URL from '@constants/baseUrl';
-import SelectField from 'common/formFields/SelectField';
-import { capitalizeFirstLetter } from 'common/tools';
-import { useEditProfileMutation } from 'redux/api/userApi';
-import { DefaultUserResponse } from 'models/apiModels';
+import capitalizeFirstLetter from '@tools/capitalizeFirstLetter';
+import { useEditProfileMutation } from '@reduxproj//api/userApi';
+import { DefaultUserResponse } from '@models/apiModels';
 import { ProfileFormType } from '@pages/profile/Profile';
 import genderButtonList from './genderButtonList';
 

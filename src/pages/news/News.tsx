@@ -1,11 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
-import styles from './news.module.scss';
 import CardArticle from '@components/card-components/card-article/CardArticle';
-import { fetchNews } from 'redux/asyncThunks/fetchNews';
+import { fetchNews } from '@reduxproj//asyncThunks/fetchNews';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import Loading from 'common/loading/Loading';
-import Wrapper from 'common/wrapper/Wrapper';
+import Loading from '@common/loading/Loading';
+import Wrapper from '@common/wrapper/Wrapper';
 
 const NewsPage: FC = () => {
   const { data, isLoading, error, nextPage } = useAppSelector(

@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './base.module.scss';
-import toHoursAndMinutes from 'common/tools/toHoursAndMinutes';
-import formatAgeLimits from 'common/tools/formatAgeLimits';
+import { toHoursAndMinutes, formatAgeLimits } from '@common/tools/';
 
 interface BaseProps {
   nameOriginal: string;

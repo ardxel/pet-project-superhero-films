@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import superstyles from '@styles/superstyles.module.scss';
 import { Form, Formik, FormikProps } from 'formik';
-import { RegistrationRequest } from 'models/apiModels';
+import { RegistrationRequest } from '@models/apiModels';
 import { signUpValidation } from '@components/forms/validationSchemas';
-import InputField from 'common/formFields/InputField';
-import { useRegisterUserMutation } from 'redux/api/userApi';
-import { registration } from 'redux/reducers/userReducer';
+import { useRegisterUserMutation } from '@reduxproj//api/userApi';
+import { registration } from '@reduxproj//reducers/userReducer';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { useAppSelector } from '@hooks/useAppSelector';
 import FormTitle from '@components/forms/form-title/FormTitle';
-import { sleep } from 'common/tools';
+import { sleep } from '@common/tools';
 import { useNavigate } from 'react-router';
 import fieldKit from '@components/forms/fieldKit';
-import { SubmitButton } from 'common/formFields';
+import { SubmitButton, InputField } from '@common/formFields';
 
 const initialValues: RegistrationRequest = {
   email: '',

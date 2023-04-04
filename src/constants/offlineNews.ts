@@ -1,4 +1,4 @@
-import { IArticle } from '../models/News';
+import { IArticle } from '@models/News';
 
 const offlineNews: IArticle[] = [
   {

@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './profileSliders.module.scss';
-import Loading from 'common/loading/Loading';
+import Loading from '@common/loading/Loading';
 import profileSliderList from '@constants/profileSliderList';
 import ManualSlider from '@components/sliders/manual-slider/ManualSlider';
-import IMovie from 'models/Movie';
+import IMovie from '@models/Movie';
 import { CardMovie } from '@components/card-components';
 import { ProfileState } from '@pages/profile/profileReducer';
 

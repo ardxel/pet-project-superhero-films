@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import styles from './formtitle.module.scss';
 import { Alert, AlertColor, AlertTitle } from '@mui/material';
-import { sleep } from 'common/tools';
 
 interface FormTitleProps {
   title?: string;
