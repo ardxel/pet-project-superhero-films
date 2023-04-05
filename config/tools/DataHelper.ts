@@ -1,28 +1,28 @@
-import path from 'path';
-import fs from 'fs';
-import IMovie from '@models/Movie';
-import { FranchiseListResponse } from '@constants/franchisesList';
-import { MovieWithAlternativeList } from '@reduxproj/api/moviesApi';
+import path from "path";
+import fs from "fs";
+import IMovie from "@models/Movie";
+import { FranchiseListResponse } from "@constants/franchisesList";
+import { MovieWithAlternativeList } from "@reduxproj/api/moviesApi";
 
 export default class Data {
   // absolute path of the data directory
   private static readonly pathData: string = path.resolve(
     __dirname,
-    '../../data'
+    "../../data"
   );
 
   static readonly listOfDataFiles: string[] = fs
     .readdirSync(this.pathData)
-    .map((name) => name.replace('.json', ''));
+    .map((name) => name.replace(".json", ""));
 
   // returns an array of data from folder with all data files.
   //for example, if the filename is "marvel" then this function will return marvel.json
   // and then parse json format into literal array from data folder
   static parseData<T>(filename: string): T[] {
     const isExists = this.listOfDataFiles.includes(filename);
-    if (!isExists) throw Error('file not found');
+    if (!isExists) throw Error("file not found");
     return JSON.parse(
-      fs.readFileSync(this.pathData + `/${filename}.json`, 'utf-8')
+      fs.readFileSync(this.pathData + `/${filename}.json`, "utf-8")
     );
   }
 
@@ -31,7 +31,7 @@ export default class Data {
   // filename is the same thing as in the parseData method
   static writeData<T>(array: T[], filename: string): void {
     const isExists = this.listOfDataFiles.includes(filename);
-    if (!isExists) throw Error('file not found');
+    if (!isExists) throw Error("file not found");
     fs.writeFileSync(
       this.pathData + `/${filename}.json`,
       JSON.stringify(array)
@@ -40,7 +40,7 @@ export default class Data {
 
   static parseAllMoviesData<T = IMovie>(): T[] {
     const files = this.listOfDataFiles.filter(
-      (file) => file === 'dc' || file === 'marvel'
+      (file) => file === "dc" || file === "marvel"
     );
     const data: T[] = [];
     for (let i = 0; i < files.length; i++) {
@@ -54,8 +54,8 @@ export default class Data {
     paramsWithId: string,
     allMovies: IMovie[]
   ): IMovie | MovieWithAlternativeList {
-    const id = +paramsWithId.replace(/\D/gi, '');
-    const isAlternative = paramsWithId.includes('+withAlts');
+    const id = +paramsWithId.replace(/\D/gi, "");
+    const isAlternative = paramsWithId.includes("+withAlts");
     const movieById = allMovies.find(
       (movie) => movie.kinopoiskId === id
     ) as IMovie;
@@ -69,8 +69,8 @@ export default class Data {
     keywords: string,
     allMovies: IMovie[]
   ): FranchiseListResponse[] {
-    return keywords.split('&keywords=').map((keywords, index) => {
-      const ArrKeywords = keywords.split(',');
+    return keywords.split("&keywords=").map((keywords, index) => {
+      const ArrKeywords = keywords.split(",");
       const title = ArrKeywords[0];
       const id = index;
       const movies = allMovies
