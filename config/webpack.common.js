@@ -1,36 +1,36 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
-const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const path = require('path');
 
-const path_main = path.resolve(__dirname, "../");
-const path_src = path.resolve(__dirname, "../src/");
-const path_build = path.resolve(__dirname, "../build/");
+const path_main = path.resolve(__dirname, '../');
+const path_src = path.resolve(__dirname, '../src/');
+const path_build = path.resolve(__dirname, '../build/');
 
 module.exports = function (env, argv) {
   const isDevServer = env.WEBPACK_SERVE;
-  const mode = argv.mode || (isDevServer ? "development" : "production");
-  const isDevMode = mode !== "production";
+  const mode = argv.mode || (isDevServer ? 'development' : 'production');
+  const isDevMode = mode !== 'production';
   process.env.NODE_ENV = mode;
   console.log(mode);
 
   /** @type {import('webpack').Configuration} */
 
   return {
-    entry: path.resolve(path_src, "index.tsx"),
+    entry: path.resolve(path_src, 'index.tsx'),
     output: {
-      filename: "[name].js",
+      filename: '[name].js',
       path: path_build,
-      publicPath: "/",
+      publicPath: '/',
       clean: true,
     },
     resolve: {
-      extensions: [".ts", ".tsx", ".js", ".jsx", "json", "svg"],
+      extensions: ['.ts', '.tsx', '.js', '.jsx', 'json', 'svg'],
       plugins: [
         new TsconfigPathsPlugin({
-          configFile: path.resolve(path_main, "tsconfig.json"),
+          configFile: path.resolve(path_main, 'tsconfig.json'),
         }),
       ],
     },
@@ -43,7 +43,7 @@ module.exports = function (env, argv) {
           exclude: /node_modules/,
           use: [
             {
-              loader: "babel-loader",
+              loader: 'babel-loader',
             },
           ],
         },
@@ -53,7 +53,7 @@ module.exports = function (env, argv) {
           exclude: /node_modules/,
           use: [
             {
-              loader: "babel-loader",
+              loader: 'babel-loader',
             },
             // 'eslint-loader'
           ],
@@ -64,46 +64,46 @@ module.exports = function (env, argv) {
           use: [
             MiniCssExtractPlugin.loader,
             {
-              loader: "css-loader",
+              loader: 'css-loader',
               options: {
                 modules: {
                   auto: /\.module\.\w+$/,
-                  localIdentName: "[local]__[hash:base64:5]",
+                  localIdentName: '[local]__[hash:base64:5]',
                 },
               },
             },
             {
-              loader: "postcss-loader",
+              loader: 'postcss-loader',
               options: {
                 postcssOptions: {
-                  config: path.resolve(path_main, "postcss.config.js"),
+                  config: path.resolve(path_main, 'postcss.config.js'),
                   values: true,
                 },
               },
             },
-            "sass-loader",
+            'sass-loader',
           ],
         },
         // rule for other files
         {
           test: /\.(png|jpg|jpeg|gif)$/i,
-          type: "asset/resource",
+          type: 'asset/resource',
           generator: {
-            filename: "images/[hash][ext][query]",
+            filename: 'images/[hash][ext][query]',
           },
         },
         // rule for svg
         {
           test: /\.svg$/,
-          use: ["@svgr/webpack"],
+          use: ['@svgr/webpack'],
         },
         // rule for fonts
         {
           test: /\.(woff(2)?|eot|ttf|otf|)$/,
           exclude: /node_modules/,
-          type: "asset",
+          type: 'asset',
           generator: {
-            filename: "fonts/[hash][ext][query]",
+            filename: 'fonts/[hash][ext][query]',
           },
         },
       ],
@@ -111,8 +111,8 @@ module.exports = function (env, argv) {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: path.resolve(path_src, "index.html"),
-        filename: "index.html",
+        template: path.resolve(path_src, 'index.html'),
+        filename: 'index.html',
         minify: isDevMode
           ? false
           : {
@@ -122,8 +122,8 @@ module.exports = function (env, argv) {
       }),
       new MiniCssExtractPlugin({
         filename: isDevMode
-          ? "css/[name].css"
-          : "css/[name].[contenthash:8].css",
+          ? 'css/[name].css'
+          : 'css/[name].[contenthash:8].css',
       }),
       new ESLintPlugin(),
       // new BundleAnalyzerPlugin({
