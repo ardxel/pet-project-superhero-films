@@ -52,6 +52,7 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
               'favorites'
             )}
             size="small"
+            id="favorite-icon"
             className={styles.favoriteIcon}
           >
             {isLoading && <CircularProgress size="1.3em" />}

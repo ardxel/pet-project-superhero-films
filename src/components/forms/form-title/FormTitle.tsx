@@ -34,7 +34,7 @@ const FormTitle: React.FC<FormTitleProps> = ({ ...props }) => {
     return null;
   } else
     return (
-      <div className={styles.title}>
+      <div className={styles.title} data-testid="title-form-edit-profile">
         <h3>{title}</h3>
         {showAlertMessage && (
           <Alert className={styles.alert} severity={severity}>

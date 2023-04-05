@@ -8,7 +8,7 @@ interface WrapperProps {
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   return (
-    <main className={styles.main}>
+    <main className={styles.main} data-testid="main-wrapper">
       <div className={styles.container}>
         <Paper elevation={3} sx={{ backgroundColor: 'inherit' }}>
           {children}
