@@ -7,13 +7,18 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import LoginForm from '@components/forms/login/LoginForm';
 import authAutoSliderItems from '@constants/authAutoSliderItems';
 
+const form = {
+  REGISTRATION: 'Registration',
+  LOGIN: 'Login',
+};
+
 const AuthorizationPage: React.FC = () => {
-  const [displayedForm, setDisplayedForm] = useState('registration');
+  const [displayedForm, setDisplayedForm] = useState<string>(form.REGISTRATION);
 
   const handleDisplayForm = () => {
-    displayedForm === 'registration'
-      ? setDisplayedForm('login')
-      : setDisplayedForm('registration');
+    displayedForm === form.REGISTRATION
+      ? setDisplayedForm(form.LOGIN)
+      : setDisplayedForm(form.REGISTRATION);
   };
 
   return (
@@ -30,9 +35,11 @@ const AuthorizationPage: React.FC = () => {
               endIcon={<NavigateNextIcon />}
               onClick={handleDisplayForm}
             >
-              {displayedForm === 'registration' ? 'Login' : 'Registration'}
+              {displayedForm === form.REGISTRATION
+                ? form.LOGIN
+                : form.REGISTRATION}
             </Button>
-            {displayedForm === 'registration' ? (
+            {displayedForm === form.REGISTRATION ? (
               <RegistrationForm />
             ) : (
               <LoginForm />
