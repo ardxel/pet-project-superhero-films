@@ -1,8 +1,8 @@
-import capitalizeFirstLetter from "../../common/tools/capitalizeFirstLetter";
+import capitalizeFirstLetter from '../../common/tools/capitalizeFirstLetter';
 
-describe("capitalizeFirstLetter module", () => {
+describe('capitalizeFirstLetter module', () => {
   test('get "hello world" return "Hello world" ', () => {
-    expect(capitalizeFirstLetter("hello world")).toBe("Hello world");
+    expect(capitalizeFirstLetter('hello world')).toBe('Hello world');
   });
   test('get "123" return error', () => {
     // @ts-expect-error

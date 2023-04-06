@@ -1,5 +1,5 @@
-import { UserReduxState, UserServerState } from "@models/User";
-import { v4 as uuidv4 } from "uuid";
+import { UserReduxState, UserServerState } from '@models/User';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class User {
   static createUser(request: {
@@ -44,7 +44,7 @@ export default class User {
   ): T {
     const changedUser = user;
     for (const key of Object.keys(changedUser)) {
-      if (key !== "token" && settings[key]) {
+      if (key !== 'token' && settings[key]) {
         user[key] = settings[key];
       }
     }

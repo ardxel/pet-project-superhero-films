@@ -11,6 +11,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
     <div
       className={[props.className, styles.loading].join(' ')}
       style={props.style}
+      data-testid="loading"
     >
       <ReactLoading type="spin" className={styles.container} />
     </div>

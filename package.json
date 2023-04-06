@@ -123,5 +123,8 @@
   "bugs": {
     "url": "https://github.com/ardxel/pet-project-superhero-films/issues"
   },
-  "homepage": "https://github.com/ardxel/pet-project-superhero-films#readme"
+  "homepage": "https://github.com/ardxel/pet-project-superhero-films#readme",
+  "prettier": {
+    "singleQuote": true
+  }
 }

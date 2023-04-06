@@ -8,7 +8,7 @@ import {
   ProfileState,
   ProfileAction,
 } from '@pages/profile/profileReducer';
-import { UserReduxState } from 'models/User';
+import { UserReduxState } from '@models/User';
 
 interface ProfileHeaderProps {
   profileState: ProfileState;
@@ -50,10 +50,12 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ ...props }) => {
           </div>
         )}
       </div>
-      <div className={styles.bio}>
-        <h3>Bio:</h3>
-        <p>{biography}</p>
-      </div>
+      {biography && (
+        <div className={styles.bio}>
+          <h3>Bio:</h3>
+          <p>{biography}</p>
+        </div>
+      )}
     </>
   );
 };
