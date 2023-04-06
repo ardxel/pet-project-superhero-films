@@ -18,7 +18,12 @@ const ManualSlider: FC<PropsWithChildren<SliderProps>> = ({
   const { isVisible, scroll } = useScroll(ulRef);
 
   return (
-    <article className={styles.article} style={style}>
+    <article
+      className={styles.article}
+      style={style}
+      data-testid="manual-slider"
+      data-type={title?.replace(' ', '-').toLowerCase()}
+    >
       <div className={styles.title}>
         <h3>{title}</h3>
       </div>
