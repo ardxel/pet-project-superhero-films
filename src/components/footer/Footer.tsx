@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.links}>
-          {footerItems.map(({ id, Image, alt, link }) => {
+          {footerItems.map(({ id, Image, link }) => {
             return (
               <div className={styles.item} key={id}>
                 <a className={styles.link} href={link} target="_blank">
