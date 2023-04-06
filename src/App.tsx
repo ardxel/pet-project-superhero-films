@@ -11,8 +11,7 @@ import MoviePage from '@pages/movie-page/MoviePage';
 import ProfilePage from '@pages/profile/Profile';
 import AuthorizationPage from '@pages/authorization/Authorization';
 import { Provider } from 'react-redux';
-import store from '@reduxproj//store';
-
+import store from '@reduxproj/store';
 const App = () => (
   <BrowserRouter>
     <ScrollToTop />
