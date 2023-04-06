@@ -13,7 +13,6 @@ import DescriptionMoviePage from '@pages/movie-page/description/DescriptionMovie
 import CardActor from '@components/card-components/card-actor/CardActor';
 import CardMovie from '@components/card-components/card-movie/CardMovie';
 import { sleep } from '@tools/sleep';
-import { Modal } from '@mui/material';
 
 const MoviePage: React.FC = () => {
   const { id } = useParams();
