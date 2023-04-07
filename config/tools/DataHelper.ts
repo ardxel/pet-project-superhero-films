@@ -4,6 +4,8 @@ import IMovie from '@models/Movie';
 import { FranchiseListResponse } from '@constants/franchisesList';
 import { MovieWithAlternativeList } from '@reduxproj/api/moviesApi';
 
+type UnionDataFiles = 'countries' | 'dc' | 'marvel' | 'users';
+
 export default class Data {
   // absolute path of the data directory
   private static readonly pathData: string = path.resolve(
@@ -11,14 +13,14 @@ export default class Data {
     '../../data'
   );
 
-  static readonly listOfDataFiles: string[] = fs
+  static readonly listOfDataFiles: Array<UnionDataFiles> = fs
     .readdirSync(this.pathData)
-    .map((name) => name.replace('.json', ''));
+    .map((name) => name.replace('.json', '')) as Array<UnionDataFiles>
 
   // returns an array of data from folder with all data files.
   //for example, if the filename is "marvel" then this function will return marvel.json
   // and then parse json format into literal array from data folder
-  static parseData<T>(filename: string): T[] {
+  static parseData<T, F extends UnionDataFiles = UnionDataFiles>(filename: F): T[] {
     const isExists = this.listOfDataFiles.includes(filename);
     if (!isExists) throw Error('file not found');
     return JSON.parse(
@@ -29,7 +31,7 @@ export default class Data {
   // overwrites the data file in the data folder.
   // array is overwritten on top of all data in the file
   // filename is the same thing as in the parseData method
-  static writeData<T>(array: T[], filename: string): void {
+  static writeData<T, F extends UnionDataFiles = UnionDataFiles>(array: T[], filename: F): void {
     const isExists = this.listOfDataFiles.includes(filename);
     if (!isExists) throw Error('file not found');
     fs.writeFileSync(
@@ -38,13 +40,13 @@ export default class Data {
     );
   }
 
-  static parseAllMoviesData<T = IMovie>(): T[] {
+  static parseAllMoviesData(): IMovie[] {
     const files = this.listOfDataFiles.filter(
       (file) => file === 'dc' || file === 'marvel'
     );
-    const data: T[] = [];
+    const data = [] as IMovie[];
     for (let i = 0; i < files.length; i++) {
-      const parsedData = this.parseData<T>(files[i]);
+      const parsedData = this.parseData<IMovie>(files[i]);
       data.push(...parsedData);
     }
     return data;
@@ -85,7 +87,7 @@ export default class Data {
     });
   }
 
-  static getSimilarMoviesById(id: number, allMovies: IMovie[]): IMovie[] {
+  static getSimilarMoviesById<T extends IMovie = IMovie>(id: number, allMovies: T[]): T[] {
     const mainMovie = allMovies.filter((movie) => movie.kinopoiskId === id)[0];
     const matchedMovies = allMovies.filter(
       (movie) =>

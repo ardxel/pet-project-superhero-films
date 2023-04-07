@@ -11,9 +11,9 @@ import {
   LoginResponse,
   EditProfileResponse,
   EditProfileRequest,
-} from 'models/apiModels';
+} from '@models/apiModels';
 import { AlertColor } from '@mui/material';
-import { UserReduxState } from 'models/User';
+import { UserReduxState } from '@models/User';
 
 const getSeverityText: (statusCode: number) => AlertColor = (statusCode) => {
   if (statusCode === 200) return 'success';
@@ -22,13 +22,15 @@ const getSeverityText: (statusCode: number) => AlertColor = (statusCode) => {
   else throw Error('this response code is not inspected');
 };
 
+type userInit = RegistrationResponse | LoginResponse | EditProfileResponse;
+
 const userInitTransformResponse = (
   baseQueryReturnValue: {
     message: string;
     user: UserReduxState;
   },
   meta: FetchBaseQueryMeta
-): RegistrationResponse & LoginResponse & EditProfileResponse => {
+): userInit => {
   return {
     message: baseQueryReturnValue.message,
     severity: getSeverityText(meta?.response!.status),
@@ -74,6 +76,12 @@ export const userApi = createApi({
     }),
   }),
 });
+
+export const userApiName = userApi.reducerPath;
+
+export const userApiReducer = userApi.reducer;
+
+export const userApiMiddleware = userApi.middleware;
 
 export const {
   useRegisterUserMutation,

@@ -29,10 +29,11 @@ const ProfilePage: React.FC<{}> = () => {
   const { username } = useParams();
   const navigate = useNavigate();
 
-  if (!username) {
-    navigate('/authorization');
-    return null;
-  }
+  useEffect(() => {
+    if (!username) {
+      navigate('/authorization');
+    }
+  }, []);
 
   const preloadProfile = async () => {
     let user;
@@ -48,7 +49,7 @@ const ProfilePage: React.FC<{}> = () => {
     if (!isAuthorized) {
       await dispatch({ type: ProfileActionKind.HIDE_BUTTONS });
 
-      const userResponse = await fetchProfile(username);
+      const userResponse = await fetchProfile(username as string);
 
       const userData = await userResponse.data;
 
@@ -56,10 +57,11 @@ const ProfilePage: React.FC<{}> = () => {
         type: ProfileActionKind.SET_CURRENT_USER,
         payload: userData,
       });
+
       user = await userData;
     }
 
-    const moviesIds = await getListOfMoviesIdFromUserState(user);
+    const moviesIds = getListOfMoviesIdFromUserState(user);
 
     const moviesResponse = await fetchMoviesByIds(moviesIds);
 

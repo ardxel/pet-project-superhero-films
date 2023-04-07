@@ -1,8 +1,8 @@
 import { createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit';
 import type { RootState } from './store';
-import { registration, logout, login } from 'redux/reducers/userReducer';
+import { registration, logout, login } from '@reduxproj//reducers/userReducer';
 
-export const listenerMiddleware = createListenerMiddleware();
+const listenerMiddleware = createListenerMiddleware();
 listenerMiddleware.startListening({
   matcher: isAnyOf(registration, logout, login),
   effect: (_, listenerApi) => {
@@ -12,3 +12,5 @@ listenerMiddleware.startListening({
     );
   },
 });
+
+export default listenerMiddleware.middleware;

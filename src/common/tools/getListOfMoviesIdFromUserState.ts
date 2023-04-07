@@ -1,4 +1,4 @@
-import { UserCollection, UserReduxState } from '@models/User';
+import { UserReduxState } from '@models/User';
 
 const getListOfMoviesIdFromUserState: (
   userState: UserReduxState
@@ -6,11 +6,8 @@ const getListOfMoviesIdFromUserState: (
   return Array.from(
     new Set(
       [userState.watchlist, userState.ratings, userState.favorites]
-        .map((collection) => {
-          return collection.map((value) => {
-            return typeof value === 'object' ? value.id : value;
-          });
-        })
+        .map((collection) => collection
+          .map((value) => typeof value === 'object' ? value.id : value))
         .flat(1)
     )
   );

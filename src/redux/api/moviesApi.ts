@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import BASE_URL from '@constants/baseUrl';
-import IMovie from 'models/Movie';
+import IMovie from '@models/Movie';
 import {
   FranchiseList,
   FranchiseListResponse,
@@ -44,10 +44,16 @@ export const moviesApi = createApi({
     }),
   }),
 });
+
+export const moviesApiName = moviesApi.reducerPath;
+
+export const moviesApiReducer = moviesApi.reducer;
+
+export const moviesApiMiddleware = moviesApi.middleware;
+
 export const {
   useGetMoviesByFranchiseListQuery,
   useGetMovieQuery,
-  useGetMoviesByIdsQuery,
   useSearchMovieQuery,
   useLazyGetMoviesByIdsQuery,
 } = moviesApi;
