@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNews } from 'redux/asyncThunks/fetchNews';
-import { IArticle } from 'models/News';
+import { fetchNews } from '@reduxproj//asyncThunks/fetchNews';
+import { IArticle } from '@models/News';
 import offlineNews from '@constants/offlineNews';
 
-const initialState: {
+export const initialNewsState: {
   isLoading: boolean;
   data: IArticle[];
   error: boolean;
@@ -17,7 +17,7 @@ const initialState: {
 
 const newsSlice = createSlice({
   name: 'news',
-  initialState: initialState,
+  initialState: initialNewsState,
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -39,4 +39,4 @@ const newsSlice = createSlice({
   },
 });
 
-export default newsSlice;
+export const newsReducer = newsSlice.reducer;
