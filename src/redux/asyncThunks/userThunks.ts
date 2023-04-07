@@ -2,8 +2,8 @@ import axios from 'axios';
 import BASE_URL from '@constants/baseUrl';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { $Keys, ValuesType } from 'utility-types';
-import { UserCollection, UserReduxState, UserToken } from 'models/User';
-import { AppDispatch, RootState } from 'redux/store';
+import { UserCollection, UserReduxState, UserToken } from '@models/User';
+import { AppDispatch, RootState } from '@reduxproj/store';
 
 const createAppAsyncThunk = createAsyncThunk.withTypes<{
   state: RootState;
@@ -46,12 +46,10 @@ export const changeUserCollections = createAppAsyncThunk<
 
     case 'ratings':
       let isMatchedRatingsItem = false;
-      console.log(item);
       newList = newList.map((listItem) => {
         if (typeof item === 'object') {
           if (listItem.id === item.id) {
             isMatchedRatingsItem = true;
-            console.log(isMatchedRatingsItem);
             return { id: listItem.id, value: item.value };
           }
           return listItem;
