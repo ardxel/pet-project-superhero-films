@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UserReduxState } from 'models/User';
+import { UserReduxState } from '@models/User';
 import {
   preloadUserReduxState,
   changeUserCollections,
-} from 'redux/asyncThunks/userThunks';
+} from '@reduxproj/asyncThunks/userThunks';
 
 export const userInitialState: UserReduxState = {
   token: null,
@@ -51,6 +51,8 @@ const userSlice = createSlice({
     });
   },
 });
+
+export const userReducer = userSlice.reducer;
 
 export const { registration, login, logout } = userSlice.actions;
 
