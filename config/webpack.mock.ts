@@ -2,7 +2,7 @@ import webpackMockServer from 'webpack-mock-server';
 import cors from 'cors';
 import Data from './tools/DataHelper';
 import { UserServerState } from '@models/User';
-import User from './tools/UsersHelper';
+import User from './tools/UserHelper';
 import countries from 'country-js/countries.json';
 
 export const mockServer = webpackMockServer.add((app, helper) => {
