@@ -20,6 +20,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ ...props }) => {
       open={profileState.isModalOpen as boolean}
       onClose={() => dispatch({ type: ProfileActionKind.CLOSE_MODAL })}
       disableScrollLock={true}
+      data-testid="edit-profile-modal"
     >
       <Box className={styles.box}>
         {profileFormList.map(({ Form, conditionStateKey }) => {
