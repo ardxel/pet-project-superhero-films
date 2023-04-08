@@ -1,0 +1,8 @@
+.box {
+  @apply absolute top-1/2 left-1/2 w-full md:w-[600px] max-h-[685px] flex rounded-[10px] flex flex-col bg-color1;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  vertical-align: center;
+  text-align: center;
+}
