@@ -6,7 +6,10 @@
       @apply absolute w-full h-full opacity-0;
       transition: all 0.3s linear;
       .title {
-        @apply absolute z-[999] w-full h-full flex justify-center items-center;
+        @apply absolute z-[999] h-full flex justify-center items-center;
+        width: calc(100% - 20%);
+        left: 50%;
+        transform: translateX(-50%);
         h6 {
           @apply p-2 text-xl sm:text-2xl sm:p-4 lg:text-3xl sm:p-6;
           background-color: rgba(0, 0, 0, 0.3);
