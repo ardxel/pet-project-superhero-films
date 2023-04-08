@@ -1,10 +1,22 @@
 [
   {
-    "login": "ardxel",
-    "password": "12345",
-    "about": "",
-    "avatar": "",
-    "favorites": [],
-    "isAdmin": true
+    "email": "john123@gmail.com",
+    "username": "john123",
+    "password": "Qwerty12345",
+    "token": "50c524dc-bde5-497c-8458-f4cb618b9e50",
+    "name": "John Marston",
+    "avatar": null,
+    "idAdmin": true,
+    "favorites": [178557, 104904, 1008445, 602409, 770631],
+    "ratings": [
+      { "id": 690593, "value": 9.7 },
+      { "id": 1008445, "value": 8.7 },
+      { "id": 602409, "value": 3.5 }
+    ],
+    "watchlist": [437410, 602409, 690593],
+    "biography": "I am John",
+    "gender": "male",
+    "birthday": "14.12.1986",
+    "country": "Armenia"
   }
 ]

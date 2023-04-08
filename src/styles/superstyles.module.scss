@@ -26,7 +26,7 @@
 .form {
   @apply flex flex-col w-full sm:w-full mt-4 mx-auto gap-y-6;
   & > div {
-    @apply max-w-[350px] w-[80%] mx-auto;
+    @apply max-w-[350px] w-full mx-auto;
     input {
     }
   }
@@ -50,7 +50,7 @@
   min-width: 75px !important;
   letter-spacing: 1.1px !important;
   border-color: unset !important;
-  padding: 8px 5px 8px 50px !important;
+  padding: 8px 5px 8px 25px !important;
   font-weight: bold !important;
   &:hover {
     background-color: var(--color3) !important;
@@ -69,6 +69,12 @@
   .linkButton {
     min-width: 250px !important;
     font-size: 14px !important;
+  }
+}
+
+@media screen and (min-width: 736px) {
+  .linkButton {
+    padding: 8px 5px 8px 45px !important;
   }
 }
 

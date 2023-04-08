@@ -15,12 +15,14 @@ export default class Data {
 
   static readonly listOfDataFiles: Array<UnionDataFiles> = fs
     .readdirSync(this.pathData)
-    .map((name) => name.replace('.json', '')) as Array<UnionDataFiles>
+    .map((name) => name.replace('.json', '')) as Array<UnionDataFiles>;
 
   // returns an array of data from folder with all data files.
   //for example, if the filename is "marvel" then this function will return marvel.json
   // and then parse json format into literal array from data folder
-  static parseData<T, F extends UnionDataFiles = UnionDataFiles>(filename: F): T[] {
+  static parseData<T, F extends UnionDataFiles = UnionDataFiles>(
+    filename: F
+  ): T[] {
     const isExists = this.listOfDataFiles.includes(filename);
     if (!isExists) throw Error('file not found');
     return JSON.parse(
@@ -31,7 +33,10 @@ export default class Data {
   // overwrites the data file in the data folder.
   // array is overwritten on top of all data in the file
   // filename is the same thing as in the parseData method
-  static writeData<T, F extends UnionDataFiles = UnionDataFiles>(array: T[], filename: F): void {
+  static writeData<T, F extends UnionDataFiles = UnionDataFiles>(
+    array: T[],
+    filename: F
+  ): void {
     const isExists = this.listOfDataFiles.includes(filename);
     if (!isExists) throw Error('file not found');
     fs.writeFileSync(
@@ -87,7 +92,10 @@ export default class Data {
     });
   }
 
-  static getSimilarMoviesById<T extends IMovie = IMovie>(id: number, allMovies: T[]): T[] {
+  static getSimilarMoviesById<T extends IMovie = IMovie>(
+    id: number,
+    allMovies: T[]
+  ): T[] {
     const mainMovie = allMovies.filter((movie) => movie.kinopoiskId === id)[0];
     const matchedMovies = allMovies.filter(
       (movie) =>

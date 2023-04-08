@@ -14,11 +14,10 @@ const sliderStyles = {
   },
 };
 
+type AutoSliderDataItem = { image: string; title: string };
+
 interface AutoSliderProps {
-  data: {
-    image: string;
-    title: string;
-  }[];
+  data: AutoSliderDataItem[];
 }
 
 const AutoSlider: React.FC<AutoSliderProps> = ({ data }) => {
