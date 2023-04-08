@@ -5,6 +5,7 @@ import CardWatchlistMovie from '@components/card-components/car-movie-watchlist/
 import React, { FC, useEffect } from 'react';
 import { useLazyGetMoviesByIdsQuery } from '@reduxproj//api/moviesApi';
 import useUserProfile from '@hooks/useUserProfile';
+import { disableScroll, enableScroll } from '@tools/scroll-lock';
 
 type ModalWatchlistProps = {
   open: boolean;
@@ -18,9 +19,16 @@ const ModalWatchlist: FC<ModalWatchlistProps> = ({ open, closeFn }) => {
   useEffect(() => {
     if (open && !moviesResponse.data) {
       fetchMovies(userState.watchlist);
+      disableScroll();
+    }
+
+    if (!open) {
+      enableScroll();
     }
   }, [open]);
+
   if (!open) return null;
+
   if (moviesResponse.isLoading) return <Loading />;
   return (
     <Modal open={open} onClose={closeFn} disableScrollLock={true}>
