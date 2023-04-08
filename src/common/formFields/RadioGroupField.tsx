@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import {
   FormControl,
+  FormHelperText,
   FormLabel,
   RadioGroup,
   RadioGroupProps,
@@ -17,15 +18,13 @@ const RadioGroupField: React.FC<PropsWithChildren<RadioGroupFieldProps>> = ({
   ...rest
 }) => {
   const [field, meta] = useField({ name: name });
-  const { isError, helperText } = _textFieldPropsHelper();
 
-  function _textFieldPropsHelper() {
-    const { touched, error } = meta;
+  const isError = meta.touched && meta.error && true;
 
-    const isError = touched && !!error;
-    const helperText = touched && error;
-
-    return { isError, helperText };
+  function _renderHelperText() {
+    if (isError) {
+      return <FormHelperText>{meta.error}</FormHelperText>;
+    }
   }
 
   return (
@@ -39,6 +38,7 @@ const RadioGroupField: React.FC<PropsWithChildren<RadioGroupFieldProps>> = ({
       <RadioGroup row aria-labelledby={label} {...field} {...rest}>
         {children}
       </RadioGroup>
+      {_renderHelperText()}
     </FormControl>
   );
 };
