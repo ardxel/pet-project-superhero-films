@@ -1,5 +1,10 @@
 .player {
   @apply w-full mx-auto mt-6 h-[63vw] md:h-[55vw] ag:h-[48vw] xl2:h-[600px];
+  .buttons {
+    button {
+      margin: 0 !important;
+    }
+  }
   .video {
     @apply w-full h-full relative;
     .iframe {
