@@ -3,7 +3,7 @@ const express = require('express');
 const webpackMockServer = require('webpack-mock-server');
 
 const BUILD_DIR = path.join(__dirname, '../build');
-const PORT = 3000;
+const PORT = process.env.Port || 3000;
 const app = express();
 
 //Serving the files on the dist folder
@@ -51,4 +51,4 @@ webpackMockServer.use(app, {
 
 app.listen(PORT);
 
-module.exports = {};
+module.exports = app;
