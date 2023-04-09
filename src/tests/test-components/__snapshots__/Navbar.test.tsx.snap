@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navbar> component test should render navbar for interaction with app 1`] = `
+<nav
+  className="nav open"
+>
+  <ul
+    className="links"
+  >
+    <li>
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Home
+      </a>
+    </li>
+    <li>
+      <a
+        href="/news"
+        onClick={[Function]}
+      >
+        News
+      </a>
+    </li>
+    <li>
+      <a
+        href="/profile/john"
+        onClick={[Function]}
+      >
+        Profile
+      </a>
+    </li>
+  </ul>
+  <button
+    className="closed"
+    onClick={[Function]}
+  >
+    <svg
+      aria-hidden={true}
+      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+      data-testid="CloseIcon"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+      />
+    </svg>
+  </button>
+</nav>
+`;
