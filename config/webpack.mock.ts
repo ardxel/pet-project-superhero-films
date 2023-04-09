@@ -5,7 +5,7 @@ import { UserServerState } from '@models/User';
 import User from './tools/UserHelper';
 import countries from 'country-js/countries.json';
 
-export const mockServer = webpackMockServer.add((app, helper) => {
+export default webpackMockServer.add((app, helper) => {
   app.use(cors());
   app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
