@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Search> component test should render input for searching 1`] = `
+<div
+  className="searchModal"
+  data-destiny="search"
+  style={
+    {
+      "display": "block",
+    }
+  }
+>
+  <section
+    className="field"
+  >
+    <input
+      onChange={[Function]}
+      placeholder="search..."
+      type="text"
+    />
+  </section>
+</div>
+`;
