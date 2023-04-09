@@ -9,12 +9,12 @@
     "start": "npx webpack serve --mode development --config ./config/webpack.devServer.js",
     "build:dev": "npx webpack --mode development --config ./config/webpack.dev.js",
     "build:prod": "npx webpack --mode production --config ./config/webpack.prod.js",
+    "build:vercel": "npx webpack --mode production --config ./config/webpack.prod.js && node ./config/vercelServer.js",
     "analyze:dev": "npx webpack --mode development --config ./config/webpack.dev.js --profile --json=stats.json && webpack-bundle-analyzer ./stats.json",
     "analyze:prod": "npx webpack --mode production --config ./config/webpack.prod.js --profile --json=stats.json && webpack-bundle-analyzer ./stats.json",
     "prettier:check": "npx prettier --check \"**\" ",
     "prettier:fix": "npx prettier --write \"**\" ",
     "eslint:check": "npx eslint --ext .js,.jsx,.ts,.tsx .",
-    "prepare": "husky install",
     "precommit": "lint-staged"
   },
   "devDependencies": {

@@ -37,6 +37,10 @@ const NewsPage: FC = () => {
     }
   }, [scrollTop]);
 
+  if (isLoading) {
+    return <Wrapper><Loading/></Wrapper>
+  }
+
   return (
     <>
       <Wrapper>
@@ -56,7 +60,6 @@ const NewsPage: FC = () => {
           );
         })}
       </Wrapper>
-      {isLoading && <Loading style={{ width: '20%' }} />}
     </>
   );
 };
