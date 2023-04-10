@@ -14,6 +14,7 @@ const Search: FC<SearchProps> = ({ isOpen, setIsOpen }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const { data = [], isLoading } = useSearchMovieQuery(searchTerm);
   const inputRef = useRef<HTMLInputElement>(null);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
@@ -45,20 +46,18 @@ const Search: FC<SearchProps> = ({ isOpen, setIsOpen }) => {
           />
         </section>
       </div>
+      {/* background blur element */}
+      {searchTerm && isOpen && <div className={styles.bg}></div>}
+
       {searchTerm && isOpen && (
         <div className={styles.results}>
           <div className={styles.container}>
             {isLoading && <Loading />}
             {data.map((movie) => {
-              const { nameOriginal, nameRu, posterUrl, year, kinopoiskId } =
-                movie;
               return (
                 <SearchCardMovie
-                  key={kinopoiskId}
-                  id={kinopoiskId}
-                  name={`${nameOriginal} / ${nameRu}`}
-                  poster={posterUrl}
-                  year={year}
+                  key={movie.kinopoiskId}
+                  {...movie}
                   setIsOpen={setIsOpen}
                 />
               );

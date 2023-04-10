@@ -1,35 +1,32 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import styles from './seachCarMovie.module.scss';
 import { Link } from 'react-router-dom';
+import useMovieReview from '@hooks/useMovieReview';
+import IMovie from '@models/Movie';
 
-interface SearchCardMovieProps {
-  id: number;
-  name: string;
-  poster: string;
-  year: number;
+interface SearchCardMovieProps extends IMovie {
   setIsOpen: (arg: boolean) => void;
 }
 
-const SearchCardMovie: FC<SearchCardMovieProps> = ({
-  id,
-  name,
-  poster,
-  year,
-  setIsOpen,
-}) => {
+const SearchCardMovie: FC<SearchCardMovieProps> = ({...props}) => {
+
+  const {isFavorite, isInWatchlist, isInRatings} = useMovieReview(props.kinopoiskId);
+
+
+
   return (
-    <Link to={`/movie/${id}`} onClick={() => setIsOpen(false)}>
+    <Link to={`/movie/${props.kinopoiskId}`} onClick={props.setIsOpen.bind(null, false)}>
       <article className={styles.item}>
         <div className={styles.itemImg}>
-          <img src={poster} alt={name} />
+          <img src={props.posterUrl} alt={props.nameOriginal} />
         </div>
         <div className={styles.info}>
-          <h6 className={styles.name}>{name}</h6>
-          <h6 className={styles.year}>{year}</h6>
+          <h6 className={styles.name}>{`${props.nameOriginal} / ${props.nameRu}`}</h6>
+          <h6 className={styles.year}>{props.year}</h6>
         </div>
       </article>
     </Link>
   );
 };
 
-export default SearchCardMovie;
+export default memo(SearchCardMovie);

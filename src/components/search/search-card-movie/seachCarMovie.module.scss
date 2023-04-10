@@ -1,25 +1,25 @@
 @import '@styles/animations.scss';
 
 .item {
-  @apply flex w-full mr-[2.5px] h-[35vw] opacity-90 sm:h-[25vw] nl:h-[20vw];
+  @apply flex w-full mr-[2.5px] h-[35vw] nl:h-[20vw] lg:max-h-[200px];
   box-shadow: inset 0 0 0 0 var(--color1);
-  animation: showFromTop 0.25s linear;
-  transition: all 0.3s ease-in-out;
+  //animation: showFromTop 0.25s linear;
+  //transition: all 0.3s ease-in-out;
 
   &:not(:first-of-type) {
     @apply mt-0.5 nl:mt-0;
   }
 
   &:hover {
-    box-shadow: inset 0 -350px 0 0 var(--color13);
+    //box-shadow: inset 0 -350px 0 0 var(--color13);
     .info > * {
-      color: var(--color1);
+      color: var(--color13);
     }
   }
 }
 
 .itemImg {
-  @apply relative w-1/4 h-full sm:w-[22.5%] nl:w-[27.5%];
+  @apply relative w-1/4 h-full sm:w-[22.5%] nl:w-[27.5%] lg:w-[23%] lg:max-w-[23%] xl2:max-w-[21%];
   img {
     display: block;
     width: 100%;
