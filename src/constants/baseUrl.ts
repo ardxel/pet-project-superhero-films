@@ -1,6 +1,8 @@
-const BASE_URL = 'https://superhero-films-express-vercel-git-main-ardxel.vercel.app';
+// if you want to test the application on a smartphone or any other device
+// add your private ip address
+// for example http://192.168.0.103:5000
+const myUrl = '';
 
-// use this variable if you want to test project in local network
-// const BASE_URL = 'http://localhost:3000/3000'
+const BASE_URL = myUrl || 'http://localhost:5000';
 
 export default BASE_URL;
