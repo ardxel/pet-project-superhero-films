@@ -32,6 +32,10 @@
   }
 }
 
+.load {
+  @apply absolute left-[17px];
+}
+
 .button {
   color: var(--color13) !important;
   background-color: var(--color1) !important;
@@ -42,38 +46,37 @@
   margin: 0 auto 3em !important;
 }
 
-.linkButton {
+.editButton {
   color: var(--color1) !important;
   justify-content: flex-start !important;
-  background-color: var(--color110) !important;
+  background-color: var(--color97) !important;
   font-size: 13px !important;
   min-width: 75px !important;
   letter-spacing: 1.1px !important;
   border-color: unset !important;
-  padding: 8px 5px 8px 25px !important;
+  padding: 8px 5px 8px 45px !important;
   font-weight: bold !important;
   &:hover {
-    background-color: var(--color3) !important;
-    color: var(--color1) !important;
+    background-color: var(--color13) !important;
   }
 }
 
 @media screen and (min-width: 500px) {
-  .linkButton {
+  .editButton {
     min-width: 150px !important;
     font-size: 12px !important;
   }
 }
 
 @media screen and (min-width: 618px) {
-  .linkButton {
+  .editButton {
     min-width: 250px !important;
     font-size: 14px !important;
   }
 }
 
 @media screen and (min-width: 736px) {
-  .linkButton {
+  .editButton {
     padding: 8px 5px 8px 45px !important;
   }
 }
@@ -85,7 +88,7 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .linkButton {
+  .editButton {
     min-width: 275px !important;
     font-size: 15px !important;
     padding: 10px 4px 10px 50px !important;

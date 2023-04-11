@@ -40,4 +40,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--color1);
+  .myRating {
+    background-color: white;
+    padding: 4px;
+    border-radius: 10px;
+  }
 }

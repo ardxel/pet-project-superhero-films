@@ -25,17 +25,15 @@
       .info {
         border-bottom-left-radius: 7px;
         border-bottom-right-radius: 7px;
-        background-color: rgba(var(--color1), 0.1);
-        backdrop-filter: blur(1.2em);
-        width: calc(100% - 6px);
+        background-color: #292929ff;
+        width: calc(100% - 5px);
         left: 0;
         right: 0;
         margin: 0 auto;
         bottom: 2px;
-        box-shadow: 0px -10px 8px -5px rgba(var(--color97), 0.2);
         @apply absolute hidden items-center px-1 pt-1.5 pb-1.5;
         span {
-          @apply text-[var(--color1)] text-[13px] xl:text-[14px];
+          @apply text-white font-bold text-[13px] xl:text-[14px] xl2:text-[16px];
         }
 
         span:not(:first-of-type) {
@@ -44,7 +42,7 @@
 
         span.rating,
         span.yourRating {
-          @apply p-[4px] text-white font-normal rounded-[5px] text-[13px] text-center xl:text-[14px];
+          @apply p-[4px] text-white font-normal rounded-[5px] text-[13px] text-center xl:text-[14px] xl2:text-[16px];
         }
 
         span.yourRating {
@@ -60,11 +58,15 @@
     .favoriteIcon {
       @include animationCustom(flash, $verySlow, ease-out);
       @apply absolute inline-flex right-[4px] top-[4px] z-[10] cursor-pointer;
-      //padding: 2px!important;
+      padding: 4px !important;
       backdrop-filter: blur(1.2em) !important;
       background-color: rgba(var(--color1), 0.1) !important;
       svg {
+        @apply text-[25px] xl:text-[35px];
         fill: rgb(87, 153, 239);
+      }
+      .loading {
+        @apply w-[25px] h-[25px] xl:w-[35px] xl:h-[35px];
       }
     }
   }
@@ -75,18 +77,6 @@
     .container .info {
       display: flex;
       animation: showInfoMovieCart 0.3s linear;
-    }
-  }
-}
-
-@media screen and (min-width: 1174px) {
-  .movie {
-    .container {
-      .info {
-        span {
-          @apply text-[16px];
-        }
-      }
     }
   }
 }
