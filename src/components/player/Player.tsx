@@ -19,6 +19,9 @@ const Player: React.FC<PlayerProps> = ({ sources }) => {
     if (sources) {
       setShowedVideo(sources[0]);
     }
+  }, [sources]);
+
+  useEffect(() => {
     const iframeCurrent = iframeRef.current;
     iframeCurrent?.addEventListener('load', () => setIsIFrameLoaded(true));
     iframeCurrent?.contentWindow?.document.addEventListener(

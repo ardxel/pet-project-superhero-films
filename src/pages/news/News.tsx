@@ -38,7 +38,11 @@ const NewsPage: FC = () => {
   }, [scrollTop]);
 
   if (isLoading) {
-    return <Wrapper><Loading/></Wrapper>
+    return (
+      <Wrapper>
+        <Loading />
+      </Wrapper>
+    );
   }
 
   return (
