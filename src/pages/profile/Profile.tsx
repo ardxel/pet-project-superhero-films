@@ -35,42 +35,42 @@ const ProfilePage: React.FC<{}> = () => {
     }
   }, []);
 
-  const preloadProfile = async () => {
-    let user;
-    if (isAuthorized) {
-      await dispatch({ type: ProfileActionKind.SHOW_BUTTONS });
-      await dispatch({
-        type: ProfileActionKind.SET_CURRENT_USER,
-        payload: localUserState,
-      });
-      user = await localUserState;
-    }
-
-    if (!isAuthorized) {
-      await dispatch({ type: ProfileActionKind.HIDE_BUTTONS });
-
-      const userResponse = await fetchProfile(username as string);
-
-      const userData = await userResponse.data;
-
-      await dispatch({
-        type: ProfileActionKind.SET_CURRENT_USER,
-        payload: userData,
-      });
-
-      user = await userData;
-    }
-
-    const moviesIds = getListOfMoviesIdFromUserState(user);
-
-    const moviesResponse = await fetchMoviesByIds(moviesIds);
-
-    const movies = await moviesResponse.data;
-
-    await dispatch({ type: ProfileActionKind.SET_MOVIES, payload: movies });
-  };
-
   useEffect(() => {
+    const preloadProfile = async () => {
+      let user;
+      if (isAuthorized) {
+        await dispatch({ type: ProfileActionKind.SHOW_BUTTONS });
+        await dispatch({
+          type: ProfileActionKind.SET_CURRENT_USER,
+          payload: localUserState,
+        });
+        user = await localUserState;
+      }
+
+      if (!isAuthorized) {
+        await dispatch({ type: ProfileActionKind.HIDE_BUTTONS });
+
+        const userResponse = await fetchProfile(username as string);
+
+        const userData = await userResponse.data;
+
+        await dispatch({
+          type: ProfileActionKind.SET_CURRENT_USER,
+          payload: userData,
+        });
+
+        user = await userData;
+      }
+
+      const moviesIds = getListOfMoviesIdFromUserState(user);
+
+      const moviesResponse = await fetchMoviesByIds(moviesIds);
+
+      const movies = await moviesResponse.data;
+
+      await dispatch({ type: ProfileActionKind.SET_MOVIES, payload: movies });
+    };
+
     dispatch({ type: ProfileActionKind.LOADING_START });
 
     preloadProfile();
