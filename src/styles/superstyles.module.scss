@@ -47,9 +47,10 @@
 }
 
 .editButton {
+  background-color: rgba(var(--bgBtnColor), 0.4) !important;
+  backdrop-filter: blur(20px) !important;
   color: var(--color1) !important;
   justify-content: flex-start !important;
-  background-color: var(--color97) !important;
   font-size: 13px !important;
   min-width: 75px !important;
   letter-spacing: 1.1px !important;
