@@ -38,10 +38,10 @@ export default class User {
     };
   }
 
-  static editUser<T = UserServerState, K = keyof T & {}>(
-    settings: K & {},
-    user: T & {}
-  ): T {
+  static editUser(
+    settings: Partial<UserServerState> | keyof UserServerState,
+    user: UserServerState
+  ): UserServerState {
     const changedUser = user;
     for (const key of Object.keys(changedUser)) {
       if (key !== 'token' && settings[key]) {
