@@ -3,7 +3,6 @@ import cors from 'cors';
 import Data from './tools/DataHelper';
 import { UserServerState } from '@models/User';
 import User from './tools/UserHelper';
-import countries from 'country-js/countries.json';
 
 export default webpackMockServer.add((app, helper) => {
   app.use(cors());
