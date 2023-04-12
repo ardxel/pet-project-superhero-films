@@ -1,6 +1,37 @@
 .main {
-  @apply w-full h-full mt-[120px] xl:mt-[140px];
+  @apply w-full h-full mt-[120px] xl:mt-[140px] relative;
   .container {
-    @apply mx-auto max-w-[1280px] bg-color31;
+
+    @apply mx-auto max-w-[1280px] bg-color31 ;
+  }
+}
+
+.bg {
+  @apply absolute left-0 mx-auto z-[0] w-full h-full flex justify-center items-center;
+  min-height: 100vh;
+  padding-bottom: 100px;
+
+  .img {
+    @apply w-full h-full;
+    filter: blur(20px);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .gradient {
+      @apply w-full h-full;
+      background: linear-gradient(90deg,
+        rgba(var(--bgColor), 1) 0%,
+        rgba(var(--bgColor), 0.9) 10%,
+        rgba(var(--bgColor), 0.8) 20%,
+        rgba(var(--bgColor), 0.7) 30%,
+        rgba(var(--bgColor), 0.6) 40%,
+        rgba(var(--bgColor), 0.5) 50%,
+        rgba(var(--bgColor), 0.6) 60%,
+        rgba(var(--bgColor), 0.7) 70%,
+        rgba(var(--bgColor), 0.8) 80%,
+        rgba(var(--bgColor), 0.9) 90%,
+        rgba(var(--bgColor), 1) 100%);
+    }
   }
 }
