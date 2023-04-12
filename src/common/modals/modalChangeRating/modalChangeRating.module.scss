@@ -1,0 +1,30 @@
+.box {
+  @apply absolute w-11/12 md:w-[500px] nl:w-[550px] rounded-[10px] w-11/12 flex flex-col justify-center items-center px-5 py-8;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color1);
+  .activeRating {
+    @apply mt-[5px] text-[20px] min-h-[20px] p-[10px];
+    border-radius: 20px;
+    text-align: center;
+    min-width: 55px;
+  }
+  .removeRating {
+    padding-left: 0!important;
+    padding-right: 0!important;
+    justify-content: center!important;
+    align-items: center!important;
+    max-width: 100px!important;
+    min-width: 175px!important;
+    margin-top: calc(5px + 9px)!important;
+  }
+  .changeRating {
+    padding: 4px;
+    border-radius: 10px;
+
+    svg {
+      fill: var(--color39)!important;
+    }
+  }
+}
