@@ -21,7 +21,8 @@ module.exports = function (env, argv) {
   return {
     entry: path.resolve(path_src, 'index.tsx'),
     output: {
-      filename: '[name].js',
+      filename: '[name].[hash].js',
+      chunkFilename: '[name].[hash].js',
       path: path_build,
       publicPath: '/',
       clean: true,
@@ -121,6 +122,7 @@ module.exports = function (env, argv) {
             },
       }),
       new MiniCssExtractPlugin({
+        ignoreOrder: true,
         filename: isDevMode
           ? 'css/[name].css'
           : 'css/[name].[contenthash:8].css',
