@@ -46,17 +46,25 @@ export const changeUserCollections = createAppAsyncThunk<
 
     case 'ratings':
       let isMatchedRatingsItem = false;
-      newList = newList.map((listItem) => {
-        if (typeof item === 'object') {
-          if (listItem.id === item.id) {
-            isMatchedRatingsItem = true;
-            return { id: listItem.id, value: item.value };
+      if (type === 'add' || !type) {
+        newList = newList.map((listItem) => {
+          if (typeof item === 'object') {
+            if (listItem.id === item.id) {
+              isMatchedRatingsItem = true;
+              return { id: listItem.id, value: item.value };
+            }
+            return listItem;
           }
-          return listItem;
+        });
+
+        if (!isMatchedRatingsItem) {
+          newList = [...newList, item] as { id: number; value: number }[];
         }
-      });
-      if (!isMatchedRatingsItem) {
-        newList = [...newList, item] as { id: number; value: number }[];
+
+      }
+
+      if (type === 'remove' && typeof item === 'object') {
+        newList = (newList as {id: number, value: number}[]).filter((listItem) => listItem.id !== item.id)
       }
       break;
 
