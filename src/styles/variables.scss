@@ -3,8 +3,8 @@
 //  light5: rgb(203, 203, 203);
 //  light7: rgb(185, 185, 185);
 //  light9: rgb(166, 166, 166);
-//  dark1: rgb(8, 8, 8);
 
+//  dark1: rgb(8, 8, 8);
 //  dark3: rgb(13, 13, 13);
 //  dark5: rgb(41, 41, 41);
 //  dark7: rgb(54, 54, 54);
@@ -15,6 +15,8 @@
 // --color[match with 2 data-theme]: dark3 + light3 = color3
 
 :root[data-theme='light'] {
+  --bgColor: 255, 255, 255;
+  --bgBtnColor: 54,54,54;
   --color1: rgb(255, 255, 255);
   --color3: rgb(13, 13, 13);
   --color5: rgb(41, 41, 41);
@@ -33,6 +35,8 @@
 }
 
 :root[data-theme='dark'] {
+  --bgColor: 8, 8, 8;
+  --bgBtnColor: 166,166,166;
   --color1: rgb(8, 8, 8);
   --color3: rgb(221, 221, 221);
   --color5: rgb(203, 203, 203);
