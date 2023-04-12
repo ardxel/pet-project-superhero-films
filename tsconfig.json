@@ -14,7 +14,7 @@
       "@constants/*": ["src/constants/*"],
       "@data/*": ["data/*"]
     },
-    "target": "ES5",
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": "./",
     "outDir": "./build/",
