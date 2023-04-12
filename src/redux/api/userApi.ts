@@ -4,16 +4,18 @@ import {
   FetchBaseQueryMeta,
 } from '@reduxjs/toolkit/query/react';
 import BASE_URL from '@constants/baseUrl';
-import {
-  RegistrationRequest,
-  RegistrationResponse,
-  LoginRequest,
-  LoginResponse,
-  EditProfileResponse,
-  EditProfileRequest,
-} from '@models/apiModels';
+
 import { AlertColor } from '@mui/material';
 import { UserReduxState } from '@models/User';
+import { LoginRequest, LoginResponse } from '@models/apiModels/LoginModel';
+import {
+  RegistrationRequest,
+  RegistrationResponse
+} from '@models/apiModels/RegistrationModel';
+import {
+  EditProfileRequest,
+  EditProfileResponse
+} from '@models/apiModels/EditProfileModel';
 
 const getSeverityText: (statusCode: number) => AlertColor = (statusCode) => {
   if (statusCode === 200) return 'success';
