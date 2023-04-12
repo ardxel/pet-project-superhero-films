@@ -10,6 +10,12 @@ module.exports = function (env, argv) {
     output: {
       filename: '[name].[hash:8].js',
     },
+    devtool: 'inline-source-map',
+    performance: {
+      hints: false,
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000
+    },
     optimization: {
       minimize: true,
       minimizer: [
