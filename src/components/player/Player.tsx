@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './player.module.scss';
 import superstyles from '@styles/superstyles.module.scss';
 import Loading from '@common/loading/Loading';
-import { Button } from '@mui/material';
+import { Button, ButtonGroup } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 interface PlayerProps {
@@ -52,11 +52,11 @@ const Player: React.FC<PlayerProps> = ({ sources }) => {
   }
   return (
     <div className={styles.player}>
-      <div className={styles.buttons}>
+      <ButtonGroup className={styles.buttons}>
         {sources.map((item, index) => {
           return (
             <Button
-              className={superstyles.button}
+              className={superstyles.editButton}
               key={index}
               onClick={setSrcIndex.bind(null, index)}
               startIcon={srcIndex === index && <CheckIcon />}
@@ -65,7 +65,7 @@ const Player: React.FC<PlayerProps> = ({ sources }) => {
             </Button>
           );
         })}
-      </div>
+      </ButtonGroup>
 
       <div className={styles.video}>
         {!isIFrameLoaded && (
