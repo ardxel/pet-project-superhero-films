@@ -7,7 +7,12 @@ import { UserCollection, UserToken } from '@models/User';
 import { $Keys, ValuesType, $NonMaybeType } from 'utility-types';
 import { validate as uuidValidate } from 'uuid';
 
+type UserCollectionKeysStateType = keyof UserCollection | null;
+
 export default function useUserProfile() {
+  // when changing collections, the state is set which collection was changed for the correct isLoading
+  const [collectionItemLoading, setCollectionItemLoading] = useState<UserCollectionKeysStateType>(null);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const userState = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
@@ -23,11 +28,13 @@ export default function useUserProfile() {
     ) => {
       sleep()
         .then(() => setIsLoading(true))
+        .then(() => setCollectionItemLoading(listName))
         .then(sleep.bind(null, 500))
         // TODO
         .then(() => {
           if (typeof item === 'object') {
-            dispatch(changeUserCollections({ item, listName }));
+            const type = item.value > -1 ? 'add' : 'remove';
+            dispatch(changeUserCollections({ item, listName, type }));
             throw new Error('break');
           }
         })
@@ -36,7 +43,7 @@ export default function useUserProfile() {
           if (typeof item === 'number') {
             value = !(userState[listName] as number[]).includes(item);
           }
-          const type: 'add' | 'remove' = value ? 'add' : 'remove';
+          const type = value ? 'add' : 'remove';
 
           dispatch(changeUserCollections({ item, listName, type }));
         })
@@ -45,7 +52,10 @@ export default function useUserProfile() {
             console.log(e);
           }
         })
-        .finally(() => sleep(500).then(() => setIsLoading(false)));
+        .finally(() => sleep(500).then(() => {
+          setIsLoading(false);
+          setCollectionItemLoading(null);
+        }));
     },
     [userState]
   );
@@ -55,5 +65,6 @@ export default function useUserProfile() {
     isAuthorized,
     handleChangeUserCollection,
     isLoading,
+    collectionItemLoading
   };
 }
