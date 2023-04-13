@@ -1,5 +1,5 @@
 .main {
-  @apply w-full h-full mt-[120px] xl:mt-[140px] relative;
+  @apply w-full h-full mt-[120px] xl:mt-[140px] relative z-[21];
   .container {
 
     @apply mx-auto max-w-[1280px] bg-color31 ;
