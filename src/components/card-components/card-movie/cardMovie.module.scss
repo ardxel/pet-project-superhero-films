@@ -1,6 +1,12 @@
 @import '@styles/variables.scss';
 @import '@styles/animations.scss';
 
+.movieFlash {
+  &:hover {
+    @include animationCustom(flash, $verySlow, ease-out);
+  }
+}
+
 .movie {
   @apply relative inline-block h-full;
   &:not(:first-of-type) {
@@ -8,7 +14,6 @@
   }
 
   &:hover {
-    @include animationCustom(flash, $verySlow, ease-out);
 
     .container {
       .favoriteIcon {
@@ -27,11 +32,7 @@
         border-bottom-right-radius: 7px;
         background-color: #292929ff;
         width: calc(100% - 5px);
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        bottom: 2px;
-        @apply absolute hidden items-center px-1 pt-1.5 pb-1.5;
+        @apply absolute hidden items-center px-1 pt-1.5 pb-1.5 left-0 right-0 mx-auto bottom-[2px];
         span {
           @apply text-white font-bold text-[13px] xl:text-[14px] xl2:text-[16px];
         }
@@ -55,22 +56,61 @@
       }
     }
 
-    .favoriteIcon {
+    .watchlistIcon, .favoriteIcon {
       @include animationCustom(flash, $verySlow, ease-out);
-      @apply absolute inline-flex right-[4px] top-[4px] z-[10] cursor-pointer;
-      padding: 4px !important;
-      backdrop-filter: blur(1.2em) !important;
+      @apply absolute inline-flex z-[10] cursor-pointer p-[4px];
       background-color: rgba(var(--color1), 0.1) !important;
+      backdrop-filter: blur(1.2em) !important;
+
       svg {
         @apply text-[25px] xl:text-[35px];
         fill: rgb(87, 153, 239);
       }
-      .loading {
-        @apply w-[25px] h-[25px] xl:w-[35px] xl:h-[35px];
+    }
+
+    .showRating {
+      @apply absolute bottom-[10%] left-[50%] z-[110] flex justify-center items-center min-w-[50%];
+      background: var(--color1);
+      border-radius: 10px;
+      transform: translateX(-50%);
+      backdrop-filter: blur(30px) !important;
+      &:hover {
+        background-color: var(--color13);
+
+        button {
+          color: var(--color1) !important;
+          svg {
+            animation: starHover 0.3s linear;
+          }
+        }
+      }
+
+      button {
+        @apply p-0 md:p-[5px] xl2:p-[10px] text-xs md:text-sm xl:text-lg;
+        line-height: 2em;
+        color: var(--color39) !important;
+        font-weight: bold !important;
+        svg {
+          transform: scale(1.2);
+        }
       }
     }
   }
+
+  .watchlistIcon {
+    @apply left-[4px] top-[4px];
+  }
+
+  .favoriteIcon {
+    @apply right-[4px] top-[4px];
+
+  }
+
+  .loading {
+    @apply w-[25px] h-[25px] xl:w-[35px] xl:h-[35px];
+  }
 }
+
 
 @media screen and (min-width: 828px) {
   .movie:hover {
@@ -78,5 +118,19 @@
       display: flex;
       animation: showInfoMovieCart 0.3s linear;
     }
+  }
+}
+
+@keyframes starHover {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.7);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
