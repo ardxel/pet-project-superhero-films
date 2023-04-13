@@ -53,8 +53,7 @@ const styles = {
   },
   menu: {
     '& .MuiPaper-root': {
-      backgroundColor: 'var(--color1)',
-      border: '1px solid var(--color9)',
+      backgroundColor: 'var(--color31)',
     },
   },
 };
