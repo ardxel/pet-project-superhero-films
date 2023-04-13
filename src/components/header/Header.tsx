@@ -20,7 +20,7 @@ import { logout } from '@reduxproj//reducers/userReducer';
 import { sleep } from '@tools/sleep';
 import { useNavigate } from 'react-router';
 import useUserProfile from '@hooks/useUserProfile';
-import ModalWatchlist from '@common/modalWatchlist/ModalWatchlist';
+import ModalWatchlist from '@common/modals/modalWatchlist/ModalWatchlist';
 
 const Header = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
@@ -66,6 +66,8 @@ const Header = () => {
 
   return (
     <>
+      <div className={styles.bg}></div>
+
       <header className={styles.header}>
         <div className={styles.container}>
           <Paper
@@ -105,7 +107,7 @@ const Header = () => {
                 onClose={closeUserMenu}
                 anchorOrigin={{
                   vertical: 'bottom',
-                  horizontal: 'center',
+                  horizontal: 'left',
                 }}
                 transformOrigin={{
                   vertical: 'top',

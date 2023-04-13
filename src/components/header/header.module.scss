@@ -1,6 +1,10 @@
 @import '@styles/variables.scss';
 @import '@styles/animations.scss';
 
+.bg {
+  @apply absolute left-0 w-full bg-color1 h-[120px] xl2:h-[140px] z-[20];
+}
+
 .header {
   position: fixed;
   width: 100%;
@@ -16,7 +20,7 @@
   z-index: 1001;
   height: 100%;
   position: relative;
-  background-color: var(--color1);
+  background-color: var(--color31);
 }
 
 .logo {
