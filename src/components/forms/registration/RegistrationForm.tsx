@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import superstyles from '@styles/superstyles.module.scss';
 import { Form, Formik, FormikProps } from 'formik';
-import { RegistrationRequest } from '@models/apiModels';
+import { RegistrationRequest } from '@models/apiModels/RegistrationModel';
 import { signUpValidation } from '@components/forms/validationSchemas';
 import { useRegisterUserMutation } from '@reduxproj//api/userApi';
 import { registration } from '@reduxproj//reducers/userReducer';
