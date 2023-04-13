@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { HeaderButtonType } from './ButtonType';
 import { Link } from 'react-router-dom';
 import { LogoSVG } from '@images/index';
@@ -19,4 +19,4 @@ const LogoButton: HeaderButtonType = ({ className }) => {
   );
 };
 
-export default LogoButton;
+export default memo(LogoButton);

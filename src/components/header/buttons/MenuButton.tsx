@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { HeaderButtonType } from './ButtonType';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
@@ -11,4 +11,4 @@ const MenuButton: HeaderButtonType = ({ className, onClick }) => {
   );
 };
 
-export default MenuButton;
+export default memo(MenuButton);

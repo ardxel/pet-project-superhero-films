@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { HeaderButtonType } from './ButtonType';
 import { IconButton } from '@mui/material';
 
@@ -10,4 +10,4 @@ const SearchButton: HeaderButtonType = ({ children, className, onClick }) => {
   );
 };
 
-export default SearchButton;
+export default memo(SearchButton);

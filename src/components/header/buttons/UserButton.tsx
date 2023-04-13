@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { HeaderButtonType } from './ButtonType';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { IconButton } from '@mui/material';
@@ -11,4 +11,4 @@ const UserButton: HeaderButtonType = ({ className, onClick, ...rest }) => {
   );
 };
 
-export default UserButton;
+export default memo(UserButton);
