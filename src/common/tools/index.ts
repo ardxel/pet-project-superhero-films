@@ -8,6 +8,7 @@ import { upgradeRating } from './upgradeRating';
 import { sleep } from './sleep';
 import getListOfMoviesIdFromUserState from './getListOfMoviesIdFromUserState';
 import capitalizeFirstLetter from './capitalizeFirstLetter';
+import classes from './classes';
 export {
   capitalizeFirstLetter,
   sleep,
@@ -20,4 +21,5 @@ export {
   getTokenFromLocalStorage,
   toHoursAndMinutes,
   getListOfMoviesIdFromUserState,
+  classes
 };
