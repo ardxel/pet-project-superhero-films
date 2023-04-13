@@ -15,7 +15,7 @@ import axios from 'axios';
 import BASE_URL from '@constants/baseUrl';
 import capitalizeFirstLetter from '@tools/capitalizeFirstLetter';
 import { useEditProfileMutation } from '@reduxproj//api/userApi';
-import { DefaultUserResponse } from '@models/apiModels';
+import { DefaultUserResponse } from '@models/apiModels/DefaultUserResponse';
 import { ProfileFormType } from '@pages/profile/Profile';
 import genderButtonList from './genderButtonList';
 

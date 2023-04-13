@@ -8,7 +8,7 @@ import { InputField, SubmitButton } from '@common/formFields/';
 import fieldKit from '@components/forms/fieldKit';
 import usePassword from '@hooks/usePassword';
 import { changePasswordValidation } from '@components/forms/validationSchemas';
-import { EditProfileRequest } from '@models/apiModels';
+import { EditProfileRequest } from '@models/apiModels/EditProfileModel';
 import { ProfileFormType } from '@pages/profile/Profile';
 
 type PrivateFormFieldsType = {

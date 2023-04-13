@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import superstyles from '@styles/superstyles.module.scss';
 import { Form, Formik, FormikProps } from 'formik';
-import { LoginRequest } from '@models/apiModels';
+import { LoginRequest } from '@models/apiModels/LoginModel';
 import { loginValidation } from '@components/forms/validationSchemas';
 import FormTitle from '@components/forms/form-title/FormTitle';
 import InputField from '@common/formFields/InputField';
