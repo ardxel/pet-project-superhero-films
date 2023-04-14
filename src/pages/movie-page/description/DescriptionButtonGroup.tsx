@@ -4,7 +4,7 @@ import superstyles from '@styles/superstyles.module.scss';
 import useUserProfile from '@hooks/useUserProfile';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import useMovieReview from '@hooks/useMovieReview';
-import ModalWatchlist from '@common/modalWatchlist/ModalWatchlist';
+import ModalWatchlist from '@common/modals/modalWatchlist/ModalWatchlist';
 import { CircularProgress } from '@mui/material';
 import { UserCollection } from '@models/User';
 
@@ -15,26 +15,11 @@ interface DescriptionButtonGroupProps {
 const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
   kinopoiskId,
 }) => {
-  // when changing collections, the state is set which collection was changed for the correct isLoading
-  const [collectionTypeLoading, setCollectionTypeLoading] = useState<
-    keyof UserCollection | null
-  >(null);
   const [open, setOpen] = useState<boolean>(false);
-  const { isAuthorized, handleChangeUserCollection, isLoading } =
+  const { isAuthorized, handleChangeUserCollection, collectionItemLoading } =
     useUserProfile();
   const { isFavorite, isInWatchlist } = useMovieReview(kinopoiskId);
 
-  const changeCollection = (userColKey: keyof UserCollection) => {
-    handleChangeUserCollection(kinopoiskId, userColKey);
-    setCollectionTypeLoading(userColKey);
-  };
-
-  useEffect(() => {
-    console.log(isLoading);
-    if (!isLoading) {
-      setCollectionTypeLoading(null);
-    }
-  }, [isLoading]);
 
   if (!isAuthorized) {
     return null;
@@ -44,9 +29,9 @@ const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
         <ButtonGroup orientation="vertical" variant="text">
           <Button
             className={superstyles.editButton}
-            onClick={() => changeCollection('favorites')}
+            onClick={handleChangeUserCollection.bind(null, kinopoiskId, 'favorites')}
           >
-            {collectionTypeLoading !== 'favorites' ? (
+            {collectionItemLoading !== 'favorites' ? (
               isFavorite && (
                 <CheckCircleOutlineIcon
                   sx={{ position: 'absolute', left: '15px' }}
@@ -64,9 +49,9 @@ const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
           </Button>
           <Button
             className={superstyles.editButton}
-            onClick={() => changeCollection('watchlist')}
+            onClick={handleChangeUserCollection.bind(null, kinopoiskId, 'watchlist')}
           >
-            {collectionTypeLoading !== 'watchlist' ? (
+            {collectionItemLoading !== 'watchlist' ? (
               isInWatchlist && (
                 <CheckCircleOutlineIcon
                   sx={{ position: 'absolute', left: '15px' }}
