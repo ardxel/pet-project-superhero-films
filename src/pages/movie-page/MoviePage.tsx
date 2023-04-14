@@ -14,13 +14,13 @@ import CardActor from '@components/card-components/card-actor/CardActor';
 import CardMovie from '@components/card-components/card-movie/CardMovie';
 import { sleep } from '@tools/sleep';
 
-const MoviePage: React.FC = () => {
+const MoviePage: React.FC<{}> = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { data, isLoading: isMovieLoading } = useGetMovieQuery({
     id: id as string,
     alternative: true,
   });
+  const navigate = useNavigate()
   if (isMovieLoading) {
     return <Loading style={{ width: '25%' }} />;
   } else if (!data) {
@@ -29,7 +29,7 @@ const MoviePage: React.FC = () => {
   } else {
     const { movie, alternatives } = data as MovieWithAlternativeList;
     return (
-      <Wrapper>
+      <Wrapper backgroundImage={movie.posterUrl}>
         <HeaderMoviePage {...movie} />
         <Player sources={movie.videoUrls} />
         <DescriptionMoviePage {...movie} />
