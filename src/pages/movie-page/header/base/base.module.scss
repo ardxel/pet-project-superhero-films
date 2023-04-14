@@ -1,5 +1,5 @@
 .base {
-  @apply w-5/6 ag:w-1/2 h-full;
+  @apply w-5/6 ag:w-1/2 h-full relative z-[10];
   .title {
     @apply mag:w-full text-[0.7em] sm:text-[0.8em] md:text-[0.9em] nl:text-[1em] lg:text-[1.1em];
     h3 {
