@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './base.module.scss';
 import { toHoursAndMinutes, formatAgeLimits } from '@common/tools/';
 
@@ -31,4 +31,4 @@ const Base: React.FC<BaseProps> = ({
   );
 };
 
-export default Base;
+export default memo(Base);
