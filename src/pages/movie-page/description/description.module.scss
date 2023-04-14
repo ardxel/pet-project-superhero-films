@@ -1,5 +1,5 @@
 .info {
-  @apply flex flex-col w-full mt-[75px] px-[12px] md:px-[20px];
+  @apply flex flex-col w-full mt-[75px] px-[12px] md:px-[20px] relative z-[10];
   .short {
     @apply mt-4 mb-12;
   }
@@ -9,7 +9,7 @@
 }
 
 .tableInfo {
-  @apply w-full nl:w-1/2;
+  @apply w-full nl:w-1/2 relative z-[10];
   border-collapse: collapse;
   tbody {
     tr {
@@ -36,7 +36,7 @@
         @apply text-color5;
       }
       td button.showDesc {
-        @apply px-1 italic font-bold text-color13;
+        @apply px-1 italic font-bold text-color13 bg-inherit;
       }
     }
   }
