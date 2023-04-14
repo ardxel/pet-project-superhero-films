@@ -34,11 +34,11 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ ...props }) => {
 
         {profileState.showButtonGroup && (
           <div className={styles.edit}>
-            <ButtonGroup orientation="vertical" variant="text">
+            <ButtonGroup orientation='vertical' className={styles.buttons}>
               {profileButtonGroup.map((item) => (
                 <Button
                   key={item.dispatchType}
-                  className={superstyles.linkButton}
+                  className={superstyles.editButton}
                   onClick={() =>
                     dispatch({ type: ProfileActionKind[item.dispatchType] })
                   }
