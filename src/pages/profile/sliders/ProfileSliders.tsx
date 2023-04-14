@@ -42,6 +42,7 @@ const ProfileSliders: React.FC<ProfileSlidersProps> = ({ ...props }) => {
                   if (matchedMovie) {
                     return (
                       <CardMovie
+                        showRating={slider.key === 'ratings'}
                         key={matchedMovie.kinopoiskId}
                         {...matchedMovie}
                       />
