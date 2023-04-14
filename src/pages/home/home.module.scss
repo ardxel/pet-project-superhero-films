@@ -1,18 +1,86 @@
 .home {
-  margin-top: 90px;
-  width: 100%;
-  //@apply lg:mt-[120px];
+  @apply relative z-[21] mt-[90px] w-full xl:mt-[110px] ;
   .container {
     display: flex;
     flex-direction: column;
+    .preview {
+      @apply max-w-[1280px] w-full mx-auto relative z-[22] h-[300px] sm:h-[55vw] max-h-[650px] mb-[80px] md:mb-[130px] lg:mb-[190px];
+
+      &:after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+      .item {
+        @apply w-full h-full;
+        .img {
+          width: 100%;
+          height: 100%;
+          background-position: top center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          .gradient {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg,
+              rgba(var(--bgColor), 1) 0%,
+              rgba(var(--bgColor), 0.95) 5%,
+              rgba(var(--bgColor), 0.9) 10%,
+              rgba(var(--bgColor), 0.85) 20%,
+              rgba(var(--bgColor), 0.8) 30%,
+              rgba(var(--bgColor), 0.75) 40%,
+              rgba(var(--bgColor), 0.7) 50%,
+              rgba(var(--bgColor), 0.65) 60%,
+              rgba(var(--bgColor), 0) 100%);
+          }
+        }
+
+        .info {
+          @apply px-[3%] absolute bottom-[-20%] left-0  w-full h-full flex items-end z-[23];
+
+          .card {
+            @apply min-w-[100px] min-h-[150px] md:min-h-[40%] md:min-w-[28%] h-[50%] md:h-[60%] xl2:min-w-[265px] xl2:min-h-[375px] xl2:w-[265px] xl2:h-[375px];
+          }
+
+          .title {
+            @apply pb-[2%] ml-2;
+            h3 {
+              @apply text-sm xs:text-xl nl:text-2xl ag:text-3xl;
+            }
+
+            .desc {
+              @apply flex gap-x-2 mb-2 md:mb-4 xl:mb-6 mt-1;
+              span {
+                @apply text-[1em] sm:text-[1.1em] md:text-[1.2em] nl:text-[1.3em] lg:text-[1.3em] text-color73;
+              }
+            }
+
+            .watchBtn {
+              @apply min-w-[175px] sm:min-w-[200px] md:min-w-[250px] xl2:w-[350px] xl2:min-w-[350px] text-[10px] xs:text-[15px] ag:text-[17px]  border-0 mb-0 #{!important};
+              background-color: rgba(var(--bgBtnColor), 0.4) !important;
+              backdrop-filter: blur(20px) !important;
+              justify-content: left;
+              &:hover {
+                background-color: var(--color39) !important;
+                color: var(--color1) !important;
+              }
+              svg {
+                @apply text-[35px] xs:text-[50px] ag:text-[60px];
+                &:hover {
+                  fill: rgb(87, 153, 239) !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     article:not(:first-of-type) {
       margin-top: 30px;
     }
   }
 }
 
-@media screen and (min-width: 1176px) {
-  .home {
-    margin-top: 110px;
-  }
-}
+
