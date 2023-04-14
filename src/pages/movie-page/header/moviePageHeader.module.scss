@@ -1,5 +1,5 @@
 .path {
-  @apply w-full px-[12px] md:px-[20px] pt-[12] md:pt-[20px];
+  @apply w-full px-[12px] md:px-[20px] pt-[12] md:pt-[20px] relative z-[10];
   h6 {
     @apply text-[0.9em] sm:text-[1em] md:text-[1em] nl:text-[1.1em] lg:text-[1.1em] text-color97;
   }
@@ -8,3 +8,4 @@
 .header {
   @apply w-full flex flex-col ag:flex-row ag:justify-between ag:items-center mt-9 ag:h-[200px] px-[12px] md:px-[20px];
 }
+
