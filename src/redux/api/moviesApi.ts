@@ -54,6 +54,7 @@ export const moviesApiMiddleware = moviesApi.middleware;
 export const {
   useGetMoviesByFranchiseListQuery,
   useGetMovieQuery,
+  useGetMoviesByIdsQuery,
   useSearchMovieQuery,
   useLazyGetMoviesByIdsQuery,
 } = moviesApi;
