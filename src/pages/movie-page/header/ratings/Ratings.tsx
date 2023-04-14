@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ratings.module.scss';
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Modal,
-  Rating,
-  Typography,
-} from '@mui/material';
-import { getRating, getColor } from '@tools/upgradeRating';
+import { Button, ButtonGroup } from '@mui/material';
+import { getRating } from '@tools/upgradeRating';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import useUserProfile from '@hooks/useUserProfile';
+import { ModalChangeRating } from '@common/modals/';
 
 interface RatingsProps {
   kinopoiskId: number;
@@ -22,55 +16,28 @@ interface RatingsProps {
 const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
   const [displayModalChangeRating, setDisplayModalChangeRating] =
     useState<boolean>(false);
-  const [displayModalActiveChangeRating, setDisplayModalActiveChangeRating] =
-    useState<number | null>(null);
   const [myRating, setMyRating] = useState<number>(0);
-  const { userState, isAuthorized, handleChangeUserCollection } =
+  const { userState, isAuthorized } =
     useUserProfile();
   const { ratingImdb, ratingKinopoisk, imdbId, kinopoiskId } = props;
 
   useEffect(() => {
-    if (isAuthorized) {
+    if (isAuthorized && userState.ratings.length !== 0) {
       const matchedRating = userState.ratings.find(
         (item) => item.id === kinopoiskId
       );
 
       if (matchedRating) {
         setMyRating(matchedRating.value);
-      }
+      } else setMyRating(0);
     }
-  }, [isAuthorized]);
-  const handleChangeMyRating = (
-    e: React.SyntheticEvent<Element, Event>,
-    value: number | null
-  ) => {
-    if (value) {
-      setDisplayModalChangeRating(false);
-      setMyRating(value);
-      const item = { id: kinopoiskId, value: value };
-      console.log(item);
-      handleChangeUserCollection(item, 'ratings');
-    }
-  };
-  const handleDisplayActiveRating = (
-    e: React.SyntheticEvent<Element, Event>,
-    value: number | null
-  ) => {
-    if (value) {
-      if (value > 0) {
-        setDisplayModalActiveChangeRating(value);
-      }
-      if (value <= 0) {
-        setDisplayModalActiveChangeRating(myRating);
-      }
-    }
-  };
+  }, [userState.ratings, isAuthorized]);
 
   return (
     <div className={styles.ratings}>
-      <ButtonGroup variant="text" color="inherit" className={styles.wrapper}>
+      <ButtonGroup variant='text' color='inherit' className={styles.wrapper}>
         <Button
-          target="_blank"
+          target='_blank'
           href={`https://www.kinopoisk.ru/film/${kinopoiskId}`}
           className={styles.bar}
         >
@@ -80,7 +47,7 @@ const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
           <span className={styles.value}>{getRating(ratingKinopoisk)}</span>
         </Button>
         <Button
-          target="_blank"
+          target='_blank'
           href={`https://www.imdb.com/title/${imdbId}`}
           className={styles.bar}
         >
@@ -101,38 +68,9 @@ const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
             {getRating(myRating)}
           </span>
         </Button>
-        <Modal
-          open={displayModalChangeRating}
-          onClose={() => setDisplayModalChangeRating(false)}
-          disableScrollLock={true}
-        >
-          <Box className={styles.box}>
-            <Typography component="h1">Choose your rating</Typography>
-            <Rating
-              defaultValue={myRating}
-              max={10.0}
-              precision={0.1}
-              onChange={handleChangeMyRating}
-              onChangeActive={handleDisplayActiveRating}
-            />
-            <span
-              style={{
-                marginTop: '5px',
-                fontSize: '20px',
-                minHeight: '20px',
-                padding: '10px',
-                borderRadius: '20px',
-                backgroundColor: !displayModalActiveChangeRating
-                  ? getColor(myRating)
-                  : getColor(displayModalActiveChangeRating),
-              }}
-            >
-              {!displayModalActiveChangeRating
-                ? getRating(myRating)
-                : getRating(displayModalActiveChangeRating)}
-            </span>
-          </Box>
-        </Modal>
+        <ModalChangeRating open={displayModalChangeRating}
+                           close={setDisplayModalChangeRating.bind(null, false)}
+                           id={kinopoiskId} />
       </ButtonGroup>
     </div>
   );
