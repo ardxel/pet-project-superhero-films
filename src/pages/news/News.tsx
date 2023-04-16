@@ -40,11 +40,10 @@ const NewsPage: FC = () => {
   if (isLoading) {
     return (
       <Wrapper>
-        <Loading />
+        <Loading style={{ padding: '5vh' }} />
       </Wrapper>
     );
   }
-
   return (
     <>
       <Wrapper>
