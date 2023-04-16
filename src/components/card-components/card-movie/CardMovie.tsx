@@ -10,7 +10,8 @@ import { Button, IconButton } from '@mui/material';
 import useUserProfile from '@hooks/useUserProfile';
 import useMovieReview from '@hooks/useMovieReview';
 import Loading from '@common/loading/Loading';
-import { BookmarkAdd, BookmarkRemove } from '@mui/icons-material';
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
 import { UserCollection } from '@models/User';
 import StarIcon from '@mui/icons-material/Star';
 import { ModalChangeRating } from '@common/modals';
@@ -69,7 +70,7 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
             id='watchlist-icon'
             className={styles.watchlistIcon}>
             {collectionItemLoading !== 'watchlist'
-              ? (isInWatchlist ? <BookmarkRemove /> : <BookmarkAdd />)
+              ? (isInWatchlist ? <BookmarkAddedIcon  /> : <BookmarkAddOutlinedIcon />)
               : <Loading className={styles.loading} />}
           </IconButton>)}
 
