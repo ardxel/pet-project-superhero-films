@@ -34,7 +34,7 @@ const HomePage: React.FC<{}> = () => {
         <div className={styles.container}>
           <div className={styles.preview}>
             {isMoviesLoading && !movieSliderList ? <Loading /> : (
-              <AutoSlider speed={6000}>
+              <AutoSlider delay={6000}>
                 {movieSliderList!.map((movie) => {
                   const sliderItem = sliderItems
                       .find(item => item.kinopoiskId === movie.kinopoiskId) as typeof sliderItems[number];
