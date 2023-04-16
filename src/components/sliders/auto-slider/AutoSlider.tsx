@@ -1,11 +1,15 @@
 import React, {
-  memo, ReactElement, ReactNode,
   Children,
   cloneElement,
+  ReactElement,
+  ReactNode,
   useEffect,
   useState
 } from 'react';
 import styles from './autoslider.module.scss';
+import { Button } from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const sliderStyles = {
   activeSlide: {
@@ -23,14 +27,31 @@ const sliderStyles = {
 type slideWithOpacity = { opacity?: string, transform: string }
 
 interface AutoSliderProps {
-  speed?: number;
+  delay?: number;
+  showButtons?: boolean;
   children: ReactNode | ReactNode[];
 }
 
-const AutoSlider: React.FC<AutoSliderProps> = ({ children, speed }) => {
-  const [index, setIndex] = useState(0);
+const AutoSlider: React.FC<AutoSliderProps> = ({
+  children,
+  delay = 5000,
+  showButtons = true
+}) => {
+  const [index, setIndex] = useState<number>(0);
   const [length, setLength] = useState((children as ReactNode[]).length);
-  const defaultIntervalSpeed = 5000;
+
+  const nextSlide = () => {
+    setIndex((oldIndex) => {
+      return (oldIndex + 1) % length;
+    });
+  };
+
+  const prevSlide = () => {
+    setIndex((oldIndex) => {
+      return (oldIndex - 1 + length) % length;
+    });
+  };
+
   useEffect(() => {
     if (index < 0) {
       setIndex(length - 1);
@@ -43,7 +64,7 @@ const AutoSlider: React.FC<AutoSliderProps> = ({ children, speed }) => {
   useEffect(() => {
     let slider = setInterval(() => {
       setIndex(index + 1);
-    }, speed ? speed : defaultIntervalSpeed);
+    }, delay);
     return () => {
       clearInterval(slider);
     };
@@ -51,6 +72,10 @@ const AutoSlider: React.FC<AutoSliderProps> = ({ children, speed }) => {
 
   return (
     <div className={styles.section}>
+      {showButtons && <div className={styles.buttons}>
+        <Button onClick={prevSlide}><ArrowBackIosNewIcon /></Button>
+        <Button onClick={nextSlide}><ArrowForwardIosIcon /></Button>
+      </div>}
       <div className={styles.menu}>
         {Children.map(children, (child, childIndex) => {
 
@@ -70,9 +95,7 @@ const AutoSlider: React.FC<AutoSliderProps> = ({ children, speed }) => {
               ...position,
               opacity: position.opacity ? position.opacity : 0,
               transition: `all 0.3s linear`,
-              position: 'absolute',
-              width: '100%',
-              height: '100%'
+              position: 'absolute'
             }
           });
         })}
@@ -81,4 +104,4 @@ const AutoSlider: React.FC<AutoSliderProps> = ({ children, speed }) => {
   );
 };
 
-export default memo(AutoSlider);
+export default AutoSlider;

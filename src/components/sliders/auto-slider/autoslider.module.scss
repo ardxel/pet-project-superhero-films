@@ -1,7 +1,31 @@
 .section {
-  @apply w-full h-full;
+  @apply w-full h-full relative;
+
+  .buttons {
+    @apply absolute top-[50%] w-full flex justify-between z-[30] px-[15px];
+    transform: translateY(-50%);
+    button {
+      @apply p-[10px] md:p-[12px] lg:p-[15px];
+      //padding: 15px;
+      background-color: rgba(var(--bgBtnColor), 0.4) !important;
+      backdrop-filter: blur(20px) !important;
+      color: var(--color1)!important;
+      border: 1px solid var(--color39) !important;
+      &:hover {
+        background-color: var(--color39) !important;
+        svg {
+          fill: var(--color1r) !important;
+        }
+      }
+      svg {
+        fill: var(--color13) !important;
+      }
+    }
+
+  }
   .menu {
-    @apply w-full h-full relative flex overflow-hidden;
+    @apply w-full h-full relative flex;
+
   }
 }
 
