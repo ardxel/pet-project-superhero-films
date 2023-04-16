@@ -6,7 +6,7 @@ const navLinks = [
 
   // { id: 2, name: 'Marvel', path: '' },
   // { id: 3, name: 'DC', path: '' },
-  { id: 4, name: 'Sign in', path: '/authorization' },
+  { id: 2, name: 'Sign in', path: '/authorization' },
 ];
 
 export default navLinks;
