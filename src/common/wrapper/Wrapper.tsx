@@ -5,6 +5,7 @@ import { Paper } from '@mui/material';
 interface WrapperProps {
   children: React.ReactNode;
   backgroundImage?: string
+  className?: string
 }
 
 const Wrapper: React.FC<WrapperProps> = ({ children, backgroundImage }) => {
