@@ -1,5 +1,5 @@
 .footer {
-  @apply absolute bottom-0 mb-3 w-full flex justify-center items-center bg-color1 pt-[30px];
+  @apply absolute bottom-0 mb-3 w-full flex justify-center z-[500] items-center bg-color1 pt-[30px];
   flex: 0 0 auto;
 
   .container {
