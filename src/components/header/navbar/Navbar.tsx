@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styles from './navbar.module.scss';
 import { Link } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
@@ -14,25 +14,27 @@ const Navbar: React.FC<NavbarProps> = ({ username, isOpen, setIsOpen }) => {
   useEffect(() => {
     isOpen ? disableScroll() : enableScroll();
   }, [isOpen]);
+
+  const navbarLinks = useMemo(() => {
+    if (username) {
+      return navLinks.slice(0, navLinks.length-1)
+        .concat([{
+          name: 'Profile',
+          path: `/profile/${username}`,
+          id: navLinks.length - 1
+        }])
+    } else {
+      return navLinks;
+    }
+  }, [username]);
+
   return (
     <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
       <ul className={`${styles.links}`}>
-        {navLinks.map((item, index) => {
+        {navbarLinks.map((item, index) => {
           const isLastItem = index === navLinks.length - 1;
           if (!isOpen && isLastItem) return;
 
-          if (isOpen && isLastItem && username) {
-            return (
-              <li key={item.id}>
-                <Link
-                  to={`/profile/${username}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Profile
-                </Link>
-              </li>
-            );
-          }
           const { id, name, path } = item;
           return (
             <li key={id}>
