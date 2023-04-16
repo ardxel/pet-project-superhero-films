@@ -7,6 +7,7 @@ import { IconButton, Link } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom/';
 import TurnedInIcon from '@mui/icons-material/TurnedIn';
 import useMovieReview from '@hooks/useMovieReview';
+import { formatAgeLimits } from '@tools/index';
 
 interface CardMovieFavoriteProps extends IMovie {
   closeFn: () => void;
@@ -37,16 +38,9 @@ const CardWatchlistMovie: React.FC<CardMovieFavoriteProps> = ({ ...props }) => {
           <img src={props.posterUrl} alt={props.nameOriginal} />
           <IconButton
             onClick={handleChangeWatchlist}
-            sx={{
-              position: 'absolute',
-              left: '-9px',
-              top: '-5px',
-              cursor: 'pointer',
-              color: 'green',
-              padding: 0,
-            }}
+            className={styles.bookmark}
           >
-            <TurnedInIcon sx={{ fontSize: '45px' }} />
+            <TurnedInIcon />
           </IconButton>
         </RouterLink>
         <div className={styles.info}>
@@ -56,7 +50,7 @@ const CardWatchlistMovie: React.FC<CardMovieFavoriteProps> = ({ ...props }) => {
           <p className={styles.details}>
             <span>{props.year}</span>
             <span>{toHoursAndMinutes(props.filmLength)}</span>
-            <span>{props.ratingAgeLimits}</span>
+            <span>{formatAgeLimits(props.ratingAgeLimits || props.ratingMpaa)}</span>
           </p>
           <div className={styles.ratings}>
             <div className={styles.kp}>{props.ratingKinopoisk}</div>

@@ -2,7 +2,7 @@
   @apply w-full flex p-5 gap-x-5;
 
   .img {
-    @apply relative min-w-[80px] w-[80px] md:min-w-[125px] md:w-[125px] h-full;
+    @apply relative min-w-[70px] w-[70px] md:min-w-[125px] md:w-[125px] h-full;
     img {
       display: block;
       width: 100%;
@@ -10,6 +10,22 @@
       object-position: center;
       object-fit: contain;
       border-radius: 5px;
+    }
+    .bookmark {
+      position: absolute;
+      left: -9px;
+      top: -5px;
+      cursor: pointer;
+      color: green;
+      padding: 0;
+      svg {
+        font-size: 45px;
+      }
+    }
+    &:hover {
+      img {
+        background: rgba(var(--bgColor), 0.5);
+      }
     }
   }
   .info {
@@ -29,7 +45,7 @@
       }
     }
     .actors {
-      @apply flex flex-wrap gap-x-2;
+      @apply flex flex-wrap gap-x-2 text-xs;
     }
   }
 }
