@@ -18,7 +18,12 @@ const initialValues: LoginRequest = {
   password: '',
 };
 
-const LoginForm: React.FC<{}> = () => {
+const templateValues: LoginRequest = {
+  login: 'john123',
+  password: 'Qwerty12345'
+}
+
+const LoginForm: React.FC<{testTemplate: boolean}> = ({testTemplate = false}) => {
   const [loginUser, result] = useLoginUserMutation();
   const [passwordShown, setPasswordShown] = useState(false);
   const { login: inputLogin, password: inputPassword } = fieldKit;
@@ -29,7 +34,6 @@ const LoginForm: React.FC<{}> = () => {
 
   useEffect(() => {
     if (result.data && result.data.user && result.isSuccess) {
-      console.log(result.data.user);
       dispatch(login(result.data.user));
       sleep(1500).then(() => navigate('/'));
     }
@@ -44,9 +48,11 @@ const LoginForm: React.FC<{}> = () => {
         message={result.data ? result.data.message : undefined}
       />
       <Formik
-        initialValues={initialValues}
+        enableReinitialize={true}
+        initialValues={testTemplate ? templateValues : initialValues}
         onSubmit={loginUser}
         validate={(values) => loginValidation(values)}
+
       >
         {(props: FormikProps<LoginRequest>) => (
           <Form className={superstyles.form} onSubmit={props.handleSubmit}>
@@ -69,7 +75,7 @@ const LoginForm: React.FC<{}> = () => {
                 )
               }
             />
-            <SubmitButton disabled={!(props.isValid && props.dirty)} />
+            <SubmitButton disabled={testTemplate ? !testTemplate : !(props.isValid && props.dirty)} />
           </Form>
         )}
       </Formik>
