@@ -7,14 +7,14 @@ import Footer from '@components/footer/Footer';
 import { Provider } from 'react-redux';
 import store from '@reduxproj/store';
 import appRoutes from './AppRoutes';
-import ReactLoading from 'react-loading';
+import AppFallback from '@common/fallback/AppFallback';
 
 const App = () => (
   <BrowserRouter>
     <ScrollToTop />
     <Provider store={store}>
       <Header />
-      <Suspense fallback={<ReactLoading type='balls' />}>
+      <Suspense fallback={<AppFallback/>}>
         <Routes>
           {appRoutes.map(({ path, Element, index }, i) => {
             return <Route key={i} index={index} path={path}
