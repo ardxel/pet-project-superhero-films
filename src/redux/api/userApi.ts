@@ -24,7 +24,7 @@ const getSeverityText: (statusCode: number) => AlertColor = (statusCode) => {
   else throw Error('this response code is not inspected');
 };
 
-type userInit = RegistrationResponse | LoginResponse | EditProfileResponse;
+type UserInitType = RegistrationResponse | LoginResponse | EditProfileResponse;
 
 const userInitTransformResponse = (
   baseQueryReturnValue: {
@@ -32,7 +32,7 @@ const userInitTransformResponse = (
     user: UserReduxState;
   },
   meta: FetchBaseQueryMeta
-): userInit => {
+): UserInitType => {
   return {
     message: baseQueryReturnValue.message,
     severity: getSeverityText(meta?.response!.status),
