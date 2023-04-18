@@ -17,6 +17,7 @@ import { Button } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { classes, formatAgeLimits, toHoursAndMinutes } from '@tools/index';
 import { useNavigate } from 'react-router';
+import AppFallback from '@common/fallback/AppFallback';
 
 const HomePage: React.FC<{}> = () => {
   const { data, isLoading } = useGetMoviesByFranchiseListQuery(franchisesList);
@@ -27,7 +28,7 @@ const HomePage: React.FC<{}> = () => {
   const navigate = useNavigate();
 
   if (isLoading) {
-    return <Loading />;
+    return <AppFallback />;
   } else
     return (
       <main className={styles.home}>
