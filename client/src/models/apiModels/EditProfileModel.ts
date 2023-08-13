@@ -1,8 +1,5 @@
-import { UserServerState, UserToken } from '@models/User';
-import { DefaultUserResponse } from './DefaultUserResponse';
+import { UserReduxState, UserServerState } from '@models/User';
+import { DefaultResponse } from './DefaultUserResponse';
 
-export type EditProfileRequest = Partial<UserServerState> & {
-  token: UserToken;
-};
-
-export type EditProfileResponse = DefaultUserResponse & {};
+export type EditProfileRequest = Partial<UserServerState>;
+export type EditProfileResponse = DefaultResponse<{ user: UserReduxState }>;

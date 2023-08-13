@@ -1,8 +1,6 @@
-import { AlertColor } from '@mui/material';
-import { UserReduxState } from '@models/User';
-
-export type DefaultUserResponse = {
-  severity?: AlertColor;
+export type DefaultResponse<T> = {
+  // severity?: AlertColor;
   message?: string;
-  user: UserReduxState | null;
+  data?: T;
+  error?: string;
 };

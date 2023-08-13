@@ -1,21 +1,21 @@
+import BASE_URL from '@constants/baseUrl';
 import {
   createApi,
   fetchBaseQuery,
   FetchBaseQueryMeta,
 } from '@reduxjs/toolkit/query/react';
-import BASE_URL from '@constants/baseUrl';
 
-import { AlertColor } from '@mui/material';
-import { UserReduxState } from '@models/User';
+import {
+  EditProfileRequest,
+  EditProfileResponse,
+} from '@models/apiModels/EditProfileModel';
 import { LoginRequest, LoginResponse } from '@models/apiModels/LoginModel';
 import {
   RegistrationRequest,
-  RegistrationResponse
+  RegistrationResponse,
 } from '@models/apiModels/RegistrationModel';
-import {
-  EditProfileRequest,
-  EditProfileResponse
-} from '@models/apiModels/EditProfileModel';
+import { UserReduxState } from '@models/User';
+import { AlertColor } from '@mui/material';
 
 const getSeverityText: (statusCode: number) => AlertColor = (statusCode) => {
   if (statusCode === 200) return 'success';
@@ -35,8 +35,8 @@ const userInitTransformResponse = (
 ): UserInitType => {
   return {
     message: baseQueryReturnValue.message,
-    severity: getSeverityText(meta?.response!.status),
-    user: baseQueryReturnValue.user || null,
+    // severity: getSeverityText(meta?.response!.status),
+    data: { user: baseQueryReturnValue.user },
   };
 };
 
@@ -46,23 +46,23 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     registerUser: builder.mutation<RegistrationResponse, RegistrationRequest>({
       query: (values) => ({
-        url: '/registration',
-        method: 'Post',
+        url: '/users',
+        method: 'patch',
         body: values,
       }),
       transformResponse: userInitTransformResponse,
     }),
     loginUser: builder.mutation<LoginResponse, LoginRequest>({
       query: (values) => ({
-        url: '/login',
-        method: 'Post',
+        url: '/users',
+        method: 'post',
         body: values,
       }),
       transformResponse: userInitTransformResponse,
     }),
     getProfile: builder.query<UserReduxState, string>({
       query: (username) => ({
-        url: `/getProfile/${username}`,
+        url: `/users/profile/${username}`,
       }),
       transformResponse: (baseQueryReturnValue: { user: UserReduxState }) => {
         return baseQueryReturnValue.user;
@@ -70,7 +70,7 @@ export const userApi = createApi({
     }),
     editProfile: builder.mutation<EditProfileResponse, EditProfileRequest>({
       query: (values) => ({
-        url: '/editProfile',
+        url: '/users/',
         method: 'Post',
         body: values,
       }),

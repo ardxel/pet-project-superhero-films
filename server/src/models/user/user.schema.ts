@@ -17,7 +17,6 @@ export const UserSchema = new Schema<IUser, UserModel, UserMethods>(
       required: true,
       match: [/^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/, '{VALUE} is not valid username'],
       unique: true,
-      validate: (value) => value.length > 1,
     },
     email: {
       type: String,

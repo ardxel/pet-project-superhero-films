@@ -1,12 +1,10 @@
-import { FormikValues } from '@models/formModels';
 import { UserReduxState } from '@models/User';
-import { DefaultUserResponse } from './DefaultUserResponse';
+import { FormikValues } from '@models/formModels';
+import { DefaultResponse } from './DefaultUserResponse';
 
 export interface LoginRequest extends FormikValues {
-  login: string;
+  emailOrUsername: string;
   password: string;
 }
 
-export type LoginResponse = DefaultUserResponse & {
-  user: UserReduxState | null;
-};
+export type LoginResponse = DefaultResponse<{ user: UserReduxState }>;
