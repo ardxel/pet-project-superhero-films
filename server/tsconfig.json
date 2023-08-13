@@ -1,0 +1,21 @@
+{
+  "ts-node": {
+    "esm": true,
+    "require": ["tsconfig-paths/register"],
+  },
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "module": "NodeNext",
+    "target": "ES6",
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true
+  },
+  "exclude": ["node_modules"]
+}
