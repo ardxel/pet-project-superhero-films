@@ -1,7 +1,7 @@
+import cors from 'cors';
+import MongooseService from 'db/mongoose.service';
 import express, { Application } from 'express';
 import morgan from 'morgan';
-
-import MongooseService from 'db/mongoose.service';
 import config from './config';
 
 import { errorHandler, notFound } from 'middleware';
@@ -25,6 +25,9 @@ class App {
 
   __configureDevRoutes() {
     if (this.isDevMode) {
+      this.app.get('/', (req, res) => {
+        res.send('Hello world!');
+      });
       this.app.get('/api/v1/deleteAllUsers', async (req, res) => {
         await model.user.deleteMany({});
         res.status(204).send('<h1>All users deleted</h1>');
@@ -51,6 +54,7 @@ class App {
   }
 
   configureSettings() {
+    this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(morgan('dev'));

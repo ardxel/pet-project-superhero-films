@@ -76,6 +76,15 @@ export class UserController {
     }
   };
 
+  static verifyUser = async (req: Request, res: IResponse) => {
+    res.status(StatusCodes.OK).json({
+      success: true,
+      data: {
+        user: (res.locals.user as DocumentUser).getSafeCopy(),
+      },
+    });
+  };
+
   static getAllCountries = async (req: Request, res: IResponse<{ countries: ICountry[] }>) => {
     const countriesFilePath = path.resolve('./data/countries.json');
     const allCountries = await fs.promises.readFile(countriesFilePath, 'utf8');

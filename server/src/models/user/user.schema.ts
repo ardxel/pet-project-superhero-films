@@ -1,7 +1,7 @@
 import { compare, genSalt, hash } from 'bcryptjs';
 import config from 'config';
 import { sign } from 'jsonwebtoken';
-import { CallbackWithoutResultAndOptionalError, Schema, Types } from 'mongoose';
+import { CallbackWithoutResultAndOptionalError, Schema } from 'mongoose';
 import { DocumentUser, IUser, UserMethods, UserModel } from './user.types';
 
 const userRole = ['ADMIN', 'USER'] as const;
@@ -47,14 +47,14 @@ export const UserSchema = new Schema<IUser, UserModel, UserMethods>(
     birthday: Date,
     country: String,
     favorites: {
-      type: [Types.ObjectId],
+      type: [Number],
       required: true,
     },
     ratings: {
       type: [
         {
           id: {
-            type: Types.ObjectId,
+            type: Number,
           },
           value: {
             type: Number,
@@ -64,7 +64,7 @@ export const UserSchema = new Schema<IUser, UserModel, UserMethods>(
       required: true,
     },
     watchlist: {
-      type: [Types.ObjectId],
+      type: [Number],
       required: true,
     },
   },

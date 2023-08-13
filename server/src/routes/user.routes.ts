@@ -34,6 +34,15 @@ export class UserRoutes extends RoutesConfig {
       this.asyncHandler(UserController.signIn),
     );
 
+    route.get(
+      '/',
+      [
+        authenticationMiddleware.validateTokenDoesntExists,
+        authenticationMiddleware.validateIsExistsUserWithTokenPayload(true),
+      ],
+      this.asyncHandler(UserController.verifyUser),
+    );
+
     // get profile
     route.get('/profile/:username', this.asyncHandler(UserController.getProfile));
 
