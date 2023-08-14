@@ -40,7 +40,7 @@ export class MovieController {
     const resData = {} as ResDataGetSingle;
 
     if (id) {
-      const matchedMovie = await model.movie.findById({ _id: id });
+      const matchedMovie = await model.movie.findOne({ _movieId: id });
       if (matchedMovie) {
         resData['movie'] = matchedMovie;
       }
@@ -50,7 +50,7 @@ export class MovieController {
       resData['franchiseMovies'] = await model.movie
         .find({
           keywords: {
-            $in: resData['movie']['keywords'],
+            $in: resData.movie.keywords,
           },
         })
         .sort('-year');

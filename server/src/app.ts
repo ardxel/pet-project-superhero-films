@@ -5,8 +5,6 @@ import morgan from 'morgan';
 import config from './config';
 
 import { errorHandler, notFound } from 'middleware';
-import model from 'models';
-import { IUser } from 'models/user/user.types';
 import { MovieRoutes, UserRoutes } from 'routes';
 
 class App {
@@ -27,28 +25,6 @@ class App {
     if (this.isDevMode) {
       this.app.get('/', (req, res) => {
         res.send('Hello world!');
-      });
-      this.app.get('/api/v1/deleteAllUsers', async (req, res) => {
-        await model.user.deleteMany({});
-        res.status(204).send('<h1>All users deleted</h1>');
-      });
-      this.app.get('/api/v1/getAllUsers', async (req, res) => {
-        const users = await model.user.find({});
-        res.status(200).json({ users });
-      });
-      this.app.post('/api/v1/validate', async (req, res) => {
-        const fields = req.body.fields as Partial<IUser>;
-        const user = await model.user.findOne({ username: 'ardxel1' });
-        for (const field in fields) {
-          const previousValue = user![field];
-          user![field] = fields[field];
-          const isValid = await user!.$isValid(field);
-          if (!isValid) {
-            user![field] = previousValue;
-            console.log('afterError: ', user);
-          }
-        }
-        res.json({});
       });
     }
   }

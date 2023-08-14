@@ -158,7 +158,24 @@ export const MovieSchema = new mongoose.Schema<IMovie>({
   has3D: {
     type: Boolean,
   },
-  reviewsCount: Number,
+  reviewsCount: {
+    type: Number,
+  },
+
+  posterUrl: {
+    type: String,
+    required: true,
+  },
+  posterUrlPreview: {
+    type: String,
+    required: true,
+  },
+  coverUrl: {
+    type: String,
+  },
+  logoUrl: {
+    type: String,
+  },
 });
 
 export default MovieSchema;

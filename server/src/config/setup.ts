@@ -1,13 +1,18 @@
+// import config from 'config';
+// import { readFile } from 'fs/promises';
+// import model from 'models';
+// import mongoose from 'mongoose';
+// import IMovie from 'types/movie';
 // async function readAllMovies(): Promise<IMovie[]> {
 //   return JSON.parse(await readFile('./data/movies.json', 'utf8'));
 // }
 
 // async function setup() {
 //   try {
-//     await mongoose.connect(config.mongodb.MONGO_URI);
+//     await mongoose.connect(config.mongodb.uri);
 //     const movies = await readAllMovies();
-//     await Movie.deleteMany({});
-//     await Movie.insertMany(movies);
+//     await model.movie.deleteMany({});
+//     await model.movie.insertMany(movies);
 //     console.log('success');
 //     process.exit(0);
 //   } catch (error) {
