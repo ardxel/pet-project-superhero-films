@@ -18,17 +18,18 @@ import { ModalChangeRating } from '@common/modals';
 
 interface CardMovieProps extends IMovie {
   showRating?: boolean;
-  disableFlash?: boolean
+  disableFlash?: boolean;
 }
 
 const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
-  const [openModalChangeRating, setOpenModalChangeRating] = useState<boolean>(false);
+  const [openModalChangeRating, setOpenModalChangeRating] =
+    useState<boolean>(false);
   const {
     userState,
     isAuthorized,
     handleChangeUserCollection,
-    collectionItemLoading
+    collectionItemLoading,
   } = useUserProfile();
   const {
     ratingKinopoisk,
@@ -36,7 +37,7 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
     posterUrl,
     nameOriginal,
     year,
-    filmLength
+    filmLength,
   } = props;
 
   const { isFavorite, isInWatchlist } = useMovieReview(props.kinopoiskId);
@@ -57,7 +58,12 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
   };
 
   return (
-    <li className={[styles.movie, (props.disableFlash ? '': styles.movieFlash)].join(' ')}>
+    <li
+      className={[
+        styles.movie,
+        props.disableFlash ? '' : styles.movieFlash,
+      ].join(' ')}
+    >
       <div
         className={styles.container}
         onMouseEnter={setIsHover.bind(null, true)}
@@ -67,63 +73,88 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
         {(displayButtons || isInWatchlist) && (
           <IconButton
             onClick={toggleCollectionItem.bind(null, 'watchlist')}
-            id='watchlist-icon'
-            className={styles.watchlistIcon}>
-            {collectionItemLoading !== 'watchlist'
-              ? (isInWatchlist ? <BookmarkAddedIcon  /> : <BookmarkAddOutlinedIcon />)
-              : <Loading className={styles.loading} />}
-          </IconButton>)}
+            id="watchlist-icon"
+            className={styles.watchlistIcon}
+          >
+            {collectionItemLoading !== 'watchlist' ? (
+              isInWatchlist ? (
+                <BookmarkAddedIcon />
+              ) : (
+                <BookmarkAddOutlinedIcon />
+              )
+            ) : (
+              <Loading className={styles.loading} />
+            )}
+          </IconButton>
+        )}
 
         {/* element for adding movie to user collection of favorites */}
         {(displayButtons || isFavorite) && (
           <IconButton
             onClick={toggleCollectionItem.bind(null, 'favorites')}
-            id='favorite-icon'
-            className={styles.favoriteIcon}>
-            {collectionItemLoading !== 'favorites'
-              ? (isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />)
-              : (
-                <Loading className={styles.loading} />
-              )}
+            id="favorite-icon"
+            className={styles.favoriteIcon}
+          >
+            {collectionItemLoading !== 'favorites' ? (
+              isFavorite ? (
+                <FavoriteIcon />
+              ) : (
+                <FavoriteBorderIcon />
+              )
+            ) : (
+              <Loading className={styles.loading} />
+            )}
           </IconButton>
         )}
         {/* show user`s rating of movie in user profile */}
         {props.showRating && (
           <div className={styles.showRating}>
-            <Button className={styles.changeRating}
-              startIcon={<StarIcon sx={{
-                fill: getColor(+getMovieRating! as number),
-                '&:hover': { fill: color }
-              }} />}
-              onClick={setOpenModalChangeRating.bind(null, true)}>
+            <Button
+              className={styles.changeRating}
+              startIcon={
+                <StarIcon
+                  sx={{
+                    fill: getColor(+getMovieRating! as number),
+                    '&:hover': { fill: color },
+                  }}
+                />
+              }
+              onClick={setOpenModalChangeRating.bind(null, true)}
+            >
               {getMovieRating}
             </Button>
           </div>
         )}
         {/* modal for change movie rating */}
-        {props.showRating && <ModalChangeRating open={openModalChangeRating}
-          close={setOpenModalChangeRating.bind(null, false)}
-          id={kinopoiskId} />}
+        {props.showRating && (
+          <ModalChangeRating
+            open={openModalChangeRating}
+            close={setOpenModalChangeRating.bind(null, false)}
+            id={kinopoiskId}
+          />
+        )}
 
         <Link to={`/movie/${kinopoiskId}`}>
           <img src={posterUrl} alt={nameOriginal} />
-          {!props.showRating && <div className={styles.info}>
-            <span className={styles.rating} style={{ background: color }}>
-              {newRating}
-            </span>
-            <span className={styles.year}>{year}</span>
-            <span className={styles.length}>
-              {toHoursAndMinutes(filmLength)}
-            </span>
-            {getMovieRating && !props.showRating && (
-              <span
-                className={styles.yourRating}
-                style={{ background: 'rgb(87, 153, 239)' }}
-              >
-                {getMovieRating}
+          {!props.showRating && (
+            <div className={styles.info}>
+              <span className={styles.rating} style={{ background: color }}>
+                {newRating}
               </span>
-            )}
-          </div>}
+              <span className={styles.year}>{year}</span>
+              <span className={styles.length}>
+                {toHoursAndMinutes(filmLength)}
+              </span>
+              {getMovieRating && !props.showRating && (
+                <span
+                  className={styles.yourRating}
+                  style={{ background: 'rgb(87, 153, 239)' }}
+                >
+                  {getMovieRating}
+                </span>
+              )}
+            </div>
+          )}
         </Link>
       </div>
     </li>

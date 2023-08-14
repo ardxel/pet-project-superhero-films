@@ -1,22 +1,22 @@
-import axios from 'axios';
 import BASE_URL from '@constants/baseUrl';
+import { UserCollection, UserReduxState } from '@models/User';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { $Keys, ValuesType } from 'utility-types';
-import { UserCollection, UserReduxState, UserToken } from '@models/User';
 import { AppDispatch, RootState } from '@reduxproj/store';
+import axios from 'axios';
+import { $Keys, ValuesType } from 'utility-types';
 
 const createAppAsyncThunk = createAsyncThunk.withTypes<{
   state: RootState;
   dispatch: AppDispatch;
 }>();
 
-export const preloadUserReduxState = createAppAsyncThunk<
-  UserReduxState,
-  UserToken
->('user/preloadUserReduxState', async (token: UserToken) => {
-  const response = await axios.get(`${BASE_URL}/getUserState/${token}`);
-  return (await response.data) as UserReduxState;
-});
+export const preloadUserReduxState = createAppAsyncThunk<UserReduxState, void>(
+  'user/preloadUserReduxState',
+  async () => {
+    const response = await axios.get(`${BASE_URL}/users/`);
+    return (await response.data.data.user) as UserReduxState;
+  }
+);
 
 export const changeUserCollections = createAppAsyncThunk<
   {
@@ -34,48 +34,50 @@ export const changeUserCollections = createAppAsyncThunk<
   let newList = user[listName];
 
   switch (listName) {
-  case 'favorites':
-  case 'watchlist':
-    if (type === 'remove') {
-      newList = (newList as number[]).filter((favorite) => favorite !== item);
-    }
-    if (type === 'add') {
-      newList = [...newList, item] as number[];
-    }
-    break;
+    case 'favorites':
+    case 'watchlist':
+      if (type === 'remove') {
+        newList = (newList as number[]).filter((favorite) => favorite !== item);
+      }
+      if (type === 'add') {
+        newList = [...newList, item] as number[];
+      }
+      break;
 
-  case 'ratings':
-    let isMatchedRatingsItem = false;
-    if (type === 'add' || !type) {
-      newList = newList.map((listItem) => {
-        if (typeof item === 'object') {
-          if (listItem.id === item.id) {
-            isMatchedRatingsItem = true;
-            return { id: listItem.id, value: item.value };
+    case 'ratings':
+      // eslint-disable-next-line no-case-declarations
+      let isMatchedRatingsItem = false;
+      if (type === 'add' || !type) {
+        newList = newList.map((listItem) => {
+          if (typeof item === 'object') {
+            if (listItem.id === item.id) {
+              isMatchedRatingsItem = true;
+              return { id: listItem.id, value: item.value };
+            }
+            return listItem;
           }
-          return listItem;
-        }
-      });
+        });
 
-      if (!isMatchedRatingsItem) {
-        newList = [...newList, item] as { id: number; value: number }[];
+        if (!isMatchedRatingsItem) {
+          newList = [...newList, item] as { id: number; value: number }[];
+        }
       }
 
-    }
+      if (type === 'remove' && typeof item === 'object') {
+        newList = (newList as { id: number; value: number }[]).filter(
+          (listItem) => listItem.id !== item.id
+        );
+      }
+      break;
 
-    if (type === 'remove' && typeof item === 'object') {
-      newList = (newList as {id: number, value: number}[]).filter((listItem) => listItem.id !== item.id);
-    }
-    break;
-
-  default:
-    throw new Error(`List Name: ${listName} is invalid`);
+    default:
+      throw new Error(`List Name: ${listName} is invalid`);
   }
 
   return await axios
-    .post(`${BASE_URL}/editProfile`, { token: user.token, [listName]: newList })
+    .patch(`${BASE_URL}/users/`, { fields: { [listName]: newList } })
     .then((response) => {
-      if (response.status === 200) {
+      if (response.data.success) {
         return { newList, listName };
       } else throw new Error('Server error');
     })

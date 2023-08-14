@@ -17,8 +17,7 @@ const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
   const [displayModalChangeRating, setDisplayModalChangeRating] =
     useState<boolean>(false);
   const [myRating, setMyRating] = useState<number>(0);
-  const { userState, isAuthorized } =
-    useUserProfile();
+  const { userState, isAuthorized } = useUserProfile();
   const { ratingImdb, ratingKinopoisk, imdbId, kinopoiskId } = props;
 
   useEffect(() => {
@@ -35,9 +34,9 @@ const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
 
   return (
     <div className={styles.ratings}>
-      <ButtonGroup variant='text' color='inherit' className={styles.wrapper}>
+      <ButtonGroup variant="text" color="inherit" className={styles.wrapper}>
         <Button
-          target='_blank'
+          target="_blank"
           href={`https://www.kinopoisk.ru/film/${kinopoiskId}`}
           className={styles.bar}
         >
@@ -47,7 +46,7 @@ const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
           <span className={styles.value}>{getRating(ratingKinopoisk)}</span>
         </Button>
         <Button
-          target='_blank'
+          target="_blank"
           href={`https://www.imdb.com/title/${imdbId}`}
           className={styles.bar}
         >
@@ -68,9 +67,11 @@ const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
             {getRating(myRating)}
           </span>
         </Button>
-        <ModalChangeRating open={displayModalChangeRating}
+        <ModalChangeRating
+          open={displayModalChangeRating}
           close={setDisplayModalChangeRating.bind(null, false)}
-          id={kinopoiskId} />
+          id={kinopoiskId}
+        />
       </ButtonGroup>
     </div>
   );

@@ -9,7 +9,7 @@
       //padding: 15px;
       background-color: rgba(var(--bgBtnColor), 0.4) !important;
       backdrop-filter: blur(20px) !important;
-      color: var(--color1)!important;
+      color: var(--color1) !important;
       border: 1px solid var(--color39) !important;
       &:hover {
         background-color: var(--color39) !important;
@@ -21,11 +21,9 @@
         fill: var(--color13) !important;
       }
     }
-
   }
   .menu {
     @apply w-full h-full relative flex;
-
   }
 }
 

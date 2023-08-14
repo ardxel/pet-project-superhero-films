@@ -4,31 +4,32 @@ import HomePage from '@pages/home/Home';
 const NewsPage = lazy(() => import('@pages/news/News'));
 const MoviePage = lazy(() => import('@pages/movie-page/MoviePage'));
 const ProfilePage = lazy(() => import('@pages/profile/Profile'));
-const AuthorizationPage = lazy(() => import('@pages/authorization/Authorization'));
+const AuthorizationPage = lazy(
+  () => import('@pages/authorization/Authorization')
+);
 
 const appRoutes = [
   {
     path: undefined,
     Element: HomePage,
-    index: true
+    index: true,
   },
   {
     path: '/news',
-    Element: NewsPage
+    Element: NewsPage,
   },
   {
     path: '/movie/:id',
-    Element: MoviePage
+    Element: MoviePage,
   },
   {
     path: '/authorization',
-    Element: AuthorizationPage
+    Element: AuthorizationPage,
   },
   {
     path: '/profile/:username',
-    Element: ProfilePage
-  }
+    Element: ProfilePage,
+  },
 ];
 
 export default appRoutes;
-

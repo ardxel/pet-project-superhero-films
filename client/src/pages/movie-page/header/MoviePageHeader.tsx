@@ -4,7 +4,7 @@ import IMovie from '@models/Movie';
 import Ratings from './ratings/Ratings';
 import Base from './base/Base';
 
-type HeaderMoviePageProps = IMovie
+type HeaderMoviePageProps = IMovie;
 
 const MoviePageHeader: React.FC<HeaderMoviePageProps> = ({ ...props }) => {
   const {

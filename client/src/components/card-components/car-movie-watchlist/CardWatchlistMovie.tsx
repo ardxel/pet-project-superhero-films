@@ -50,7 +50,9 @@ const CardWatchlistMovie: React.FC<CardMovieFavoriteProps> = ({ ...props }) => {
           <p className={styles.details}>
             <span>{props.year}</span>
             <span>{toHoursAndMinutes(props.filmLength)}</span>
-            <span>{formatAgeLimits(props.ratingAgeLimits || props.ratingMpaa)}</span>
+            <span>
+              {formatAgeLimits(props.ratingAgeLimits || props.ratingMpaa)}
+            </span>
           </p>
           <div className={styles.ratings}>
             <div className={styles.kp}>{props.ratingKinopoisk}</div>

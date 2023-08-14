@@ -46,15 +46,15 @@ const styles = {
     },
     '&.MuiInputBase-root fieldset': {
       borderColor: 'var(--color13)',
-      color: 'var(--color13)'
+      color: 'var(--color13)',
     },
     '&.MuiInputBase-root.Mui-focused fieldset': {
       borderColor: 'var(--color93)',
-      color: 'var(--color13)'
+      color: 'var(--color13)',
     },
     '&.MuiInputBase-root:hover fieldset': {
       borderColor: 'var(--color93)',
-      color: 'var(--color13)'
+      color: 'var(--color13)',
     },
   },
   menu: {

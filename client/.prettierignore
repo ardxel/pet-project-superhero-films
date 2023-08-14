@@ -1,0 +1,14 @@
+# Ignore artifacts:
+node_modules
+package-lock.json
+build
+.git
+.gitignore
+.idea
+.editorconfig
+.eslintignore
+.eslintrc.cjs
+.prettierignore
+babel.index.js
+README.md
+*.map

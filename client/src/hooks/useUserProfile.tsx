@@ -11,7 +11,8 @@ type UserCollectionKeysStateType = keyof UserCollection | null;
 
 export default function useUserProfile() {
   // when changing collections, the state is set which collection was changed for the correct isLoading
-  const [collectionItemLoading, setCollectionItemLoading] = useState<UserCollectionKeysStateType>(null);
+  const [collectionItemLoading, setCollectionItemLoading] =
+    useState<UserCollectionKeysStateType>(null);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const userState = useAppSelector((state) => state.user);
@@ -52,10 +53,12 @@ export default function useUserProfile() {
             console.log(e);
           }
         })
-        .finally(() => sleep(500).then(() => {
-          setIsLoading(false);
-          setCollectionItemLoading(null);
-        }));
+        .finally(() =>
+          sleep(500).then(() => {
+            setIsLoading(false);
+            setCollectionItemLoading(null);
+          })
+        );
     },
     [userState]
   );
@@ -65,6 +68,6 @@ export default function useUserProfile() {
     isAuthorized,
     handleChangeUserCollection,
     isLoading,
-    collectionItemLoading
+    collectionItemLoading,
   };
 }

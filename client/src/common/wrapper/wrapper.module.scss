@@ -1,8 +1,7 @@
 .main {
   @apply w-full h-full mt-[120px] xl:mt-[140px] relative z-[21];
   .container {
-
-    @apply mx-auto max-w-[1280px] bg-color31 ;
+    @apply mx-auto max-w-[1280px] bg-color31;
   }
 }
 
@@ -20,7 +19,8 @@
 
     .gradient {
       @apply w-full h-full;
-      background: linear-gradient(90deg,
+      background: linear-gradient(
+        90deg,
         rgba(var(--bgColor), 1) 0%,
         rgba(var(--bgColor), 0.9) 10%,
         rgba(var(--bgColor), 0.8) 20%,
@@ -31,7 +31,8 @@
         rgba(var(--bgColor), 0.7) 70%,
         rgba(var(--bgColor), 0.8) 80%,
         rgba(var(--bgColor), 0.9) 90%,
-        rgba(var(--bgColor), 1) 100%);
+        rgba(var(--bgColor), 1) 100%
+      );
     }
   }
 }

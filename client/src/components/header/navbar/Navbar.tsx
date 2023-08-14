@@ -17,12 +17,13 @@ const Navbar: React.FC<NavbarProps> = ({ username, isOpen, setIsOpen }) => {
 
   const navbarLinks = useMemo(() => {
     if (username) {
-      return navLinks.slice(0, navLinks.length-1)
-        .concat([{
+      return navLinks.slice(0, navLinks.length - 1).concat([
+        {
           name: 'Profile',
           path: `/profile/${username}`,
-          id: navLinks.length - 1
-        }]);
+          id: navLinks.length - 1,
+        },
+      ]);
     } else {
       return navLinks;
     }

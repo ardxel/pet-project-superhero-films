@@ -20,10 +20,12 @@ const initialValues: LoginRequest = {
 
 const templateValues: LoginRequest = {
   login: 'john123',
-  password: 'Qwerty12345'
+  password: 'Qwerty12345',
 };
 
-const LoginForm: React.FC<{testTemplate: boolean}> = ({testTemplate = false}) => {
+const LoginForm: React.FC<{ testTemplate: boolean }> = ({
+  testTemplate = false,
+}) => {
   const [loginUser, result] = useLoginUserMutation();
   const [passwordShown, setPasswordShown] = useState(false);
   const { login: inputLogin, password: inputPassword } = fieldKit;
@@ -52,7 +54,6 @@ const LoginForm: React.FC<{testTemplate: boolean}> = ({testTemplate = false}) =>
         initialValues={testTemplate ? templateValues : initialValues}
         onSubmit={loginUser}
         validate={(values) => loginValidation(values)}
-
       >
         {(props: FormikProps<LoginRequest>) => (
           <Form className={superstyles.form} onSubmit={props.handleSubmit}>
@@ -75,7 +76,11 @@ const LoginForm: React.FC<{testTemplate: boolean}> = ({testTemplate = false}) =>
                 )
               }
             />
-            <SubmitButton disabled={testTemplate ? !testTemplate : !(props.isValid && props.dirty)} />
+            <SubmitButton
+              disabled={
+                testTemplate ? !testTemplate : !(props.isValid && props.dirty)
+              }
+            />
           </Form>
         )}
       </Formik>

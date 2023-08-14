@@ -21,5 +21,5 @@ export {
   getTokenFromLocalStorage,
   toHoursAndMinutes,
   getListOfMoviesIdFromUserState,
-  classes
+  classes,
 };

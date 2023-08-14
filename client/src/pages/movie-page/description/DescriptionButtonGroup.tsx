@@ -20,7 +20,6 @@ const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
     useUserProfile();
   const { isFavorite, isInWatchlist } = useMovieReview(kinopoiskId);
 
-
   if (!isAuthorized) {
     return null;
   } else
@@ -29,7 +28,11 @@ const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
         <ButtonGroup orientation="vertical" variant="text">
           <Button
             className={superstyles.editButton}
-            onClick={handleChangeUserCollection.bind(null, kinopoiskId, 'favorites')}
+            onClick={handleChangeUserCollection.bind(
+              null,
+              kinopoiskId,
+              'favorites'
+            )}
           >
             {collectionItemLoading !== 'favorites' ? (
               isFavorite && (
@@ -49,7 +52,11 @@ const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
           </Button>
           <Button
             className={superstyles.editButton}
-            onClick={handleChangeUserCollection.bind(null, kinopoiskId, 'watchlist')}
+            onClick={handleChangeUserCollection.bind(
+              null,
+              kinopoiskId,
+              'watchlist'
+            )}
           >
             {collectionItemLoading !== 'watchlist' ? (
               isInWatchlist && (

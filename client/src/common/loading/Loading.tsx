@@ -12,7 +12,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
     <div
       className={classes(styles.loading, props.className)}
       style={props.style}
-      id='loading-spinner'
+      id="loading-spinner"
       data-testid="loading"
     >
       <ReactLoading type="spin" className={styles.container} />

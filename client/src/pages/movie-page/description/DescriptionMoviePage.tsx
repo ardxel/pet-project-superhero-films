@@ -3,7 +3,7 @@ import styles from './description.module.scss';
 import IMovie from '@models/Movie';
 import DescriptionButtonGroup from './DescriptionButtonGroup';
 
-type DescriptionProps = IMovie
+type DescriptionProps = IMovie;
 
 const DescriptionMoviePage: React.FC<DescriptionProps> = ({ ...props }) => {
   const {

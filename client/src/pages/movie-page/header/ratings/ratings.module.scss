@@ -4,7 +4,7 @@
     @apply absolute top-0 left-0 flex ag:justify-between  ag:right-0 ag:left-auto min-w-[300px] ag:min-w-[300px];
     .bar {
       @apply flex relative ag:w-1/3 ag:flex-col ag:justify-center h-full mag:p-0 border-color39 border-0 #{!important};
-      padding: 4px 10px!important;
+      padding: 4px 10px !important;
       background-color: rgba(var(--bgBtnColor), 0.4);
       backdrop-filter: blur(20px);
       color: white;
@@ -32,7 +32,7 @@
       }
 
       span {
-        @apply ag:text-center font-bold leading-4		;
+        @apply ag:text-center font-bold leading-4;
       }
 
       .origin {

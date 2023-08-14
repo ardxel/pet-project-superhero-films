@@ -14,11 +14,12 @@ const App = () => (
     <ScrollToTop />
     <Provider store={store}>
       <Header />
-      <Suspense fallback={<AppFallback/>}>
+      <Suspense fallback={<AppFallback />}>
         <Routes>
           {appRoutes.map(({ path, Element, index }, i) => {
-            return <Route key={i} index={index} path={path}
-              element={<Element />} />;
+            return (
+              <Route key={i} index={index} path={path} element={<Element />} />
+            );
           })}
         </Routes>
       </Suspense>

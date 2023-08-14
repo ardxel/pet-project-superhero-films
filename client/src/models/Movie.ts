@@ -30,22 +30,22 @@ interface ImgUrls {
 }
 
 interface Ratings {
-  ratingGoodReview: number;
+  ratingGoodReview?: number;
   ratingKinopoisk: number;
   ratingImdb: number;
   ratingFilmCritics: number;
-  ratingAwait: number;
+  ratingAwait?: number;
 }
 
 interface TextDesc {
-  slogan: string | null;
+  slogan?: string;
   description: string;
-  shortDescription?: string | null;
+  shortDescription?: string;
 }
 
 interface RatingLimits extends Ratings {
   ratingMpaa: string;
-  ratingAgeLimits: string | null;
+  ratingAgeLimits?: string;
 }
 
 type Country = { country: string };
@@ -58,11 +58,12 @@ export default interface IMovie
     RatingLimits,
     TextDesc,
     FilmCrew {
-  id: number;
-  comic: string;
+  _dbId: number;
+  comic: 'dc' | 'marvel' | 'x';
   phase?: number;
+  keywords: [string, string];
   videoUrls: string[];
-  kinopoiskId: number;
+  _movieId: number;
   imdbId: string;
   countries: Country[];
   genres: Genre[];
@@ -73,6 +74,7 @@ export default interface IMovie
   serial: boolean;
   shortFilm: boolean;
   completed: boolean;
-  hasImax: boolean;
-  has3D: boolean;
+  hasImax?: boolean;
+  has3D?: boolean;
+  reviewsCount?: number;
 }

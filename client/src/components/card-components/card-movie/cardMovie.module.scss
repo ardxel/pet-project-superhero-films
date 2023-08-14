@@ -14,7 +14,6 @@
   }
 
   &:hover {
-
     .container {
       .favoriteIcon {
         @apply inline-flex;
@@ -56,7 +55,8 @@
       }
     }
 
-    .watchlistIcon, .favoriteIcon {
+    .watchlistIcon,
+    .favoriteIcon {
       @include animationCustom(flash, $verySlow, ease-out);
       @apply absolute inline-flex z-[10] cursor-pointer p-[4px];
       background-color: rgba(var(--bgColor), 0.9) !important;
@@ -103,14 +103,12 @@
 
   .favoriteIcon {
     @apply right-[4px] top-[4px];
-
   }
 
   .loading {
     @apply w-[25px] h-[25px] xl:w-[35px] xl:h-[35px];
   }
 }
-
 
 @media screen and (min-width: 828px) {
   .movie:hover {

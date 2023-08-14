@@ -1,10 +1,13 @@
 import BASE_URL from '@constants/baseUrl';
-import {
-  FranchiseList,
-  FranchiseListResponse,
-} from '@constants/franchisesList';
 import IMovie from '@models/Movie';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+interface BaseResponse<T> {
+  success: boolean;
+  data: T;
+  error?: string;
+  message?: string;
+}
 
 export interface MovieWithAlternativeList {
   movie: IMovie;
@@ -26,19 +29,21 @@ export const moviesApi = createApi({
     >({
       query: ({ id, withComic }: { id: string; withComic: boolean }) =>
         `/movies/${id}?withComic=${withComic}`,
+      transformResponse(result: BaseResponse<{ movies: IMovie[] }>) {
+        return result.data.movies;
+      },
     }),
     getMoviesByIds: builder.query<IMovie[], number[]>({
       query: (ids: number[]) => `/movies/?ids=${ids.join(',')}`,
+      transformResponse(result: BaseResponse<{ movies: IMovie[] }>) {
+        return result.data.movies;
+      },
     }),
     searchMovie: builder.query<IMovie[], string>({
       query: (searchTerm) => `/movies/?search=${searchTerm}`,
-    }),
-    getMoviesByFranchiseList: builder.query<
-      FranchiseListResponse[],
-      FranchiseList[]
-    >({
-      query: (franchiseList) =>
-        `/movies/?ids=${franchiseList.map((val) => val.id).join(',')}`,
+      transformResponse(result: BaseResponse<{ movies: IMovie[] }>) {
+        return result.data.movies;
+      },
     }),
   }),
 });
@@ -50,7 +55,6 @@ export const moviesApiReducer = moviesApi.reducer;
 export const moviesApiMiddleware = moviesApi.middleware;
 
 export const {
-  useGetMoviesByFranchiseListQuery,
   useGetMovieQuery,
   useGetMoviesByIdsQuery,
   useSearchMovieQuery,

@@ -6,39 +6,40 @@ import superstyles from '@styles/superstyles.module.scss';
 import useUserProfile from '@hooks/useUserProfile';
 
 interface ModalChangeRatingProps {
-  open: boolean
-  close: () => void
-  id: number
+  open: boolean;
+  close: () => void;
+  id: number;
 }
 
-const ModalChangeRating: React.FC<ModalChangeRatingProps> = ({id, open, close}) => {
+const ModalChangeRating: React.FC<ModalChangeRatingProps> = ({
+  id,
+  open,
+  close,
+}) => {
   const [displayModalActiveChangeRating, setDisplayModalActiveChangeRating] =
     useState<number | null>(null);
   const [myRating, setMyRating] = useState<number>(0);
   const { handleChangeUserCollection, userState } = useUserProfile();
 
   useEffect(() => {
-
     const ratingItem = userState.ratings.find((item) => item.id === id);
 
     if (ratingItem) {
       setMyRating(ratingItem.value);
     }
-
   }, [userState.ratings, id]);
 
-
-  const handleChangeMyRating = useCallback((
-    e: React.SyntheticEvent<Element, Event>,
-    value: number | null
-  ) => {
-    if (value) {
-      const item = { id: id, value: value };
-      handleChangeUserCollection(item, 'ratings');
-      close();
-      setMyRating(value);
-    }
-  }, [userState.ratings]);
+  const handleChangeMyRating = useCallback(
+    (e: React.SyntheticEvent<Element, Event>, value: number | null) => {
+      if (value) {
+        const item = { id: id, value: value };
+        handleChangeUserCollection(item, 'ratings');
+        close();
+        setMyRating(value);
+      }
+    },
+    [userState.ratings]
+  );
 
   const handleDisplayActiveRating = (
     e: React.SyntheticEvent<Element, Event>,
@@ -60,13 +61,9 @@ const ModalChangeRating: React.FC<ModalChangeRatingProps> = ({id, open, close}) 
   };
 
   return (
-    <Modal
-      open={open}
-      onClose={close}
-      disableScrollLock={true}
-    >
+    <Modal open={open} onClose={close} disableScrollLock={true}>
       <Box className={styles.box}>
-        <Typography component='h1'>Choose your rating</Typography>
+        <Typography component="h1">Choose your rating</Typography>
         <Rating
           defaultValue={myRating}
           className={styles.changeRating}
@@ -80,19 +77,21 @@ const ModalChangeRating: React.FC<ModalChangeRatingProps> = ({id, open, close}) 
           style={{
             backgroundColor: !displayModalActiveChangeRating
               ? getColor(myRating)
-              : getColor(displayModalActiveChangeRating)
+              : getColor(displayModalActiveChangeRating),
           }}
         >
           {!displayModalActiveChangeRating
             ? getRating(myRating)
             : getRating(displayModalActiveChangeRating)}
         </span>
-        {myRating &&
+        {myRating && (
           <Button
             className={[superstyles.editButton, styles.removeRating].join(' ')}
-            onClick={handleDeleteMyRating}>
+            onClick={handleDeleteMyRating}
+          >
             Remove rating
-          </Button>}
+          </Button>
+        )}
       </Box>
     </Modal>
   );

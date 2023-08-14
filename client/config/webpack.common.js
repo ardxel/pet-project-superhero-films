@@ -117,9 +117,9 @@ module.exports = function (env, argv) {
         minify: isDevMode
           ? false
           : {
-            collapseWhitespace: true,
-            removeComments: true,
-          },
+              collapseWhitespace: true,
+              removeComments: true,
+            },
       }),
       new MiniCssExtractPlugin({
         ignoreOrder: true,

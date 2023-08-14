@@ -34,7 +34,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ ...props }) => {
 
         {profileState.showButtonGroup && (
           <div className={styles.edit}>
-            <ButtonGroup orientation='vertical' className={styles.buttons}>
+            <ButtonGroup orientation="vertical" className={styles.buttons}>
               {profileButtonGroup.map((item) => (
                 <Button
                   key={item.dispatchType}

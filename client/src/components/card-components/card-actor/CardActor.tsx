@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './cardActor.module.scss';
 import { IActor } from '@models/Movie';
 
-type CardActorProps = IActor
+type CardActorProps = IActor;
 
 const CardActor: React.FC<CardActorProps> = ({ name, image, asCharacter }) => {
   return (

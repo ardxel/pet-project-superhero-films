@@ -4,7 +4,7 @@ import React, {
   ReactElement,
   ReactNode,
   useEffect,
-  useState
+  useState,
 } from 'react';
 import styles from './autoslider.module.scss';
 import { Button } from '@mui/material';
@@ -14,17 +14,17 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const sliderStyles = {
   activeSlide: {
     opacity: '1',
-    transform: 'translateX(0)'
+    transform: 'translateX(0)',
   },
   lastSlide: {
-    transform: 'translateX(-100%)'
+    transform: 'translateX(-100%)',
   },
   nextSlide: {
-    transform: 'translateX(100%)'
-  }
+    transform: 'translateX(100%)',
+  },
 };
 
-type slideWithOpacity = { opacity?: string, transform: string }
+type slideWithOpacity = { opacity?: string; transform: string };
 
 interface AutoSliderProps {
   delay?: number;
@@ -35,7 +35,7 @@ interface AutoSliderProps {
 const AutoSlider: React.FC<AutoSliderProps> = ({
   children,
   delay = 5000,
-  showButtons = true
+  showButtons = true,
 }) => {
   const [index, setIndex] = useState<number>(0);
   const [length, setLength] = useState((children as ReactNode[]).length);
@@ -72,13 +72,18 @@ const AutoSlider: React.FC<AutoSliderProps> = ({
 
   return (
     <div className={styles.section}>
-      {showButtons && <div className={styles.buttons}>
-        <Button onClick={prevSlide}><ArrowBackIosNewIcon /></Button>
-        <Button onClick={nextSlide}><ArrowForwardIosIcon /></Button>
-      </div>}
+      {showButtons && (
+        <div className={styles.buttons}>
+          <Button onClick={prevSlide}>
+            <ArrowBackIosNewIcon />
+          </Button>
+          <Button onClick={nextSlide}>
+            <ArrowForwardIosIcon />
+          </Button>
+        </div>
+      )}
       <div className={styles.menu}>
         {Children.map(children, (child, childIndex) => {
-
           let position: slideWithOpacity = sliderStyles.nextSlide;
           if (childIndex === index) {
             position = sliderStyles.activeSlide;
@@ -95,8 +100,8 @@ const AutoSlider: React.FC<AutoSliderProps> = ({
               ...position,
               opacity: position.opacity ? position.opacity : 0,
               transition: `all 0.3s linear`,
-              position: 'absolute'
-            }
+              position: 'absolute',
+            },
           });
         })}
       </div>

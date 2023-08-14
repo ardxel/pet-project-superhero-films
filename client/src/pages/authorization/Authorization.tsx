@@ -10,7 +10,7 @@ import { sleep } from '@tools/sleep';
 
 const form = {
   REGISTRATION: 'Registration',
-  LOGIN: 'Login'
+  LOGIN: 'Login',
 };
 
 const AuthorizationPage: React.FC<{}> = () => {
@@ -38,8 +38,11 @@ const AuthorizationPage: React.FC<{}> = () => {
               {authAutoSliderItems.map((item, index) => {
                 const { title, image } = item;
                 return (
-                  <div className={styles.item} key={index}
-                    data-slider='element'>
+                  <div
+                    className={styles.item}
+                    key={index}
+                    data-slider="element"
+                  >
                     <div className={styles.title}>
                       <h6>{title}</h6>
                     </div>
@@ -56,7 +59,7 @@ const AuthorizationPage: React.FC<{}> = () => {
               Test account
             </Button>
             <Button
-              variant='text'
+              variant="text"
               className={styles.button}
               endIcon={<NavigateNextIcon />}
               onClick={handleDisplayForm}

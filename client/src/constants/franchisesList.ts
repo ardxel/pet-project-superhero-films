@@ -2,9 +2,9 @@ import IMovie from '@models/Movie';
 
 export interface FranchiseList {
   id: number;
-  keywords?: string[];
+  keywords: string[];
 }
-export interface FranchiseListResponse extends FranchiseList {
+export interface FranchiseListResponse {
   title: string;
   movies: IMovie[];
 }

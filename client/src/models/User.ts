@@ -1,11 +1,14 @@
-export interface IUser {
+export interface UserCollection {
+  favorites: number[];
+  ratings: { id: number; value: number }[];
+  watchlist: number[];
+}
+
+export interface IUser extends UserCollection {
   email: string;
   username: string;
   password: string;
   role: 'ADMIN' | 'USER';
-  favorites: number[];
-  ratings: { id: number; value: number }[];
-  watchlist: number[];
 
   avatar?: string;
   name?: string;

@@ -8,7 +8,7 @@ const useMovieReview = (id: number) => {
 
   const isFavorite = useMemo(() => {
     return favorites.includes(id);
-  },[favorites]);
+  }, [favorites]);
 
   const isInWatchlist = useMemo(() => {
     return watchlist.includes(id);
@@ -19,7 +19,6 @@ const useMovieReview = (id: number) => {
   }, [ratings]);
 
   return { isFavorite, isInRatings, isInWatchlist };
-
 };
 
 export default useMovieReview;

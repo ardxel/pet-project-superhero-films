@@ -11,20 +11,20 @@
     min-width: 55px;
   }
   .removeRating {
-    padding-left: 0!important;
-    padding-right: 0!important;
-    justify-content: center!important;
-    align-items: center!important;
-    max-width: 100px!important;
-    min-width: 175px!important;
-    margin-top: calc(5px + 9px)!important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    max-width: 100px !important;
+    min-width: 175px !important;
+    margin-top: calc(5px + 9px) !important;
   }
   .changeRating {
     padding: 4px;
     border-radius: 10px;
 
     svg {
-      fill: var(--color39)!important;
+      fill: var(--color39) !important;
     }
   }
 }

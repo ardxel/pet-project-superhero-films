@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router';
+import React from 'react';
 
 const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  // const { pathname } = useLocation();
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [pathname]);
   return null;
 };
 

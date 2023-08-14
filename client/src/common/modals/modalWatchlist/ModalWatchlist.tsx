@@ -1,8 +1,7 @@
 import { Box, Modal } from '@mui/material';
 import styles from './modalWatchlist.module.scss';
 import Loading from '@common/loading/Loading';
-import CardWatchlistMovie
-  from '@components/card-components/car-movie-watchlist/CardWatchlistMovie';
+import CardWatchlistMovie from '@components/card-components/car-movie-watchlist/CardWatchlistMovie';
 import React, { FC, useEffect } from 'react';
 import { useLazyGetMoviesByIdsQuery } from '@reduxproj//api/moviesApi';
 import useUserProfile from '@hooks/useUserProfile';

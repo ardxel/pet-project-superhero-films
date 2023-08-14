@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
-import styles from './header.module.scss';
 import muiStyles from '@common/formFields/styles';
-import Navbar from './navbar/Navbar';
+import ModalWatchlist from '@common/modals/modalWatchlist/ModalWatchlist';
+import { useAppDispatch } from '@hooks/useAppDispatch';
 import useTheme from '@hooks/useTheme';
+import useUserProfile from '@hooks/useUserProfile';
+import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import { Menu, MenuItem, Paper } from '@mui/material';
+import { logout } from '@reduxproj//reducers/userReducer';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Search from '../search/Search';
 import {
   LogoButton,
   MenuButton,
   SearchButton,
-  UserButton,
   ThemeButton,
+  UserButton,
 } from './buttons/index';
-import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
-import { Menu, MenuItem, Paper } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useAppDispatch } from '@hooks/useAppDispatch';
-import { logout } from '@reduxproj//reducers/userReducer';
-import { sleep } from '@tools/sleep';
-import { useNavigate } from 'react-router';
-import useUserProfile from '@hooks/useUserProfile';
-import ModalWatchlist from '@common/modals/modalWatchlist/ModalWatchlist';
+import styles from './header.module.scss';
+import Navbar from './navbar/Navbar';
 
 const Header = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
@@ -28,7 +26,7 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [anchorElem, setAnchorElem] = useState<HTMLButtonElement | null>(null);
   const { userState, isAuthorized } = useUserProfile();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { changeTheme } = useTheme();
   const dispatch = useAppDispatch();
 
@@ -53,7 +51,7 @@ const Header = () => {
 
   const handleLogout = (): void => {
     dispatch(logout());
-    sleep().then(() => navigate('/'));
+    // sleep().then(() => navigate('/'));
   };
 
   const handleCloseModal = () => {
