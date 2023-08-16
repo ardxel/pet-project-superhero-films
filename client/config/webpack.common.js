@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -110,6 +111,9 @@ module.exports = function (env, argv) {
       ],
     },
     plugins: [
+      new webpack.ProvidePlugin({
+        React: 'react',
+      }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(path_src, 'index.html'),
@@ -123,9 +127,7 @@ module.exports = function (env, argv) {
       }),
       new MiniCssExtractPlugin({
         ignoreOrder: true,
-        filename: isDevMode
-          ? 'css/[name].css'
-          : 'css/[name].[contenthash:8].css',
+        filename: isDevMode ? 'css/[name].css' : 'css/[name].[contenthash:8].css',
       }),
       new ESLintPlugin(),
       // new BundleAnalyzerPlugin({

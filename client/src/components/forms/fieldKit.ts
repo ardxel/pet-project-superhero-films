@@ -1,10 +1,10 @@
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import FeedIcon from '@mui/icons-material/Feed';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import DescriptionIcon from '@mui/icons-material/Description';
+import FeedIcon from '@mui/icons-material/Feed';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 const fieldKit = {
   email: {
     name: 'email',
@@ -32,7 +32,7 @@ const fieldKit = {
     Adornment: VisibilityOutlinedIcon,
     AddAdornment: VisibilityOffIcon,
   },
-  login: {
+  emailOrUsername: {
     name: 'login',
     type: 'text',
     label: 'email or username',

@@ -1,10 +1,4 @@
-import {
-  ImdbSVG,
-  DcSVG,
-  MarvelSVG,
-  KinopoiskSVG,
-  GithubSVG,
-} from '@images/index';
+import { ImdbSVG, DcSVG, MarvelSVG, KinopoiskSVG, GithubSVG } from '@images/index';
 
 const footerItems = [
   { id: 1, link: 'https://www.marvel.com/', Image: MarvelSVG, alt: 'marvel' },

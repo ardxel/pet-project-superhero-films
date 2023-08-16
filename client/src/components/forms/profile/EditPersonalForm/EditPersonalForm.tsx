@@ -1,22 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import FormTitle from '@components/forms/form-title/FormTitle';
+import { DatePickerField, RadioGroupField, SelectField, SubmitButton } from '@common/formFields';
 import styles from '@common/formFields/styles';
-import superstyles from '@styles/superstyles.module.scss';
-import { Form, Formik, FormikProps } from 'formik';
-import { useAppSelector } from '@hooks/useAppSelector';
-import { FormControlLabel, MenuItem, Radio } from '@mui/material';
-import {
-  RadioGroupField,
-  DatePickerField,
-  SelectField,
-  SubmitButton,
-} from '@common/formFields';
-import axios from 'axios';
 import BASE_URL from '@constants/baseUrl';
-import capitalizeFirstLetter from '@tools/capitalizeFirstLetter';
-import { useEditProfileMutation } from '@reduxproj//api/userApi';
-import { DefaultUserResponse } from '@models/apiModels/DefaultUserResponse';
+import { useAppDispatch } from '@hooks/useAppDispatch';
+import { FormControlLabel, MenuItem, Radio } from '@mui/material';
 import { ProfileFormType } from '@pages/profile/Profile';
+import { changeUser } from '@reduxproj/api/user.api';
+import superstyles from '@styles/superstyles.module.scss';
+import capitalizeFirstLetter from '@tools/capitalizeFirstLetter';
+import axios from 'axios';
+import { Form, Formik, FormikProps } from 'formik';
+import { useCallback, useEffect, useState } from 'react';
 import genderButtonList from './genderButtonList';
 
 type PersonalFormFieldsType = {
@@ -25,17 +18,16 @@ type PersonalFormFieldsType = {
   country: string;
 };
 const EditPersonalForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
-  const token = useAppSelector((state) => state.user.token);
   const [countries, setCountries] = useState<{ name: string }[]>(null!);
-  const [editProfile, result] = useEditProfileMutation();
-
+  const dispatch = useAppDispatch();
+  // const [editProfile, result] = useEditProfileMutation();
   const _handleSubmit = (values: PersonalFormFieldsType): void => {
-    const request = {
+    const fields = {
       ...values,
       birthday: new Date(values.birthday).toLocaleDateString(),
-      token: token,
     };
-    editProfile(request);
+    dispatch(changeUser(fields));
+    // editProfile(request);
   };
 
   const fetchCountries = useCallback(async () => {
@@ -44,11 +36,11 @@ const EditPersonalForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
     setCountries(data);
   }, []);
 
-  useEffect(() => {
-    if (result.data && result.isSuccess) {
-      setIsChanged();
-    }
-  }, [result]);
+  // useEffect(() => {
+  //   if (result.data && result.isSuccess) {
+  //     setIsChanged();
+  //   }
+  // }, [result]);
 
   useEffect(() => {
     fetchCountries();
@@ -56,18 +48,21 @@ const EditPersonalForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
 
   return (
     <div style={{ width: '90%' }}>
-      <FormTitle
+      {/* <FormTitle
         title="Change Personal Info"
         showAlert={!!result.data}
         {...(result.data as DefaultUserResponse)}
-      />
+      /> */}
       <Formik
         initialValues={{ gender: '', birthday: '', country: '' }}
-        onSubmit={_handleSubmit}
-      >
+        onSubmit={_handleSubmit}>
         {(props: FormikProps<PersonalFormFieldsType>) => (
-          <Form className={superstyles.form} onSubmit={props.handleSubmit}>
-            <RadioGroupField name="gender" style={{ margin: '0 auto' }}>
+          <Form
+            className={superstyles.form}
+            onSubmit={props.handleSubmit}>
+            <RadioGroupField
+              name="gender"
+              style={{ margin: '0 auto' }}>
               {genderButtonList.map(({ id, value, label }) => (
                 <FormControlLabel
                   key={id}
@@ -79,14 +74,21 @@ const EditPersonalForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
               ))}
             </RadioGroupField>
 
-            <DatePickerField name="birthday" label="Your Birthday" />
+            <DatePickerField
+              name="birthday"
+              label="Your Birthday"
+            />
 
-            <SelectField name="country" label="Country">
+            <SelectField
+              name="country"
+              label="Country">
               {countries &&
                 countries.map((country) => {
                   const name = capitalizeFirstLetter(country.name);
                   return (
-                    <MenuItem key={name} value={name}>
+                    <MenuItem
+                      key={name}
+                      value={name}>
                       {name}
                     </MenuItem>
                   );

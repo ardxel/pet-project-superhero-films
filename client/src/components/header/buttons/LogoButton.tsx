@@ -10,8 +10,7 @@ const LogoButton: HeaderButtonType = ({ className }) => {
       className={className}
       disableTouchRipple={true}
       disableRipple={true}
-      disableFocusRipple={true}
-    >
+      disableFocusRipple={true}>
       <Link to="/">
         <LogoSVG />
       </Link>

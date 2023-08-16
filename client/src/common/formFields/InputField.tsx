@@ -5,13 +5,7 @@ import { InputType } from '@models/formModels';
 import styles from './styles';
 
 type InputFieldProps = TextFieldProps & InputType & {};
-const InputField: React.FC<InputFieldProps> = ({
-  name,
-  type,
-  label,
-  adornment,
-  ...rest
-}) => {
+const InputField: React.FC<InputFieldProps> = ({ name, type, label, adornment, ...rest }) => {
   const [field, meta] = useField({ name: name });
   const { isError, helperText } = _textFieldPropsHelper();
 
@@ -35,9 +29,7 @@ const InputField: React.FC<InputFieldProps> = ({
       helperText={helperText}
       sx={styles.textField}
       InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">{adornment}</InputAdornment>
-        ),
+        endAdornment: <InputAdornment position="end">{adornment}</InputAdornment>,
       }}
     />
   );

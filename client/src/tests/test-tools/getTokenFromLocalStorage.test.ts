@@ -15,10 +15,7 @@ describe('getTokenFromLocalStorage module', () => {
   });
 
   test('get token with fake set token', () => {
-    localStorage.setItem(
-      'user',
-      JSON.stringify(MOCK_TOKEN.split('').reverse().join(''))
-    );
+    localStorage.setItem('user', JSON.stringify(MOCK_TOKEN.split('').reverse().join('')));
 
     expect(getTokenFromLocalStorage()).not.toBe(MOCK_TOKEN);
   });

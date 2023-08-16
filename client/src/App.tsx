@@ -18,7 +18,12 @@ const App = () => (
         <Routes>
           {appRoutes.map(({ path, Element, index }, i) => {
             return (
-              <Route key={i} index={index} path={path} element={<Element />} />
+              <Route
+                key={i}
+                index={index}
+                path={path}
+                element={<Element />}
+              />
             );
           })}
         </Routes>

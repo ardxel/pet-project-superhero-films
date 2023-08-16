@@ -1,8 +1,4 @@
-import {
-  EditPersonalForm,
-  EditPrivateForm,
-  EditProfileForm,
-} from '@components/forms/profile';
+import { EditPersonalForm, EditPrivateForm, EditProfileForm } from '@components/forms/profile';
 
 export const profileButtonGroup = [
   { id: 0, title: 'Edit profile', dispatchType: 'TOGGLE_PROFILE' },

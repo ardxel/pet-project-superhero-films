@@ -1,9 +1,10 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
-import styles from './search.module.scss';
-import { disableScroll, enableScroll } from '@common/tools/scroll-lock';
-import { useSearchMovieQuery } from '@reduxproj//api/moviesApi';
 import Loading from '@common/loading/Loading';
+import { disableScroll, enableScroll } from '@common/tools/scroll-lock';
+import IMovie from '@models/Movie';
+import { fetchMoviesBySearch } from '@reduxproj/api/movie.api';
+import { FC, useEffect, useRef, useState } from 'react';
 import SearchCardMovie from './search-card-movie/SearchCardMovie';
+import styles from './search.module.scss';
 
 interface SearchProps {
   isOpen: boolean;
@@ -12,7 +13,18 @@ interface SearchProps {
 
 const Search: FC<SearchProps> = ({ isOpen, setIsOpen }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { data = [], isLoading } = useSearchMovieQuery(searchTerm);
+  const [isLoading, setIsLoading] = useState(false);
+  const [movies, setMovies] = useState<IMovie[] | null>(null);
+  // const { data, isLoading, error } = useFetch(fetchMoviesBySearch, {
+  //   search: searchTerm,
+  // });
+
+  useEffect(() => {
+    fetchMoviesBySearch({ search: searchTerm })
+      .then((data) => setMovies(data?.movies as IMovie[]))
+      .catch((error) => console.log(error));
+  }, [searchTerm]);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +47,7 @@ const Search: FC<SearchProps> = ({ isOpen, setIsOpen }) => {
       <div
         className={styles.searchModal}
         data-destiny="search"
-        style={{ display: isOpen ? 'block' : 'none' }}
-      >
+        style={{ display: isOpen ? 'block' : 'none' }}>
         <section className={styles.field}>
           <input
             ref={inputRef}
@@ -53,10 +64,10 @@ const Search: FC<SearchProps> = ({ isOpen, setIsOpen }) => {
         <div className={styles.results}>
           <div className={styles.container}>
             {isLoading && <Loading />}
-            {data.map((movie) => {
+            {movies?.map((movie) => {
               return (
                 <SearchCardMovie
-                  key={movie.kinopoiskId}
+                  key={movie._movieId}
                   {...movie}
                   setIsOpen={setIsOpen}
                 />

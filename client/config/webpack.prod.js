@@ -44,10 +44,7 @@ module.exports = function (env, argv) {
           react: {
             test(module) {
               // `module.resource` contains the absolute path of the file on disk.
-              return (
-                module.resource &&
-                module.resource.includes('node_modules/react')
-              );
+              return module.resource && module.resource.includes('node_modules/react');
             },
             chunks: 'initial',
             filename: 'react.[contenthash].js',

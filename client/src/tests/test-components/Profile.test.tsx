@@ -10,16 +10,11 @@ import { renderWithProviders } from '../renderWithProviders';
 import ProfilePage from '@pages/profile/Profile';
 import ReactRouter from 'react-router';
 
-const MOCK_USER_STATE = User.getUserReduxState(
-  Data.parseData<UserServerState>('users')[0]
-);
+const MOCK_USER_STATE = User.getUserReduxState(Data.parseData<UserServerState>('users')[0]);
 
 const USER_TOKEN = MOCK_USER_STATE.token;
 
-const server = setupServer(
-  rest.get('/getProfile/:username', getProfile),
-  rest.get('/getMoviesByIds', getMoviesByIds)
-);
+const server = setupServer(rest.get('/getProfile/:username', getProfile), rest.get('/getMoviesByIds', getMoviesByIds));
 
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'bypass' });
@@ -97,8 +92,6 @@ describe('<Profile> page test', () => {
       });
     });
 
-    expect(
-      document.querySelector('div[data-testid="title-form-edit-profile"]')
-    ).not.toBeInTheDocument();
+    expect(document.querySelector('div[data-testid="title-form-edit-profile"]')).not.toBeInTheDocument();
   });
 });

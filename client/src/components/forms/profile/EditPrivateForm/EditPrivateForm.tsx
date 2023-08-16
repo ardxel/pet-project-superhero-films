@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react';
-import { useAppSelector } from '@hooks/useAppSelector';
-import superstyles from '@styles/superstyles.module.scss';
-import { useEditProfileMutation } from '@reduxproj//api/userApi';
-import FormTitle from '@components/forms/form-title/FormTitle';
-import { Form, Formik, FormikProps } from 'formik';
 import { InputField, SubmitButton } from '@common/formFields/';
 import fieldKit from '@components/forms/fieldKit';
-import usePassword from '@hooks/usePassword';
 import { changePasswordValidation } from '@components/forms/validationSchemas';
+import { useAppDispatch } from '@hooks/useAppDispatch';
+import usePassword from '@hooks/usePassword';
 import { EditProfileRequest } from '@models/apiModels/EditProfileModel';
 import { ProfileFormType } from '@pages/profile/Profile';
+import { changeUser } from '@reduxproj/api/user.api';
+import superstyles from '@styles/superstyles.module.scss';
+import { Form, Formik, FormikProps } from 'formik';
 
 type PrivateFormFieldsType = {
   password: string;
@@ -18,38 +16,39 @@ type PrivateFormFieldsType = {
 
 const EditPrivateForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
   const { passwordShown, adornmentProps } = usePassword();
-  const token = useAppSelector((state) => state.user.token);
-  const [changePassword, result] = useEditProfileMutation();
+  // const [changePassword, result] = useEditProfileMutation();
   const { password, confirm_password } = fieldKit;
+  const dispatch = useAppDispatch();
 
   const _handleSubmit = (values: PrivateFormFieldsType): void => {
-    const request: EditProfileRequest = {
+    const body: EditProfileRequest = {
       password: values.password,
-      token: token,
     };
-    changePassword(request);
+    // changePassword(request);
+    dispatch(changeUser(body));
   };
 
-  useEffect(() => {
-    if (result.data && result.isSuccess) {
-      setIsChanged();
-    }
-  }, [result]);
+  // useEffect(() => {
+  //   if (result.data && result.isSuccess) {
+  //     setIsChanged();
+  //   }
+  // }, [result]);
 
   return (
     <div style={{ width: '90%' }}>
-      <FormTitle
+      {/* <FormTitle
         title={'Change password'}
         showAlert={!!result.data}
         {...result.data}
-      />
+      /> */}
       <Formik
         initialValues={{ password: '', confirm_password: '' }}
         validate={changePasswordValidation}
-        onSubmit={_handleSubmit}
-      >
+        onSubmit={_handleSubmit}>
         {(props: FormikProps<PrivateFormFieldsType>) => (
-          <Form className={superstyles.form} onSubmit={props.handleSubmit}>
+          <Form
+            className={superstyles.form}
+            onSubmit={props.handleSubmit}>
             <InputField
               name={password.name}
               label="New password"

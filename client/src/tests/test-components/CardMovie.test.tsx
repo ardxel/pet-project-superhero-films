@@ -10,9 +10,7 @@ import User from '../../../config/tools/UserHelper';
 import { act, fireEvent } from '@testing-library/react';
 import { sleep } from '@tools/sleep';
 
-const MOCK_USER_STATE = User.getUserReduxState(
-  Data.parseData<UserServerState>('users')[0]
-);
+const MOCK_USER_STATE = User.getUserReduxState(Data.parseData<UserServerState>('users')[0]);
 
 const CARD_MOVIE_PROPS = Data.parseData('dc')[0] as IMovie;
 
@@ -52,13 +50,9 @@ describe('<CardMovie> test', () => {
     });
     const { year, ratingKinopoisk } = CARD_MOVIE_PROPS;
 
-    expect(
-      (container.querySelector('span.rating') as HTMLSpanElement).textContent
-    ).toBe(ratingKinopoisk.toString());
+    expect((container.querySelector('span.rating') as HTMLSpanElement).textContent).toBe(ratingKinopoisk.toString());
 
-    expect(
-      (container.querySelector('span.year') as HTMLSpanElement).textContent
-    ).toBe(year.toString());
+    expect((container.querySelector('span.year') as HTMLSpanElement).textContent).toBe(year.toString());
   });
 
   test('test CardMove mouse events', async () => {
@@ -67,9 +61,7 @@ describe('<CardMovie> test', () => {
     });
 
     act(() => {
-      fireEvent.mouseEnter(
-        document.querySelector('.container') as HTMLDivElement
-      );
+      fireEvent.mouseEnter(document.querySelector('.container') as HTMLDivElement);
     });
 
     await act(() => sleep(300));

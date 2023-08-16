@@ -5,7 +5,9 @@ import { IconButton } from '@mui/material';
 
 const MenuButton: HeaderButtonType = ({ className, onClick }) => {
   return (
-    <IconButton className={className} onClick={onClick}>
+    <IconButton
+      className={className}
+      onClick={onClick}>
       <MenuIcon />
     </IconButton>
   );

@@ -13,9 +13,11 @@ const Loading: React.FC<LoadingProps> = (props) => {
       className={classes(styles.loading, props.className)}
       style={props.style}
       id="loading-spinner"
-      data-testid="loading"
-    >
-      <ReactLoading type="spin" className={styles.container} />
+      data-testid="loading">
+      <ReactLoading
+        type="spin"
+        className={styles.container}
+      />
     </div>
   );
 };

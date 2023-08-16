@@ -10,13 +10,7 @@ interface BaseProps {
   ratingAgeLimits: string;
 }
 
-const Base: React.FC<BaseProps> = ({
-  nameOriginal,
-  nameRu,
-  year,
-  filmLength,
-  ratingAgeLimits,
-}) => {
+const Base: React.FC<BaseProps> = ({ nameOriginal, nameRu, year, filmLength, ratingAgeLimits }) => {
   return (
     <div className={styles.base}>
       <div className={styles.title}>

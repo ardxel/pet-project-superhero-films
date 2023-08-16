@@ -4,13 +4,9 @@ import User from '../../../config/tools/UserHelper';
 import Data from '../../../config/tools/DataHelper';
 import { UserServerState } from '@models/User';
 
-const MOCK_USER_STATE = User.getUserReduxState(
-  Data.parseData<UserServerState>('users')[0]
-);
+const MOCK_USER_STATE = User.getUserReduxState(Data.parseData<UserServerState>('users')[0]);
 
-const ALL_MOVIE_IDS = Data.parseAllMoviesData().map(
-  (movie) => movie.kinopoiskId
-);
+const ALL_MOVIE_IDS = Data.parseAllMoviesData().map((movie) => movie.kinopoiskId);
 
 describe('getListOfMoviesIdFromUserState', () => {
   const expectedLength = 7;
@@ -37,17 +33,13 @@ describe('getListOfMoviesIdFromUserState', () => {
   });
 
   test('test result', () => {
-    expect(getListOfMoviesIdFromUserState(MOCK_USER_STATE).length).toBe(
-      expectedLength
-    );
+    expect(getListOfMoviesIdFromUserState(MOCK_USER_STATE).length).toBe(expectedLength);
 
     const movieIds = getListOfMoviesIdFromUserState(MOCK_USER_STATE);
     const randomId = Math.floor(Math.random() * movieIds.length);
 
     expect(ALL_MOVIE_IDS.includes(movieIds[randomId])).toBeTruthy();
 
-    expect(
-      movieIds.map((id) => ALL_MOVIE_IDS.indexOf(id)).every((item) => item >= 0)
-    ).toBeTruthy();
+    expect(movieIds.map((id) => ALL_MOVIE_IDS.indexOf(id)).every((item) => item >= 0)).toBeTruthy();
   });
 });

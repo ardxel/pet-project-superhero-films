@@ -14,7 +14,7 @@ export const getMoviesByIds = (req, res) => {
   res.send(
     list.map((id) => {
       return movies.find((movie) => movie.kinopoiskId === +id);
-    })
+    }),
   );
 };
 

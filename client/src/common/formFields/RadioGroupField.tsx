@@ -1,22 +1,11 @@
-import React, { PropsWithChildren } from 'react';
-import {
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  RadioGroup,
-  RadioGroupProps,
-} from '@mui/material';
 import { InputType } from '@models/formModels';
+import { FormControl, FormHelperText, FormLabel, RadioGroup, RadioGroupProps } from '@mui/material';
 import { useField } from 'formik';
+import { PropsWithChildren } from 'react';
 
-type RadioGroupFieldProps = RadioGroupProps & InputType & {};
+type RadioGroupFieldProps = RadioGroupProps & InputType;
 
-const RadioGroupField: React.FC<PropsWithChildren<RadioGroupFieldProps>> = ({
-  name,
-  label,
-  children,
-  ...rest
-}) => {
+const RadioGroupField: React.FC<PropsWithChildren<RadioGroupFieldProps>> = ({ name, label, children, ...rest }) => {
   const [field, meta] = useField({ name: name });
 
   const isError = meta.touched && meta.error && true;
@@ -31,11 +20,14 @@ const RadioGroupField: React.FC<PropsWithChildren<RadioGroupFieldProps>> = ({
     <FormControl>
       <FormLabel
         id={label}
-        style={{ margin: '0 auto', color: 'var(--color13)' }}
-      >
+        style={{ margin: '0 auto', color: 'var(--color13)' }}>
         Gender
       </FormLabel>
-      <RadioGroup row aria-labelledby={label} {...field} {...rest}>
+      <RadioGroup
+        row
+        aria-labelledby={label}
+        {...field}
+        {...rest}>
         {children}
       </RadioGroup>
       {_renderHelperText()}

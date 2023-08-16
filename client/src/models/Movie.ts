@@ -52,12 +52,7 @@ type Country = { country: string };
 
 type Genre = { genre: string };
 
-export default interface IMovie
-  extends MovieNames,
-    ImgUrls,
-    RatingLimits,
-    TextDesc,
-    FilmCrew {
+export default interface IMovie extends MovieNames, ImgUrls, RatingLimits, TextDesc, FilmCrew {
   _dbId: number;
   comic: 'dc' | 'marvel' | 'x';
   phase?: number;

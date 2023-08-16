@@ -4,7 +4,9 @@ import { IconButton } from '@mui/material';
 
 const SearchButton: HeaderButtonType = ({ children, className, onClick }) => {
   return (
-    <IconButton className={className} onClick={onClick}>
+    <IconButton
+      className={className}
+      onClick={onClick}>
       {children}
     </IconButton>
   );

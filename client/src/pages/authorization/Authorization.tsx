@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import styles from './authorization.module.scss';
+import LoginForm from '@components/forms/login/LoginForm';
 import RegistrationForm from '@components/forms/registration/RegistrationForm';
 import AutoSlider from '@components/sliders/auto-slider/AutoSlider';
-import { Button, Paper } from '@mui/material';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import LoginForm from '@components/forms/login/LoginForm';
 import authAutoSliderItems from '@constants/authAutoSliderItems';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Button, Paper } from '@mui/material';
 import { sleep } from '@tools/sleep';
+import { useState } from 'react';
+import styles from './authorization.module.scss';
 
 const form = {
   REGISTRATION: 'Registration',
@@ -17,9 +17,7 @@ const AuthorizationPage: React.FC<{}> = () => {
   const [displayedForm, setDisplayedForm] = useState<string>(form.REGISTRATION);
   const [testTemplate, setTestTemplate] = useState(false);
   const handleDisplayForm = () => {
-    displayedForm === form.REGISTRATION
-      ? setDisplayedForm(form.LOGIN)
-      : setDisplayedForm(form.REGISTRATION);
+    displayedForm === form.REGISTRATION ? setDisplayedForm(form.LOGIN) : setDisplayedForm(form.REGISTRATION);
   };
 
   const handleTestLoginSubmit = () => {
@@ -32,7 +30,9 @@ const AuthorizationPage: React.FC<{}> = () => {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <Paper elevation={5} className={styles.paper}>
+        <Paper
+          elevation={5}
+          className={styles.paper}>
           <section className={styles.slider}>
             <AutoSlider showButtons={false}>
               {authAutoSliderItems.map((item, index) => {
@@ -41,8 +41,7 @@ const AuthorizationPage: React.FC<{}> = () => {
                   <div
                     className={styles.item}
                     key={index}
-                    data-slider="element"
-                  >
+                    data-slider="element">
                     <div className={styles.title}>
                       <h6>{title}</h6>
                     </div>
@@ -55,24 +54,19 @@ const AuthorizationPage: React.FC<{}> = () => {
             </AutoSlider>
           </section>
           <section className={styles.auth}>
-            <Button className={styles.button} onClick={handleTestLoginSubmit}>
+            <Button
+              className={styles.button}
+              onClick={handleTestLoginSubmit}>
               Test account
             </Button>
             <Button
               variant="text"
               className={styles.button}
               endIcon={<NavigateNextIcon />}
-              onClick={handleDisplayForm}
-            >
-              {displayedForm === form.REGISTRATION
-                ? form.LOGIN
-                : form.REGISTRATION}
+              onClick={handleDisplayForm}>
+              {displayedForm === form.REGISTRATION ? form.LOGIN : form.REGISTRATION}
             </Button>
-            {displayedForm === form.REGISTRATION ? (
-              <RegistrationForm />
-            ) : (
-              <LoginForm testTemplate={testTemplate} />
-            )}
+            {displayedForm === form.REGISTRATION ? <RegistrationForm /> : <LoginForm testTemplate={testTemplate} />}
           </section>
         </Paper>
       </div>

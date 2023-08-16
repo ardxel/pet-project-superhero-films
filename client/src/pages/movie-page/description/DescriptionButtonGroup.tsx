@@ -12,12 +12,9 @@ interface DescriptionButtonGroupProps {
   kinopoiskId: number;
 }
 
-const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
-  kinopoiskId,
-}) => {
+const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({ kinopoiskId }) => {
   const [open, setOpen] = useState<boolean>(false);
-  const { isAuthorized, handleChangeUserCollection, collectionItemLoading } =
-    useUserProfile();
+  const { isAuthorized, handleChangeUserCollection, collectionItemLoading } = useUserProfile();
   const { isFavorite, isInWatchlist } = useMovieReview(kinopoiskId);
 
   if (!isAuthorized) {
@@ -25,21 +22,14 @@ const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
   } else
     return (
       <>
-        <ButtonGroup orientation="vertical" variant="text">
+        <ButtonGroup
+          orientation="vertical"
+          variant="text">
           <Button
             className={superstyles.editButton}
-            onClick={handleChangeUserCollection.bind(
-              null,
-              kinopoiskId,
-              'favorites'
-            )}
-          >
+            onClick={handleChangeUserCollection.bind(null, kinopoiskId, 'favorites')}>
             {collectionItemLoading !== 'favorites' ? (
-              isFavorite && (
-                <CheckCircleOutlineIcon
-                  sx={{ position: 'absolute', left: '15px' }}
-                />
-              )
+              isFavorite && <CheckCircleOutlineIcon sx={{ position: 'absolute', left: '15px' }} />
             ) : (
               <CircularProgress
                 size={18}
@@ -52,18 +42,9 @@ const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
           </Button>
           <Button
             className={superstyles.editButton}
-            onClick={handleChangeUserCollection.bind(
-              null,
-              kinopoiskId,
-              'watchlist'
-            )}
-          >
+            onClick={handleChangeUserCollection.bind(null, kinopoiskId, 'watchlist')}>
             {collectionItemLoading !== 'watchlist' ? (
-              isInWatchlist && (
-                <CheckCircleOutlineIcon
-                  sx={{ position: 'absolute', left: '15px' }}
-                />
-              )
+              isInWatchlist && <CheckCircleOutlineIcon sx={{ position: 'absolute', left: '15px' }} />
             ) : (
               <CircularProgress
                 size={20}
@@ -76,12 +57,14 @@ const DescriptionButtonGroup: React.FC<DescriptionButtonGroupProps> = ({
           </Button>
           <Button
             onClick={setOpen.bind(null, true)}
-            className={superstyles.editButton}
-          >
+            className={superstyles.editButton}>
             View Watchlist
           </Button>
         </ButtonGroup>
-        <ModalWatchlist open={open} closeFn={setOpen.bind(null, false)} />
+        <ModalWatchlist
+          open={open}
+          closeFn={setOpen.bind(null, false)}
+        />
       </>
     );
 };

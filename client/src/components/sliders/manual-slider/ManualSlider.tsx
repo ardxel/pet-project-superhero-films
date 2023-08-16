@@ -9,11 +9,7 @@ interface SliderProps {
   style?: React.CSSProperties;
 }
 
-const ManualSlider: FC<PropsWithChildren<SliderProps>> = ({
-  title,
-  children,
-  style,
-}) => {
+const ManualSlider: FC<PropsWithChildren<SliderProps>> = ({ title, children, style }) => {
   const ulRef = useRef<HTMLUListElement>(null);
   const { isVisible, scroll } = useScroll(ulRef);
 
@@ -22,14 +18,15 @@ const ManualSlider: FC<PropsWithChildren<SliderProps>> = ({
       className={styles.article}
       style={style}
       data-testid="manual-slider"
-      data-type={title?.replace(' ', '-').toLowerCase()}
-    >
+      data-type={title?.replace(' ', '-').toLowerCase()}>
       <div className={styles.title}>
         <h3>{title}</h3>
       </div>
       <div className={styles.menu}>
         {isVisible && <Scroller {...scroll} />}
-        <ul className={superstyles.list} ref={ulRef}>
+        <ul
+          className={superstyles.list}
+          ref={ulRef}>
           {children}
         </ul>
       </div>

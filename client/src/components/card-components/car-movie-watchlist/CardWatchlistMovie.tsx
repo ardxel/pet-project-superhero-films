@@ -1,45 +1,49 @@
-import React from 'react';
-import styles from './cardWatchlistMovie.module.scss';
-import IMovie from '@models/Movie';
-import toHoursAndMinutes from '@tools/toHoursAndMinutes';
-import useUserProfile from '@hooks/useUserProfile';
-import { IconButton, Link } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom/';
-import TurnedInIcon from '@mui/icons-material/TurnedIn';
 import useMovieReview from '@hooks/useMovieReview';
+import useUserProfile from '@hooks/useUserProfile';
+import IMovie from '@models/Movie';
+import TurnedInIcon from '@mui/icons-material/TurnedIn';
+import { IconButton, Link } from '@mui/material';
 import { formatAgeLimits } from '@tools/index';
+import toHoursAndMinutes from '@tools/toHoursAndMinutes';
+import { Link as RouterLink } from 'react-router-dom/';
+import styles from './cardWatchlistMovie.module.scss';
 
 interface CardMovieFavoriteProps extends IMovie {
   closeFn: () => void;
 }
 
 const CardWatchlistMovie: React.FC<CardMovieFavoriteProps> = ({ ...props }) => {
-  const { handleChangeUserCollection } = useUserProfile();
-  const { isInWatchlist } = useMovieReview(props.kinopoiskId);
+  const { handleChangeUser, user } = useUserProfile();
+  const { inWatchlist } = useMovieReview(props._movieId);
 
-  const handleChangeWatchlist = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleChangeWatchlist = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
     event.preventDefault();
-    handleChangeUserCollection(props.kinopoiskId, 'watchlist');
+    let watchlist = [...user.watchlist];
+    if (inWatchlist) {
+      watchlist = watchlist.filter((value) => value !== props._movieId);
+    } else {
+      watchlist.push(props._movieId);
+    }
+    handleChangeUser('watchlist', watchlist);
   };
 
-  if (!isInWatchlist) {
+  if (!inWatchlist) {
     return null;
   } else
     return (
       <div className={styles.favorite}>
         <RouterLink
-          to={`/movie/${props.kinopoiskId}`}
+          to={`/movie/${props._movieId}`}
           onClick={props.closeFn}
-          className={styles.img}
-        >
-          <img src={props.posterUrl} alt={props.nameOriginal} />
+          className={styles.img}>
+          <img
+            src={props.posterUrl}
+            alt={props.nameOriginal}
+          />
           <IconButton
             onClick={handleChangeWatchlist}
-            className={styles.bookmark}
-          >
+            className={styles.bookmark}>
             <TurnedInIcon />
           </IconButton>
         </RouterLink>
@@ -50,9 +54,7 @@ const CardWatchlistMovie: React.FC<CardMovieFavoriteProps> = ({ ...props }) => {
           <p className={styles.details}>
             <span>{props.year}</span>
             <span>{toHoursAndMinutes(props.filmLength)}</span>
-            <span>
-              {formatAgeLimits(props.ratingAgeLimits || props.ratingMpaa)}
-            </span>
+            <span>{formatAgeLimits(props.ratingAgeLimits || props.ratingMpaa)}</span>
           </p>
           <div className={styles.ratings}>
             <div className={styles.kp}>{props.ratingKinopoisk}</div>
@@ -65,8 +67,7 @@ const CardWatchlistMovie: React.FC<CardMovieFavoriteProps> = ({ ...props }) => {
                 <Link
                   key={actor.id}
                   underline="always"
-                  href={`https://www.imdb.com/name/${actor.id}/`}
-                >
+                  href={`https://www.imdb.com/name/${actor.id}/`}>
                   {actor.name}
                 </Link>
               );

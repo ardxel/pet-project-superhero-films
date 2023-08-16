@@ -1,8 +1,7 @@
-import React from 'react';
 import { Button, ButtonProps } from '@mui/material';
 import superstyles from '@styles/superstyles.module.scss';
 
-type SubmitButtonProps = ButtonProps & {};
+type SubmitButtonProps = ButtonProps;
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({ ...props }) => {
   return (
@@ -10,8 +9,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ ...props }) => {
       {...props}
       variant="contained"
       type="submit"
-      className={superstyles.button}
-    >
+      className={superstyles.button}>
       {props.children || 'submit'}
     </Button>
   );

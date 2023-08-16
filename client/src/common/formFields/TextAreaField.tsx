@@ -1,15 +1,10 @@
-import React from 'react';
 import { InputType } from '@models/formModels';
-import styles from './styles';
 import { useField } from 'formik';
+import styles from './styles';
 
-type TextAreaFieldProps = InputType & {};
+type TextAreaFieldProps = InputType;
 
-const TextAreaField: React.FC<TextAreaFieldProps> = ({
-  name,
-  label,
-  ...rest
-}) => {
+const TextAreaField: React.FC<TextAreaFieldProps> = ({ name, label, ...rest }) => {
   const [field] = useField({ name: name });
   return (
     <div
@@ -18,8 +13,7 @@ const TextAreaField: React.FC<TextAreaFieldProps> = ({
         flexDirection: 'column',
         gap: '4px',
         textTransform: 'capitalize',
-      }}
-    >
+      }}>
       <label style={{ color: 'var(--color97)' }}>{label}</label>
       <textarea
         style={styles.textarea as React.CSSProperties}

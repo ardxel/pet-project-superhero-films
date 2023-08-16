@@ -7,7 +7,7 @@ class MoviesMiddleware {
   async getQueryObjectFromReqQuery(req: Request, res: Response, next: NextFunction) {
     const { ids, search, fields } = req.query as StringifyQueryObject<'ids' | 'search' | 'fields'>;
     const queryObject: QueryOptions<typeof model.movie> = {};
-
+    console.log('ids: ', ids, 'search: ', search, 'fields: ', fields);
     if (ids) {
       const idList = ids.split(',');
       queryObject['_movieId'] = { $in: idList };

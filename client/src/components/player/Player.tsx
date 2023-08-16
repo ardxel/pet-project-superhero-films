@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styles from './player.module.scss';
-import superstyles from '@styles/superstyles.module.scss';
 import Loading from '@common/loading/Loading';
-import { Button, ButtonGroup } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
+import { Button, ButtonGroup } from '@mui/material';
+import superstyles from '@styles/superstyles.module.scss';
+import { useEffect, useRef, useState } from 'react';
+import styles from './player.module.scss';
 
 interface PlayerProps {
   sources: string[] | null;
@@ -24,20 +24,14 @@ const Player: React.FC<PlayerProps> = ({ sources }) => {
   useEffect(() => {
     const iframeCurrent = iframeRef.current;
     iframeCurrent?.addEventListener('load', () => setIsIFrameLoaded(true));
-    iframeCurrent?.contentWindow?.document.addEventListener(
-      'DOMContentLoaded',
-      () => {
-        setIsIFrameLoaded(false);
-      }
-    );
+    iframeCurrent?.contentWindow?.document.addEventListener('DOMContentLoaded', () => {
+      setIsIFrameLoaded(false);
+    });
     return () => {
       iframeCurrent?.removeEventListener('load', () => setIsIFrameLoaded(true));
-      iframeCurrent?.contentWindow?.document.removeEventListener(
-        'DOMContentLoaded',
-        () => {
-          setIsIFrameLoaded(false);
-        }
-      );
+      iframeCurrent?.contentWindow?.document.removeEventListener('DOMContentLoaded', () => {
+        setIsIFrameLoaded(false);
+      });
     };
   }, []);
 
@@ -59,8 +53,7 @@ const Player: React.FC<PlayerProps> = ({ sources }) => {
               className={superstyles.editButton}
               key={index}
               onClick={setSrcIndex.bind(null, index)}
-              startIcon={srcIndex === index && <CheckIcon />}
-            >
+              startIcon={srcIndex === index && <CheckIcon />}>
               player {index + 1}
             </Button>
           );

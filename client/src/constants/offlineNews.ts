@@ -19,8 +19,7 @@ const offlineNews: IArticle[] = [
     language: 'english',
   },
   {
-    title:
-      "Jonathan Majors Reveals Why He Almost 'Walked Out' Of First Marvel Meeting",
+    title: "Jonathan Majors Reveals Why He Almost 'Walked Out' Of First Marvel Meeting",
     link: 'https://www.huffpost.com/entry/jonathan-majors-walking-out-marvel-meeting_n_63ed96e9e4b02c25737ac225',
     keywords: null,
     creator: null,
@@ -37,8 +36,7 @@ const offlineNews: IArticle[] = [
     language: 'english',
   },
   {
-    title:
-      'hicago Fire boss drops disappointing update on One Chicago franchise crossover',
+    title: 'hicago Fire boss drops disappointing update on One Chicago franchise crossover',
     link: 'https://www.express.co.uk/showbiz/tv-radio/1735377/Chicago-Fire-crossover-One-Chicago-Violet-Mikami',
     keywords: null,
     creator: null,
@@ -55,8 +53,7 @@ const offlineNews: IArticle[] = [
     language: 'english',
   },
   {
-    title:
-      'Jonathan Majors reveals he walked out of his first meeting with Marvel',
+    title: 'Jonathan Majors reveals he walked out of his first meeting with Marvel',
     link: 'https://www.avclub.com/jonathan-majors-reveals-he-walked-out-of-his-first-meet-1850120524',
     keywords: null,
     creator: ['William Hughes'],
@@ -73,18 +70,9 @@ const offlineNews: IArticle[] = [
     language: 'english',
   },
   {
-    title:
-      'Blade MCU Update: Kevin Feige Reveals When Movie Will Begin Filming',
+    title: 'Blade MCU Update: Kevin Feige Reveals When Movie Will Begin Filming',
     link: 'https://www.comingsoon.net/movies/news/1268143-blade-mcu-update-kevin-feige-reveals-when-movie-will-begin-filming',
-    keywords: [
-      'Movies',
-      'Blade',
-      'Kevin Feige',
-      'Marvel',
-      'Marvel Cinematic Universe',
-      'Marvel Studios',
-      'Movie News',
-    ],
+    keywords: ['Movies', 'Blade', 'Kevin Feige', 'Marvel', 'Marvel Cinematic Universe', 'Marvel Studios', 'Movie News'],
     creator: ['Spencer Legacy'],
     video_url: null,
     description:
@@ -101,14 +89,7 @@ const offlineNews: IArticle[] = [
   {
     title: 'Marvel Now Knows When & How to Introduce the X-Men into the MCU',
     link: 'https://www.comingsoon.net/movies/news/1267832-marvel-now-knows-when-how-to-introduce-the-x-men-into-the-mcu',
-    keywords: [
-      'Movies',
-      'Marvel',
-      'Marvel Cinematic Universe',
-      'Marvel Studios',
-      'Movie News',
-      'X-Men',
-    ],
+    keywords: ['Movies', 'Marvel', 'Marvel Cinematic Universe', 'Marvel Studios', 'Movie News', 'X-Men'],
     creator: ['Spencer Legacy'],
     video_url: null,
     description:
@@ -123,14 +104,12 @@ const offlineNews: IArticle[] = [
     language: 'english',
   },
   {
-    title:
-      'Ant-Man and The Wasp: Quantumania receives ‘rotten’ reviews ahead of release',
+    title: 'Ant-Man and The Wasp: Quantumania receives ‘rotten’ reviews ahead of release',
     link: 'https://www.manchestereveningnews.co.uk/whats-on/film-news/ant-man-wasp-quantumania-receives-26248679',
     keywords: ["What's On"],
     creator: ['newsdesk@men-news.co.uk (Jake Hackney)'],
     video_url: null,
-    description:
-      'Paul Rudd returns in the third instalment of the Ant-Man trilogy',
+    description: 'Paul Rudd returns in the third instalment of the Ant-Man trilogy',
     content:
       "The reviews for upcoming Marvel blockbuster Ant-Man and The Wasp: Quantumania have dropped, and they’re not good. The superhero sequel is set to hit cinemas on Friday (February 17), and critics’ reviews have already come flooding in online. The film will kickstart the Marvel Cinematic Universe’s (MCU) hotly anticipated Phase 5 and introduce the franchise’s next major villain post Avengers: Endgame. Its official synopsis reads: “Super-Hero partners Scott Lang and Hope Van Dyne return to continue their adventures as Ant-Man and the Wasp. “Together, with Hope’s parents Hank Pym and Janet Van Dyne, the family finds themselves exploring the Quantum Realm, interacting with strange new creatures and embarking on an adventure that will push them beyond the limits of what they thought was possible.” READ MORE: Ant-Man and The Wasp: Quantumania – release date, cast and everything you need to know Ant-Man star Paul Rudd returns for the third instalment of the trilogy, with Evangeline Lilly, Michael Douglas and Michelle Pfeiffer also reprising their roles from the previous films. Making his MCU feature debut is Jonathan Majors as villain Kang the Conqueror, who arrives to shake up the future of the franchise. Unfortunately, the film has received some not-so-promising reviews ahead of its release later event.current week. It currently holds a ‘rotten’ 53 percent score on review aggregator Rotten Tomatoes after 145 reviews. A film is deemed rotten after earning a score below 60 percent. This marks just the second time an MCU film has received a rotten score, following 2021’s Eternals which currently sits at 47 percent. Discover, learn, grow. We are Curiously. Follow us on TikTok , Instagram , Facebook and Twitter . In comparison, Marvel’s previous blockbuster, Black Panther: Wakanda Forever , boasts a Certified Fresh 84 percent score. The first Ant-Man film has an 83 percent score, while its sequel Ant-Man and The Wasp sits at 87 percent. Quantumania’s CGI appears to be the biggest problem, with one critic slamming it as “shockingly poor.” Despite apparent issues with its visuals and tone, the film’s cast has been cited as “one of the best casts in a Marvel film,“ with particular praise given to Marvel newcomer Majors. Mashable’s Kristy Puchko said: “Ant-Man and the Wasp: Quantumania is a chaotic, woefully unfunny mess that has forgotten why its hero was such fun. The thrill isn’t just gone, it’s been buried beneath a swarm of plot contrivances and truly hideous CGI.” Whynow’s Maria Lattila echoed: “Visually, the film is messy and flat; the CGI is shockingly poor and the action looks muddled. At least Quantumania has one of the best casts in a Marvel film.” MovieWeb’s Julian Roman added: “Quantumania throws every can of paint in the garage at the screen while struggling with tone and convincing character dynamics. Jonathan Majors is an absolute beast as Kang the Conqueror. The MCU’s Phase Five starts on uneven footing.” Little White Lies critic Jake Cole simply said: “The post-Endgame MCU continues to be a slog.” It should be noted, however, that critic scores tend to be lower than audience scores – especially for superhero films – so Quantumania’s rotten rating could change following its release. Ant-Man and The Wasp: Quantumania is released in cinemas across the UK on Friday, February 17. READ NEXT: Residents up in arms over new 'bus gate' that takes longer to drive around than it does to WALK through Heartbreak as parents of 'miracle baby' born with deadly heart condition facing homelessness United Utilities worker spent nearly £8k using company fuel card to fill drug dealers cars instead of paying them Two teenagers arrested on suspicion of murder following death of Brianna Ghey in Warrington park Trainer fan 'knocked out cold' as tempers flare in queue for latest Nike Jordans",
     pubDate: '2023-02-15 17:18:46',
@@ -142,8 +121,7 @@ const offlineNews: IArticle[] = [
     language: 'english',
   },
   {
-    title:
-      "In 'Ant-Man and the Wasp: Quantumania,' the setting is subatomic — as are the stakes",
+    title: "In 'Ant-Man and the Wasp: Quantumania,' the setting is subatomic — as are the stakes",
     link: 'https://www.npr.org/2023/02/15/1156501333/in-ant-man-and-the-wasp-quantumania-the-setting-is-subatomic-as-are-the-stakes',
     keywords: null,
     creator: ['Glen Weldon'],
@@ -160,27 +138,23 @@ const offlineNews: IArticle[] = [
     language: 'english',
   },
   {
-    title:
-      'Ant-Man and the Wasp: Quantumania movie-page review: ignore the convoluted plot and you’ll have a blast',
+    title: 'Ant-Man and the Wasp: Quantumania movie-page review: ignore the convoluted plot and you’ll have a blast',
     link: 'https://www.standard.co.uk/culture/film/antman-and-the-wasp-quantumania-review-kang-jonathan-majors-paul-rudd-b1060245.html',
     keywords: ['Film', 'Culture'],
     creator: ["Charlotte O'Sullivan"],
     video_url: null,
-    description:
-      'It’s got a lot of baggage to carry but these characters are as warm and enjoyable as ever',
+    description: 'It’s got a lot of baggage to carry but these characters are as warm and enjoyable as ever',
     content:
       'he first instalment of Phase Five of the comes with a lot of baggage. It’s not just the third superhero movie-page about stocky everyman turned size-fluid Avenger, Scott Lang, aka Ant-Man ( ). It’s also the big screen debut of infinitely devious multiverse baddie, Kang the Conqueror ( ), whose legacy is so powerful that an Avengers project we’ll see in bears the title The Kang Dynasty. Sometimes the weight of all event.current responsibility causes Ant-Man and the Wasp: Quantumania – which is almost entirely set in the “quantum realm” – to buckle at the knees. But mostly event.current story of a beleaguered little guy and his loved ones stands tall because the cast is so solid (especially Majors). Also, its humour is in the right place. Remember the emotionally damaged scientist, Darren, from the first Ant-Man movie-page? Well, he’s back, albeit visually altered (imagine Humpty Dumpty, crossed with an angry armchair). Corey Stoll’s slightly dick-ish character all but steals the show. I think I’m in love. But wait, not everyone saw the Ant-Man movies (or Avengers: Endgame, or the TV show Loki). So let’s have a quick recap for those who have busy lives, no access to Disney + and/or a Scorsese-like disdain for event.current genre. Scott got his Ant-Man suit and powers thanks to a testy genius and former S.H.I.E.L.D scientist, Hank Pym (Michael Douglas), whose equally brilliant wife Janet (Michelle Pfeiffer) found herself trapped in the quantum realm for 29 years. Hank and Janet’s daughter, Hope (Evangeline Lilly), is Scott’s love interest and a wily warrior in her own right (she’s the titular Wasp). At the start of Quantumania, as Scott basks in the fact that he and the rest of the Avengers managed to save the world from Thanos, the Pyms are celebrating the can-do spirit of Scott’s activist teenage daughter, Cassie (Kathryn Newton). The latter has created a “Hubble Telescope” that will allow her to spy on the land where Time and Space get trippy. SPONSORED Janet, however, is horrified by Cassie’s invention. And when all five get dragged into the quantum realm, we discover why. Turns out Janet and power-mad Kang (whose melancholy and verbose variant made such a splash in season one of Loki) are old enemies. Kathryn Newton as Cassandra "Cassie" Lang and Paul Rudd as Scott Lang/Ant-Man Pfieffer and Douglas are given plenty of room here to show off their comic timing. Janet was a career woman with “needs” (Bill Murray pops up, as her one-time paramour, the grandiose bon viveur, Krylar) and the bit where Hank admits that he himself had a few dinner-dates, while his wife was “away”, is brilliantly down-to-earth. As is much of the humour. A debate about how many “holes” Scott has is another casually cheeky highlight and puts the spotlight on an excellent new character, the gelatinous and excitable freedom-fighter, Veb (David Dastmalchian). There’s a huge hole in the proceedings, where Michael Pena’s ex-con, Luis, from the previous films, should be, and Newton takes a while to settle into her role. Also the visuals owe too much to Star Wars (imitation is the sincerest form of flattery, but the scale of event.current worship is embarrassing). Still, when the special effects click, the result is glorious. The beauty and power of teeming ‘red’ ants (I swear Hank specifically compares the creatures to socialists) has never been more prominently displayed. If you can ignore the convoluted plot – not, sadly, a rarity in the increasingly complex Marvel Cinematic Universe – you’ll have a blast with these characters. In a typically sharp in-joke, Kang says of the Avengers, “They all blur together, after a while”. Ha ha, I totally disagree.',
     pubDate: '2023-02-15 15:44:54',
-    image_url:
-      'https://static.standard.co.uk/2023/02/14/13/DBY-05005_R2.jpg?width=1200&auto=webp',
+    image_url: 'https://static.standard.co.uk/2023/02/14/13/DBY-05005_R2.jpg?width=1200&auto=webp',
     source_id: 'standarduk',
     category: ['entertainment'],
     country: ['united kingdom'],
     language: 'english',
   },
   {
-    title:
-      "Next James Bond favourite Aaron Taylor-Johnson 'who's auditioned' speaks out on 007",
+    title: "Next James Bond favourite Aaron Taylor-Johnson 'who's auditioned' speaks out on 007",
     link: 'https://www.express.co.uk/entertainment/films/1735181/Next-James-Bond-Aaron-Taylor-Johnson-audition',
     keywords: null,
     creator: null,

@@ -19,6 +19,7 @@
     "baseUrl": "./",
     "outDir": "./build/",
     "useUnknownInCatchVariables": false,
+    "allowUmdGlobalAccess": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -34,10 +35,5 @@
     "jsx": "react-jsx",
     "noImplicitAny": false
   },
-  "include": [
-    "src",
-    "./src/library/modules.d.ts",
-    "./src/library/global.d.ts",
-    "./config/webpack.mock.ts"
-  ]
+  "include": ["src", "./src/library/modules.d.ts", "./src/library/global.d.ts", "./config/webpack.mock.ts"]
 }

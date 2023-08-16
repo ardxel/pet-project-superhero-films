@@ -1,6 +1,5 @@
-import React from 'react';
-import styles from './cardarticle.module.scss';
 import formatDate from '@tools//formatDateInArray';
+import styles from './cardarticle.module.scss';
 
 interface ArticleProps {
   title: string;
@@ -11,17 +10,13 @@ interface ArticleProps {
   link: string;
 }
 
-const CardArticle: React.FC<ArticleProps> = ({
-  title,
-  creator,
-  img,
-  desc,
-  date,
-  link,
-}) => {
+const CardArticle: React.FC<ArticleProps> = ({ title, creator, img, desc, date, link }) => {
   return (
     <article className={styles.article}>
-      <a href={link} target="_blank">
+      <a
+        href={link}
+        target="_blank"
+        rel="noreferrer">
         <div className={styles.wrapper}>
           <div className={styles.date}>
             {formatDate(date).map((item, i) => {

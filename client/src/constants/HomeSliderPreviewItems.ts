@@ -10,15 +10,13 @@ export default [
     id: 2,
     _movieId: 1199773,
     title: 'Black Panther: Wakanda Forever',
-    backgroundImage:
-      'https://sm.ign.com/ign_es/review/b/black-pant/black-panther-wakanda-forever-review_nake.jpg',
+    backgroundImage: 'https://sm.ign.com/ign_es/review/b/black-pant/black-panther-wakanda-forever-review_nake.jpg',
   },
   {
     id: 3,
     _movieId: 590286,
     title: 'The Batman 2022',
-    backgroundImage:
-      'https://popcorntheology1.files.wordpress.com/2022/03/thumb-1920-1213559.jpg?w=1200',
+    backgroundImage: 'https://popcorntheology1.files.wordpress.com/2022/03/thumb-1920-1213559.jpg?w=1200',
   },
   {
     id: 4,

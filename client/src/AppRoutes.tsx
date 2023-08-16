@@ -4,9 +4,7 @@ import HomePage from '@pages/home/Home';
 const NewsPage = lazy(() => import('@pages/news/News'));
 const MoviePage = lazy(() => import('@pages/movie-page/MoviePage'));
 const ProfilePage = lazy(() => import('@pages/profile/Profile'));
-const AuthorizationPage = lazy(
-  () => import('@pages/authorization/Authorization')
-);
+const AuthorizationPage = lazy(() => import('@pages/authorization/Authorization'));
 
 const appRoutes = [
   {

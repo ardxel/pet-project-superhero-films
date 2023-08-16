@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { InputField, SubmitButton } from '@common/formFields';
+import fieldKit from '@components/forms/fieldKit';
+import { signUpValidation } from '@components/forms/validationSchemas';
+import { useAppDispatch } from '@hooks/useAppDispatch';
+import { RegistrationRequest } from '@models/apiModels/RegistrationModel';
+import { registration } from '@reduxproj/api/user.api';
 import superstyles from '@styles/superstyles.module.scss';
 import { Form, Formik, FormikProps } from 'formik';
-import { RegistrationRequest } from '@models/apiModels/RegistrationModel';
-import { signUpValidation } from '@components/forms/validationSchemas';
-import { useRegisterUserMutation } from '@reduxproj//api/userApi';
-import { registration } from '@reduxproj//reducers/userReducer';
-import { useAppDispatch } from '@hooks/useAppDispatch';
-import { useAppSelector } from '@hooks/useAppSelector';
-import FormTitle from '@components/forms/form-title/FormTitle';
-import { sleep } from '@common/tools';
-import { useNavigate } from 'react-router';
-import fieldKit from '@components/forms/fieldKit';
-import { SubmitButton, InputField } from '@common/formFields';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues: RegistrationRequest = {
   email: '',
@@ -21,24 +17,14 @@ const initialValues: RegistrationRequest = {
 };
 
 const RegistrationForm = () => {
-  const [registerUser, result] = useRegisterUserMutation();
   const [passwordShown, setPasswordShown] = useState(false);
   const { email, username, password, confirm_password } = fieldKit;
-  const { token } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (result.data && result.data.user && result.isSuccess) {
-      console.log(result.data);
-      dispatch(registration(result.data.user));
-    }
-  }, [result.data]);
-  useEffect(() => {
-    if (token && result.isSuccess) {
-      sleep(1500).then(() => navigate('/'));
-    }
-  }, [token, result.isSuccess]);
+  const registerUser = (body: RegistrationRequest) => {
+    dispatch(registration(body));
+  };
 
   const togglePassword = () => setPasswordShown(!passwordShown);
   const adornmentProps = {
@@ -49,19 +35,20 @@ const RegistrationForm = () => {
   };
   return (
     <div>
-      <FormTitle
+      {/* <FormTitle
         title={'Registration'}
         showAlert={result.isSuccess || false}
         severity={result.data ? result.data.severity : undefined}
         message={result.data ? result.data.message : undefined}
-      />
+      /> */}
       <Formik
         initialValues={initialValues}
         onSubmit={registerUser}
-        validate={signUpValidation}
-      >
+        validate={signUpValidation}>
         {(props: FormikProps<RegistrationRequest>) => (
-          <Form className={superstyles.form} onSubmit={props.handleSubmit}>
+          <Form
+            className={superstyles.form}
+            onSubmit={props.handleSubmit}>
             <InputField
               name={email.name}
               label={email.label}

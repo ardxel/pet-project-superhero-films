@@ -13,7 +13,8 @@
     "analyze:prod": "npx webpack --mode production --config ./config/webpack.prod.js --profile --json=stats.json && webpack-bundle-analyzer ./stats.json",
     "prettier:check": "npx prettier --check \"**\" ",
     "prettier:fix": "npx prettier --write \"**\" ",
-    "eslint:check": "npx eslint --ext .js,.jsx,.ts,.tsx ..",
+    "eslint:check": "npx eslint --ext .js,.jsx,.ts,.tsx check",
+    "eslint:fix": "npx eslint --ext .js,.jsx,.ts,.tsx ./src --fix",
     "precommit": "lint-staged"
   },
   "devDependencies": {
@@ -67,6 +68,7 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^8.0.1",
     "postcss-scss": "^4.0.6",
+    "prettier": "^3.0.1",
     "react-loading": "^2.0.3",
     "react-svg": "^16.1.0",
     "react-test-renderer": "^18.2.0",
@@ -114,8 +116,5 @@
   "bugs": {
     "url": "https://github.com/ardxel/pet-project-superhero-films/issues"
   },
-  "homepage": "https://github.com/ardxel/pet-project-superhero-films#readme",
-  "prettier": {
-    "singleQuote": true
-  }
+  "homepage": "https://github.com/ardxel/pet-project-superhero-films#readme"
 }

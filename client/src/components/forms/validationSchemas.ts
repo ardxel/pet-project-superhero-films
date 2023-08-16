@@ -2,18 +2,14 @@ const regexps = {
   email: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
   username: /^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i,
   password: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/i,
-  emailAndUsername:
-    /^(?:[A-Z\d][A-Z\d_-]{5,10}|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})$/i,
+  emailAndUsername: /^(?:[A-Z\d][A-Z\d_-]{5,10}|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})$/i,
   name: /^[a-z ,.'-]+$/i,
   url: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
 };
 
 type fieldValidationFn = (arg: string) => string | void;
 
-type fieldValidationWithTwoArgsFn = (
-  arg1: string,
-  arg2: string
-) => string | void;
+type fieldValidationWithTwoArgsFn = (arg1: string, arg2: string) => string | void;
 
 const _email: fieldValidationFn = (email) => {
   if (!email) {
@@ -39,7 +35,7 @@ const _username: fieldValidationFn = (username) => {
     return 'username must be is 6-20 characters long';
   }
 };
-const _login: fieldValidationFn = (login) => {
+const _emailOrUsername: fieldValidationFn = (login) => {
   if (!login) {
     return 'email or username is required';
   } else if (!regexps.emailAndUsername.test(login)) {
@@ -62,10 +58,7 @@ const _url: fieldValidationFn = (url) => {
   }
 };
 
-const _confirmPassword: fieldValidationWithTwoArgsFn = (
-  confirm_password,
-  password
-) => {
+const _confirmPassword: fieldValidationWithTwoArgsFn = (confirm_password, password) => {
   if (confirm_password !== password) {
     return 'both passwords must match';
   } else return undefined;
@@ -85,10 +78,7 @@ export const signUpValidation = (values) => {
 
   errors.password = _password(values.password);
 
-  errors.confirm_password = _confirmPassword(
-    values.confirm_password,
-    values.password
-  );
+  errors.confirm_password = _confirmPassword(values.confirm_password, values.password);
 
   return isEmptyErrors(errors);
 };
@@ -96,7 +86,7 @@ export const signUpValidation = (values) => {
 export const loginValidation = (values) => {
   const errors: Partial<typeof values> = {};
 
-  errors.login = _login(values.login);
+  errors._emailOrUsername = _emailOrUsername(values.login);
   errors.password = _password(values.password);
 
   return isEmptyErrors(errors);
@@ -124,10 +114,7 @@ export const changePasswordValidation = (values) => {
 
   errors.password = _password(values.password);
 
-  errors.confirm_password = _confirmPassword(
-    values.confirm_password,
-    values.password
-  );
+  errors.confirm_password = _confirmPassword(values.confirm_password, values.password);
 
   return isEmptyErrors(errors);
 };

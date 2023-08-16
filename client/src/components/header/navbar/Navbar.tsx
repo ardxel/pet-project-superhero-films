@@ -39,7 +39,9 @@ const Navbar: React.FC<NavbarProps> = ({ username, isOpen, setIsOpen }) => {
           const { id, name, path } = item;
           return (
             <li key={id}>
-              <Link to={path} onClick={() => setIsOpen(false)}>
+              <Link
+                to={path}
+                onClick={() => setIsOpen(false)}>
                 {name}
               </Link>
             </li>
@@ -47,7 +49,9 @@ const Navbar: React.FC<NavbarProps> = ({ username, isOpen, setIsOpen }) => {
         })}
       </ul>
       {isOpen && (
-        <button className={styles.closed} onClick={() => setIsOpen(false)}>
+        <button
+          className={styles.closed}
+          onClick={() => setIsOpen(false)}>
           <CloseIcon />
         </button>
       )}

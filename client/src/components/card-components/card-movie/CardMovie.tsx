@@ -1,20 +1,20 @@
-import React, { useMemo, useState } from 'react';
-import styles from './cardMovie.module.scss';
-import { getColor, getRating, upgradeRating } from '@tools/upgradeRating';
-import toHoursAndMinutes from '@tools/toHoursAndMinutes';
-import { Link } from 'react-router-dom';
-import IMovie from '@models/Movie';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Button, IconButton } from '@mui/material';
-import useUserProfile from '@hooks/useUserProfile';
-import useMovieReview from '@hooks/useMovieReview';
 import Loading from '@common/loading/Loading';
-import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
-import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
-import { UserCollection } from '@models/User';
-import StarIcon from '@mui/icons-material/Star';
 import { ModalChangeRating } from '@common/modals';
+import useMovieReview from '@hooks/useMovieReview';
+import useUserProfile from '@hooks/useUserProfile';
+import IMovie from '@models/Movie';
+import { IUser } from '@models/User';
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import StarIcon from '@mui/icons-material/Star';
+import { Button, IconButton } from '@mui/material';
+import toHoursAndMinutes from '@tools/toHoursAndMinutes';
+import { getColor, getRating, upgradeRating } from '@tools/upgradeRating';
+import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './cardMovie.module.scss';
 
 interface CardMovieProps extends IMovie {
   showRating?: boolean;
@@ -23,61 +23,55 @@ interface CardMovieProps extends IMovie {
 
 const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
-  const [openModalChangeRating, setOpenModalChangeRating] =
-    useState<boolean>(false);
-  const {
-    userState,
-    isAuthorized,
-    handleChangeUserCollection,
-    collectionItemLoading,
-  } = useUserProfile();
-  const {
-    ratingKinopoisk,
-    kinopoiskId,
-    posterUrl,
-    nameOriginal,
-    year,
-    filmLength,
-  } = props;
-
-  const { isFavorite, isInWatchlist } = useMovieReview(props.kinopoiskId);
+  const [openModalChangeRating, setOpenModalChangeRating] = useState<boolean>(false);
+  const { user, isAuthorized, handleChangeUser, loadingChanges, loadingFieldChanges } = useUserProfile();
+  const { ratingKinopoisk, _movieId, posterUrl, nameOriginal, year, filmLength } = props;
+  const { inFavorites, inWatchlist } = useMovieReview(_movieId);
   const [color, newRating] = upgradeRating(ratingKinopoisk);
-  const displayButtons = isAuthorized && isHover;
-  const getMovieRating = useMemo(() => {
-    const matchedRating = userState.ratings.find(
-      (rating) => rating.id === kinopoiskId
-    );
 
+  const displayButtons = isAuthorized && isHover;
+
+  const getMovieRating = useMemo(() => {
+    const matchedRating = user.ratings.find((rating) => rating.id === _movieId);
     if (matchedRating) {
       return getRating(matchedRating.value);
     } else return null;
-  }, [userState.ratings]);
+  }, [user.ratings]);
 
-  const toggleCollectionItem = (key: keyof UserCollection): void => {
-    handleChangeUserCollection(kinopoiskId, key);
+  const toggleWatchlistItem = () => {
+    let watchlist: IUser['watchlist'] = [...user.watchlist];
+    if (!inWatchlist) {
+      watchlist.push(props._movieId);
+    } else {
+      watchlist = watchlist.filter((value) => value !== _movieId);
+    }
+    handleChangeUser('watchlist', watchlist);
+  };
+
+  const toggleFavoriteItem = () => {
+    let favorites: IUser['favorites'] = [...user.favorites];
+    if (!inFavorites) {
+      favorites.push(_movieId);
+    } else {
+      favorites = favorites.filter((value) => value !== _movieId);
+    }
+    handleChangeUser('favorites', favorites);
   };
 
   return (
-    <li
-      className={[
-        styles.movie,
-        props.disableFlash ? '' : styles.movieFlash,
-      ].join(' ')}
-    >
+    <li className={[styles.movie, props.disableFlash ? '' : styles.movieFlash].join(' ')}>
       <div
         className={styles.container}
         onMouseEnter={setIsHover.bind(null, true)}
-        onMouseLeave={setIsHover.bind(null, false)}
-      >
+        onMouseLeave={setIsHover.bind(null, false)}>
         {/* element for adding movie to user collection of watchlist */}
-        {(displayButtons || isInWatchlist) && (
+        {(displayButtons || inWatchlist) && (
           <IconButton
-            onClick={toggleCollectionItem.bind(null, 'watchlist')}
+            onClick={toggleWatchlistItem}
             id="watchlist-icon"
-            className={styles.watchlistIcon}
-          >
-            {collectionItemLoading !== 'watchlist' ? (
-              isInWatchlist ? (
+            className={styles.watchlistIcon}>
+            {loadingFieldChanges !== 'watchlist' ? (
+              inWatchlist ? (
                 <BookmarkAddedIcon />
               ) : (
                 <BookmarkAddOutlinedIcon />
@@ -89,14 +83,13 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
         )}
 
         {/* element for adding movie to user collection of favorites */}
-        {(displayButtons || isFavorite) && (
+        {(displayButtons || inFavorites) && (
           <IconButton
-            onClick={toggleCollectionItem.bind(null, 'favorites')}
+            onClick={toggleFavoriteItem}
             id="favorite-icon"
-            className={styles.favoriteIcon}
-          >
-            {collectionItemLoading !== 'favorites' ? (
-              isFavorite ? (
+            className={styles.favoriteIcon}>
+            {loadingFieldChanges !== 'favorites' ? (
+              inFavorites ? (
                 <FavoriteIcon />
               ) : (
                 <FavoriteBorderIcon />
@@ -119,8 +112,7 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
                   }}
                 />
               }
-              onClick={setOpenModalChangeRating.bind(null, true)}
-            >
+              onClick={() => setOpenModalChangeRating(true)}>
               {getMovieRating}
             </Button>
           </div>
@@ -129,27 +121,29 @@ const CardMovie: React.FC<CardMovieProps> = ({ ...props }) => {
         {props.showRating && (
           <ModalChangeRating
             open={openModalChangeRating}
-            close={setOpenModalChangeRating.bind(null, false)}
-            id={kinopoiskId}
+            closeModal={() => setOpenModalChangeRating(false)}
+            _movieId={_movieId}
           />
         )}
 
-        <Link to={`/movie/${kinopoiskId}`}>
-          <img src={posterUrl} alt={nameOriginal} />
+        <Link to={`/movie/${_movieId}`}>
+          <img
+            src={posterUrl}
+            alt={nameOriginal}
+          />
           {!props.showRating && (
             <div className={styles.info}>
-              <span className={styles.rating} style={{ background: color }}>
+              <span
+                className={styles.rating}
+                style={{ background: color }}>
                 {newRating}
               </span>
               <span className={styles.year}>{year}</span>
-              <span className={styles.length}>
-                {toHoursAndMinutes(filmLength)}
-              </span>
+              <span className={styles.length}>{toHoursAndMinutes(filmLength)}</span>
               {getMovieRating && !props.showRating && (
                 <span
                   className={styles.yourRating}
-                  style={{ background: 'rgb(87, 153, 239)' }}
-                >
+                  style={{ background: 'rgb(87, 153, 239)' }}>
                   {getMovieRating}
                 </span>
               )}

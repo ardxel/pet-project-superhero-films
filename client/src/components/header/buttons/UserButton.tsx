@@ -5,7 +5,10 @@ import { IconButton } from '@mui/material';
 
 const UserButton: HeaderButtonType = ({ className, onClick, ...rest }) => {
   return (
-    <IconButton className={className} onClick={onClick} {...rest}>
+    <IconButton
+      className={className}
+      onClick={onClick}
+      {...rest}>
       <AccountCircleIcon />
     </IconButton>
   );

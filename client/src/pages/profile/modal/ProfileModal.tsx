@@ -1,10 +1,6 @@
 import React from 'react';
 import styles from './profileModal.module.scss';
-import {
-  ProfileAction,
-  ProfileActionKind,
-  ProfileState,
-} from '@pages/profile/profileReducer';
+import { ProfileAction, ProfileActionKind, ProfileState } from '@pages/profile/profileReducer';
 import { Box, Modal } from '@mui/material';
 import { profileFormList } from '@pages/profile/profileListItems';
 
@@ -20,17 +16,14 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ ...props }) => {
       open={profileState.isModalOpen as boolean}
       onClose={() => dispatch({ type: ProfileActionKind.CLOSE_MODAL })}
       disableScrollLock={true}
-      data-testid="edit-profile-modal"
-    >
+      data-testid="edit-profile-modal">
       <Box className={styles.box}>
         {profileFormList.map(({ Form, conditionStateKey }) => {
           if (profileState[conditionStateKey]) {
             return (
               <Form
                 key={conditionStateKey}
-                setIsChanged={() =>
-                  dispatch({ type: ProfileActionKind.IS_CHANGED_PROFILE })
-                }
+                setIsChanged={() => dispatch({ type: ProfileActionKind.IS_CHANGED_PROFILE })}
               />
             );
           } else return null;

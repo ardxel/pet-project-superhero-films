@@ -9,8 +9,13 @@ const Footer: React.FC = () => {
         <div className={styles.links}>
           {footerItems.map(({ id, Image, link }) => {
             return (
-              <div className={styles.item} key={id}>
-                <a className={styles.link} href={link} target="_blank">
+              <div
+                className={styles.item}
+                key={id}>
+                <a
+                  className={styles.link}
+                  href={link}
+                  target="_blank" rel="noreferrer">
                   <Image />
                 </a>
               </div>

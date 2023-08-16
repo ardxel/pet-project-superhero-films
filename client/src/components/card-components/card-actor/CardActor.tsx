@@ -9,7 +9,10 @@ const CardActor: React.FC<CardActorProps> = ({ name, image, asCharacter }) => {
     <li className={styles.actor}>
       <div className={styles.container}>
         <div className={styles.img}>
-          <img src={image} alt={name} />
+          <img
+            src={image}
+            alt={name}
+          />
         </div>
         <div className={styles.info}>
           <h5 className={styles.name}>{name}</h5>

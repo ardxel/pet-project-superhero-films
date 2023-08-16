@@ -1,46 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import styles from './ratings.module.scss';
+import { ModalChangeRating } from '@common/modals/';
+import useUserProfile from '@hooks/useUserProfile';
+import IMovie from '@models/Movie';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Button, ButtonGroup } from '@mui/material';
 import { getRating } from '@tools/upgradeRating';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import useUserProfile from '@hooks/useUserProfile';
-import { ModalChangeRating } from '@common/modals/';
+import { useEffect, useState } from 'react';
+import styles from './ratings.module.scss';
 
-interface RatingsProps {
-  kinopoiskId: number;
-  ratingKinopoisk: number;
-  imdbId: string;
-  ratingImdb: number;
-}
+interface RatingsProps extends Pick<IMovie, '_movieId' | 'ratingKinopoisk' | 'imdbId' | 'ratingImdb'> {}
 
 const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
-  const [displayModalChangeRating, setDisplayModalChangeRating] =
-    useState<boolean>(false);
+  const [displayModalChangeRating, setDisplayModalChangeRating] = useState<boolean>(false);
   const [myRating, setMyRating] = useState<number>(0);
-  const { userState, isAuthorized } = useUserProfile();
-  const { ratingImdb, ratingKinopoisk, imdbId, kinopoiskId } = props;
+  const { user, isAuthorized } = useUserProfile();
+  const { ratingImdb, ratingKinopoisk, imdbId, _movieId } = props;
 
   useEffect(() => {
-    if (isAuthorized && userState.ratings.length !== 0) {
-      const matchedRating = userState.ratings.find(
-        (item) => item.id === kinopoiskId
-      );
+    if (isAuthorized && user.ratings.length !== 0) {
+      const matchedRating = user.ratings.find((item) => item.id === _movieId);
 
       if (matchedRating) {
         setMyRating(matchedRating.value);
       } else setMyRating(0);
     }
-  }, [userState.ratings, isAuthorized]);
+  }, [user.ratings, isAuthorized]);
 
   return (
     <div className={styles.ratings}>
-      <ButtonGroup variant="text" color="inherit" className={styles.wrapper}>
+      <ButtonGroup
+        variant="text"
+        color="inherit"
+        className={styles.wrapper}>
         <Button
           target="_blank"
-          href={`https://www.kinopoisk.ru/film/${kinopoiskId}`}
-          className={styles.bar}
-        >
-          <span className={styles.origin} style={{ color: '#eb4e00' }}>
+          href={`https://www.kinopoisk.ru/film/${_movieId}`}
+          className={styles.bar}>
+          <span
+            className={styles.origin}
+            style={{ color: '#eb4e00' }}>
             kp
           </span>
           <span className={styles.value}>{getRating(ratingKinopoisk)}</span>
@@ -48,18 +45,20 @@ const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
         <Button
           target="_blank"
           href={`https://www.imdb.com/title/${imdbId}`}
-          className={styles.bar}
-        >
-          <span className={styles.origin} style={{ color: '#f5c518' }}>
+          className={styles.bar}>
+          <span
+            className={styles.origin}
+            style={{ color: '#f5c518' }}>
             imdb
           </span>
           <span className={styles.value}>{getRating(ratingImdb)}</span>
         </Button>
         <Button
           className={styles.bar}
-          onClick={() => setDisplayModalChangeRating(true)}
-        >
-          <span className={styles.origin} style={{ color: '#5799EF' }}>
+          onClick={() => setDisplayModalChangeRating(true)}>
+          <span
+            className={styles.origin}
+            style={{ color: '#5799EF' }}>
             Your
           </span>
           <span className={styles.myValue}>
@@ -68,9 +67,9 @@ const Ratings: React.FC<RatingsProps> = ({ ...props }) => {
           </span>
         </Button>
         <ModalChangeRating
+          _movieId={_movieId}
           open={displayModalChangeRating}
-          close={setDisplayModalChangeRating.bind(null, false)}
-          id={kinopoiskId}
+          closeModal={setDisplayModalChangeRating.bind(null, false)}
         />
       </ButtonGroup>
     </div>

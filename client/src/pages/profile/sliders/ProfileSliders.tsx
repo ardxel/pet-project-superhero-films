@@ -20,25 +20,18 @@ const ProfileSliders: React.FC<ProfileSlidersProps> = ({ ...props }) => {
     return (
       <section className={styles.sliders}>
         {profileSliderList.map((slider) => {
-          if (
-            profileState.currentUser &&
-            profileState.currentUser[slider.key].length !== 0 &&
-            profileState.movies
-          ) {
+          if (profileState.currentUser && profileState.currentUser[slider.key].length !== 0 && profileState.movies) {
             return (
-              <ManualSlider key={slider.id} title={slider.title}>
+              <ManualSlider
+                key={slider.id}
+                title={slider.title}>
                 {profileState.currentUser[slider.key].map((item) => {
-                  const matchedMovie = (profileState!.movies! as IMovie[]).find(
-                    (movie) => {
-                      if (
-                        typeof item === 'object' &&
-                        item.hasOwnProperty('id')
-                      ) {
-                        return movie.kinopoiskId === item.id;
-                      }
-                      return movie.kinopoiskId === item;
+                  const matchedMovie = (profileState!.movies! as IMovie[]).find((movie) => {
+                    if (typeof item === 'object' && item.hasOwnProperty('id')) {
+                      return movie.kinopoiskId === item.id;
                     }
-                  ) as IMovie;
+                    return movie.kinopoiskId === item;
+                  }) as IMovie;
                   if (matchedMovie) {
                     return (
                       <CardMovie

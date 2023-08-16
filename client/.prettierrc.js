@@ -11,6 +11,8 @@ module.exports = {
   vueIndentScriptAndStyle: false,
   proseWrap: 'preserve',
   insertPragma: false,
+  bracketSameLine: true,
+  jsxBracketSameLine: true,
   printWidth: 120,
   requirePragma: false,
   tabWidth: 2,

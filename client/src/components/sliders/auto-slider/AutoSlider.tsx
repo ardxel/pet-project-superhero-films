@@ -1,15 +1,8 @@
-import React, {
-  Children,
-  cloneElement,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useState,
-} from 'react';
-import styles from './autoslider.module.scss';
-import { Button } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Button } from '@mui/material';
+import { Children, cloneElement, ReactElement, ReactNode, useEffect, useState } from 'react';
+import styles from './autoslider.module.scss';
 
 const sliderStyles = {
   activeSlide: {
@@ -32,11 +25,10 @@ interface AutoSliderProps {
   children: ReactNode | ReactNode[];
 }
 
-const AutoSlider: React.FC<AutoSliderProps> = ({
-  children,
-  delay = 5000,
-  showButtons = true,
-}) => {
+const AutoSlider: React.FC<AutoSliderProps> = ({ children, delay = 5000, showButtons = true }) => {
+  if (!children) {
+    return null;
+  }
   const [index, setIndex] = useState<number>(0);
   const [length, setLength] = useState((children as ReactNode[]).length);
 
@@ -88,10 +80,7 @@ const AutoSlider: React.FC<AutoSliderProps> = ({
           if (childIndex === index) {
             position = sliderStyles.activeSlide;
           }
-          if (
-            childIndex === index - 1 ||
-            (index === 0 && childIndex === length - 1)
-          ) {
+          if (childIndex === index - 1 || (index === 0 && childIndex === length - 1)) {
             position = sliderStyles.lastSlide;
           }
 

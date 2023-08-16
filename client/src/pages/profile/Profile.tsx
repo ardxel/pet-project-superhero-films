@@ -1,31 +1,27 @@
-import React, { useEffect, useReducer } from 'react';
-import { useNavigate, useParams } from 'react-router';
-import Wrapper from '@common/wrapper/Wrapper';
-import { useLazyGetMoviesByIdsQuery } from '@reduxproj//api/moviesApi';
-import { getListOfMoviesIdFromUserState, sleep } from '@common/tools';
 import Loading from '@common/loading/Loading';
-import { useLazyGetProfileQuery } from '@reduxproj//api/userApi';
-import profileReducer, {
-  initialProfileState,
-  ProfileActionKind,
-} from './profileReducer';
-import ProfileHeader from '@pages/profile/header/ProfileHeader';
-import ProfileSliders from '@pages/profile/sliders/ProfileSliders';
-import ProfileModal from '@pages/profile/modal/ProfileModal';
+import { getListOfMoviesIdFromUserState, sleep } from '@common/tools';
+import Wrapper from '@common/wrapper/Wrapper';
+import { useLazyFetch } from '@hooks/useFetch';
 import useUserProfile from '@hooks/useUserProfile';
+import { UserReduxState } from '@models/User';
+import ProfileHeader from '@pages/profile/header/ProfileHeader';
+import ProfileModal from '@pages/profile/modal/ProfileModal';
+import ProfileSliders from '@pages/profile/sliders/ProfileSliders';
+import { fetchMoviesByIds } from '@reduxproj/api/movie.api';
+import { fetchUserProfile } from '@reduxproj/api/user.api';
+import { useEffect, useReducer } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import profileReducer, { ProfileActionKind, initialProfileState } from './profileReducer';
 
 export type ProfileFormType = {
   setIsChanged: () => void;
 };
 
-const ProfilePage: React.FC<{}> = () => {
-  const { userState: localUserState, isAuthorized } = useUserProfile();
-  const [profileState, dispatch] = useReducer(
-    profileReducer,
-    initialProfileState
-  );
-  const [fetchProfile] = useLazyGetProfileQuery();
-  const [fetchMoviesByIds] = useLazyGetMoviesByIdsQuery();
+const ProfilePage: React.FC = () => {
+  const { user: localUserState, isAuthorized } = useUserProfile();
+  const [profileState, dispatch] = useReducer(profileReducer, initialProfileState);
+  const [fetchProfile, userResponse] = useLazyFetch(fetchUserProfile);
+  const [fetchMovies] = useLazyFetch(fetchMoviesByIds);
   const { username } = useParams();
   const navigate = useNavigate();
 
@@ -39,42 +35,36 @@ const ProfilePage: React.FC<{}> = () => {
     const preloadProfile = async () => {
       let user;
       if (isAuthorized) {
-        await dispatch({ type: ProfileActionKind.SHOW_BUTTONS });
-        await dispatch({
+        dispatch({ type: ProfileActionKind.SHOW_BUTTONS });
+        dispatch({
           type: ProfileActionKind.SET_CURRENT_USER,
           payload: localUserState,
         });
-        user = await localUserState;
+        user = localUserState;
       }
 
       if (!isAuthorized) {
-        await dispatch({ type: ProfileActionKind.HIDE_BUTTONS });
+        dispatch({ type: ProfileActionKind.HIDE_BUTTONS });
 
-        const userResponse = await fetchProfile(username as string);
+        const userData = (await fetchProfile(username as string)) as UserReduxState;
 
-        const userData = await userResponse.data;
-
-        await dispatch({
+        dispatch({
           type: ProfileActionKind.SET_CURRENT_USER,
           payload: userData,
         });
 
-        user = await userData;
+        user = userData;
       }
 
       const moviesIds = getListOfMoviesIdFromUserState(user);
+      const moviesResponse = await fetchMovies(moviesIds);
+      const movies = moviesResponse?.movies;
 
-      const moviesResponse = await fetchMoviesByIds(moviesIds);
-
-      const movies = await moviesResponse.data;
-
-      await dispatch({ type: ProfileActionKind.SET_MOVIES, payload: movies });
+      dispatch({ type: ProfileActionKind.SET_MOVIES, payload: movies });
     };
 
     dispatch({ type: ProfileActionKind.LOADING_START });
-
     preloadProfile();
-
     dispatch({ type: ProfileActionKind.LOADING_END });
   }, [localUserState]);
 
@@ -89,9 +79,15 @@ const ProfilePage: React.FC<{}> = () => {
   } else
     return (
       <Wrapper>
-        <ProfileHeader profileState={profileState} dispatch={dispatch} />
+        <ProfileHeader
+          profileState={profileState}
+          dispatch={dispatch}
+        />
         <ProfileSliders profileState={profileState} />
-        <ProfileModal profileState={profileState} dispatch={dispatch} />
+        <ProfileModal
+          profileState={profileState}
+          dispatch={dispatch}
+        />
       </Wrapper>
     );
 };

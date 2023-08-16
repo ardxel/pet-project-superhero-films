@@ -10,9 +10,12 @@ describe('<Search> component test', () => {
       .create(
         <MemoryRouter>
           <Provider store={store}>
-            <Search isOpen setIsOpen={() => true} />
+            <Search
+              isOpen
+              setIsOpen={() => true}
+            />
           </Provider>
-        </MemoryRouter>
+        </MemoryRouter>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

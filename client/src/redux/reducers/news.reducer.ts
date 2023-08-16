@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchNews } from '@reduxproj//asyncThunks/fetchNews';
-import { IArticle } from '@models/News';
 import offlineNews from '@constants/offlineNews';
+import { IArticle } from '@models/News';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchNews } from '@reduxproj/api/news.api';
 
 export const initialNewsState: {
   isLoading: boolean;

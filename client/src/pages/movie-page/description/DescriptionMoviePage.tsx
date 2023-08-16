@@ -6,14 +6,7 @@ import DescriptionButtonGroup from './DescriptionButtonGroup';
 type DescriptionProps = IMovie;
 
 const DescriptionMoviePage: React.FC<DescriptionProps> = ({ ...props }) => {
-  const {
-    slogan,
-    shortDescription,
-    description,
-    directors,
-    actors,
-    kinopoiskId,
-  } = props;
+  const { slogan, shortDescription, description, directors, actors, kinopoiskId } = props;
   const [showFullDesct, setShowFullDesc] = useState(false);
 
   const toggleShowDesc = () => {
@@ -33,8 +26,7 @@ const DescriptionMoviePage: React.FC<DescriptionProps> = ({ ...props }) => {
           <a
             key={index}
             target="_blank"
-            href={`https://www.imdb.com/name/${director.id}/`}
-          >
+            href={`https://www.imdb.com/name/${director.id}/`} rel="noreferrer">
             {director.name}
             <span className={styles.directorDesc}>{director.description}</span>
           </a>
@@ -53,7 +45,9 @@ const DescriptionMoviePage: React.FC<DescriptionProps> = ({ ...props }) => {
             return i === 3 ? actor.name : actor.name + ', ';
           })
           .map((str, i) => (
-            <span key={i} className={styles.name}>
+            <span
+              key={i}
+              className={styles.name}>
               {str}
             </span>
           ))}
@@ -73,7 +67,9 @@ const DescriptionMoviePage: React.FC<DescriptionProps> = ({ ...props }) => {
       <td className={styles.label}>Description</td>
       <td className={styles.description}>
         {!showFullDesct ? description.substring(0, 250) + '...' : description}
-        <button className={styles.showDesc} onClick={toggleShowDesc}>
+        <button
+          className={styles.showDesc}
+          onClick={toggleShowDesc}>
           {showFullDesct ? 'less' : 'more'}
         </button>
       </td>

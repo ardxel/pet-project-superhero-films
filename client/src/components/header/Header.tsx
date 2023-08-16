@@ -6,17 +6,11 @@ import useUserProfile from '@hooks/useUserProfile';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { Menu, MenuItem, Paper } from '@mui/material';
-import { logout } from '@reduxproj//reducers/userReducer';
-import React, { useState } from 'react';
+import { logout } from '@reduxproj/api/user.api';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../search/Search';
-import {
-  LogoButton,
-  MenuButton,
-  SearchButton,
-  ThemeButton,
-  UserButton,
-} from './buttons/index';
+import { LogoButton, MenuButton, SearchButton, ThemeButton, UserButton } from './buttons/index';
 import styles from './header.module.scss';
 import Navbar from './navbar/Navbar';
 
@@ -25,7 +19,7 @@ const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [anchorElem, setAnchorElem] = useState<HTMLButtonElement | null>(null);
-  const { userState, isAuthorized } = useUserProfile();
+  const { user, isAuthorized } = useUserProfile();
   // const navigate = useNavigate();
   const { changeTheme } = useTheme();
   const dispatch = useAppDispatch();
@@ -70,23 +64,33 @@ const Header = () => {
         <div className={styles.container}>
           <Paper
             elevation={6}
-            sx={{ height: '100%', backgroundColor: 'inherit' }}
-          >
-            <LogoButton className={styles.logo} link={'/'} />
+            sx={{ height: '100%', backgroundColor: 'inherit' }}>
+            <LogoButton
+              className={styles.logo}
+              link={'/'}
+            />
 
             <Navbar
-              username={userState.username || null}
+              username={user.username || null}
               isOpen={isNavbarOpen}
               setIsOpen={setIsNavbarOpen}
             />
-            <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
+            <Search
+              isOpen={isSearchOpen}
+              setIsOpen={setIsSearchOpen}
+            />
 
             <div className={styles.interface}>
-              <SearchButton className={styles.search} onClick={showSearch}>
+              <SearchButton
+                className={styles.search}
+                onClick={showSearch}>
                 {isSearchOpen ? <CloseIcon /> : <SearchIcon />}
               </SearchButton>
 
-              <ThemeButton className={styles.theme} onClick={changeTheme} />
+              <ThemeButton
+                className={styles.theme}
+                onClick={changeTheme}
+              />
               <UserButton
                 id="basic-menu-button"
                 className={[styles.userMenu, '.mui-fixed'].join(' ')}
@@ -114,14 +118,12 @@ const Header = () => {
                 MenuListProps={{
                   'aria-labelledby': 'basic-menu-button',
                   onMouseLeave: closeUserMenu,
-                }}
-              >
+                }}>
                 {isAuthorized && (
                   <MenuItem>
                     <Link
                       style={{ color: 'var(--color13)' }}
-                      to={`profile/${userState.username}`}
-                    >
+                      to={`profile/${user.username}`}>
                       Profile
                     </Link>
                   </MenuItem>
@@ -130,8 +132,7 @@ const Header = () => {
                   <MenuItem>
                     <Link
                       style={{ color: 'var(--color13)' }}
-                      to="/authorization"
-                    >
+                      to="/authorization">
                       Sign up
                     </Link>
                   </MenuItem>
@@ -139,28 +140,32 @@ const Header = () => {
                 {isAuthorized && (
                   <MenuItem
                     onClick={handleOpenModal}
-                    style={{ color: 'var(--color13)' }}
-                  >
+                    style={{ color: 'var(--color13)' }}>
                     Watchlist
                   </MenuItem>
                 )}
                 {isAuthorized && (
                   <MenuItem
                     style={{ color: 'var(--color13)' }}
-                    onClick={handleLogout}
-                  >
+                    onClick={handleLogout}>
                     Logout
                   </MenuItem>
                 )}
               </Menu>
 
-              <MenuButton className={styles.menu} onClick={showNavbar} />
+              <MenuButton
+                className={styles.menu}
+                onClick={showNavbar}
+              />
             </div>
           </Paper>
         </div>
       </header>
 
-      <ModalWatchlist open={isModalOpen} closeFn={handleCloseModal} />
+      <ModalWatchlist
+        open={isModalOpen}
+        closeFn={handleCloseModal}
+      />
     </>
   );
 };

@@ -38,10 +38,7 @@ export const initialProfileState: ProfileState = {
   movies: null,
 };
 
-export default function profileReducer(
-  state: ProfileState,
-  action: ProfileAction
-): ProfileState {
+export default function profileReducer(state: ProfileState, action: ProfileAction): ProfileState {
   const { type, payload } = action;
 
   switch (type) {

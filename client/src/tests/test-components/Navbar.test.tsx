@@ -8,8 +8,12 @@ describe('<Navbar> component test', () => {
     const tree = renderer
       .create(
         <MemoryRouter>
-          <Navbar isOpen setIsOpen={() => true} username={'john'} />
-        </MemoryRouter>
+          <Navbar
+            isOpen
+            setIsOpen={() => true}
+            username={'john'}
+          />
+        </MemoryRouter>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
-import FormTitle from '@components/forms/form-title/FormTitle';
-import { Form, Formik, FormikProps } from 'formik';
-import superstyles from '@styles/superstyles.module.scss';
-import { TextAreaField, InputField, SubmitButton } from '@common/formFields';
-import { useEditProfileMutation } from '@reduxproj/api/userApi';
-import { useAppSelector } from '@hooks/useAppSelector';
-import { editProfileValidation } from '@components/forms/validationSchemas';
+import { InputField, SubmitButton, TextAreaField } from '@common/formFields';
 import fieldKit from '@components/forms/fieldKit';
+import { editProfileValidation } from '@components/forms/validationSchemas';
+import { useAppDispatch } from '@hooks/useAppDispatch';
 import { ProfileFormType } from '@pages/profile/Profile';
+import { changeUser } from '@reduxproj/api/user.api';
+import superstyles from '@styles/superstyles.module.scss';
+import { Form, Formik, FormikProps } from 'formik';
 
 type ProfileFormFieldsType = {
   name: string;
@@ -16,36 +14,36 @@ type ProfileFormFieldsType = {
 };
 
 const EditProfileForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
-  const token = useAppSelector((state) => state.user.token);
-  const [editProfile, result] = useEditProfileMutation();
+  const dispatch = useAppDispatch();
   const { name, avatar, biography } = fieldKit;
 
   const _handleSubmit = (values: ProfileFormFieldsType) => {
-    const request = { ...values, token };
-    editProfile(request);
+    const request = { ...values };
+    dispatch(changeUser(request));
   };
 
-  useEffect(() => {
-    if (result.data && result.isSuccess) {
-      setIsChanged();
-    }
-  }, [result]);
+  // useEffect(() => {
+  //   if (result.data && result.isSuccess) {
+  //     setIsChanged();
+  //   }
+  // }, [result]);
 
   return (
     <div style={{ width: '90%' }}>
-      <FormTitle
+      {/* <FormTitle
         title={'Change Username and Biography'}
         showAlert={result.isSuccess || false}
         severity={result.data ? result.data.severity : undefined}
         message={result.data ? result.data.message : undefined}
-      />
+      /> */}
       <Formik
         initialValues={{ name: '', avatar: '', biography: '' }}
         validate={editProfileValidation}
-        onSubmit={_handleSubmit}
-      >
+        onSubmit={_handleSubmit}>
         {(props: FormikProps<ProfileFormFieldsType>) => (
-          <Form className={superstyles.form} onSubmit={props.handleSubmit}>
+          <Form
+            className={superstyles.form}
+            onSubmit={props.handleSubmit}>
             <InputField
               label={avatar.label}
               type="text"
@@ -58,7 +56,10 @@ const EditProfileForm: React.FC<ProfileFormType> = ({ setIsChanged }) => {
               name={name.name}
               adornment={<name.Adornment />}
             />
-            <TextAreaField label={biography.label} name={biography.name} />
+            <TextAreaField
+              label={biography.label}
+              name={biography.name}
+            />
             <SubmitButton />
           </Form>
         )}

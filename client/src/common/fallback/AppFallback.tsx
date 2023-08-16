@@ -1,4 +1,3 @@
-import React from 'react';
 import Loading from '@common/loading/Loading';
 import fallbackStyles from './appfallback.module.scss';
 

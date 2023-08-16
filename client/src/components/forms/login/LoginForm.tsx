@@ -1,62 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import { SubmitButton } from '@common/formFields';
+import InputField from '@common/formFields/InputField';
+import fieldKit from '@components/forms/fieldKit';
+import { loginValidation } from '@components/forms/validationSchemas';
+import { useAppDispatch } from '@hooks/useAppDispatch';
+import { LoginRequest } from '@models/apiModels/LoginModel';
+import { login } from '@reduxproj/api/user.api';
 import superstyles from '@styles/superstyles.module.scss';
 import { Form, Formik, FormikProps } from 'formik';
-import { LoginRequest } from '@models/apiModels/LoginModel';
-import { loginValidation } from '@components/forms/validationSchemas';
-import FormTitle from '@components/forms/form-title/FormTitle';
-import InputField from '@common/formFields/InputField';
-import { useLoginUserMutation } from '@reduxproj//api/userApi';
-import { useAppDispatch } from '@hooks/useAppDispatch';
-import { login } from '@reduxproj/reducers/userReducer';
-import { useNavigate } from 'react-router';
-import { sleep } from '@tools/sleep';
-import fieldKit from '@components/forms/fieldKit';
-import { SubmitButton } from '@common/formFields';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues: LoginRequest = {
-  login: '',
+  emailOrUsername: '',
   password: '',
 };
 
 const templateValues: LoginRequest = {
-  login: 'john123',
+  emailOrUsername: 'john123',
   password: 'Qwerty12345',
 };
 
-const LoginForm: React.FC<{ testTemplate: boolean }> = ({
-  testTemplate = false,
-}) => {
-  const [loginUser, result] = useLoginUserMutation();
+const LoginForm: React.FC<{ testTemplate: boolean }> = ({ testTemplate = false }) => {
   const [passwordShown, setPasswordShown] = useState(false);
-  const { login: inputLogin, password: inputPassword } = fieldKit;
+  const { emailOrUsername: inputLogin, password: inputPassword } = fieldKit;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const togglePassword = () => setPasswordShown(!passwordShown);
+  const loginUser = (body: LoginRequest) => {
+    dispatch(login(body));
+  };
 
-  useEffect(() => {
-    if (result.data && result.data.user && result.isSuccess) {
-      dispatch(login(result.data.user));
-      sleep(1500).then(() => navigate('/'));
-    }
-  }, [result.data]);
+  const togglePassword = () => setPasswordShown(!passwordShown);
 
   return (
     <div>
-      <FormTitle
+      {/* <FormTitle
         title={'Login'}
         showAlert={result.isSuccess || false}
         severity={result.data ? result.data.severity : undefined}
         message={result.data ? result.data.message : undefined}
-      />
+      /> */}
       <Formik
         enableReinitialize={true}
         initialValues={testTemplate ? templateValues : initialValues}
         onSubmit={loginUser}
-        validate={(values) => loginValidation(values)}
-      >
+        validate={(values) => loginValidation(values)}>
         {(props: FormikProps<LoginRequest>) => (
-          <Form className={superstyles.form} onSubmit={props.handleSubmit}>
+          <Form
+            className={superstyles.form}
+            onSubmit={props.handleSubmit}>
             <InputField
               name={inputLogin.name}
               label={inputLogin.label}
@@ -76,11 +68,7 @@ const LoginForm: React.FC<{ testTemplate: boolean }> = ({
                 )
               }
             />
-            <SubmitButton
-              disabled={
-                testTemplate ? !testTemplate : !(props.isValid && props.dirty)
-              }
-            />
+            <SubmitButton disabled={testTemplate ? !testTemplate : !(props.isValid && props.dirty)} />
           </Form>
         )}
       </Formik>
